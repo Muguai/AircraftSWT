@@ -7,6 +7,9 @@ import org.eclipse.swt.widgets.Shell;
 
 public class Main {
     public static void main(String[] args) {
+    	
+    	
+    	
         System.out.println("Hello world!");
 
         // Boilerplate code from chat GPT:
@@ -16,6 +19,9 @@ public class Main {
 
         // Set layout for the shell
         shell.setLayout(new FillLayout());
+        
+        DataHandler dataHandler = new DataHandler();
+    	GameWorld gameWorld = new GameWorld(display, shell);
 
         // Create a label widget
         Label label = new Label(shell, SWT.CENTER);
