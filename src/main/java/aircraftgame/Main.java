@@ -24,8 +24,8 @@ public class Main {
     	GameWorld gameWorld = new GameWorld(display, shell);
 
         // Create a label widget
-        Label label = new Label(shell, SWT.CENTER);
-        label.setText("Hello, SWT!");
+        //Label label = new Label(shell, SWT.CENTER);
+        //label.setText("Hello, SWT!");
 
         // Set the size of the shell
         shell.setSize(300, 200);
