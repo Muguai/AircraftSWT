@@ -9,7 +9,7 @@ public abstract class MovableObject extends GameObject implements Move{
 	
 	public DirectionVector getDirectionVector() {
 		return directionVector;
-	};
+	}
 	
 	public void moveObject(){
 		
