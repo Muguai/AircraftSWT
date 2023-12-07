@@ -1,6 +1,7 @@
 package aircraftgame;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
@@ -19,7 +20,12 @@ public class GameWorld {
 		}
 		
 		canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
-		//canvas.addKeyListener();
+		
+        canvas.addPaintListener(e -> {
+            GC gc = e.gc;
+            gc.drawImage(mapImage, 0, 0);
+        });
+        //canvas.addKeyListener();
 	}
 	
 	
