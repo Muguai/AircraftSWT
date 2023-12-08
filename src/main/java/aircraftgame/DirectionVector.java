@@ -1,13 +1,16 @@
 package aircraftgame;
 
 public class DirectionVector {
-    public float x;
-    public float y;
+    private float x;
+    private float y;
 
     public DirectionVector(float x, float y) {
         this.x = x;
         this.y = y;
     }
+    
+    public float getX() { return x; }
+    public float getY() { return y; }
 
     public float magnitude() {
         return (float) Math.sqrt(x * x + y * y);
