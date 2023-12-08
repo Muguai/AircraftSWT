@@ -21,7 +21,6 @@ public class GameWorld {
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
 		this.dataHandler = dataHandler;
 		try {
-			String absPath = "C:\\Users\\ADanel\\Desktop\\flygplan3\\AircraftSWT\\src\\main\\java\\aircraftgame\\map.png";
 			String relPath = "src\\main\\java\\aircraftgame\\map.png";
 			mapImage = new Image(display, relPath); 
 		} catch (Exception e) {
@@ -78,6 +77,9 @@ public class GameWorld {
 		for(GameObject gameObject : dataHandler.getGameObjects()) {
 			if(gameObject instanceof MovableObject) {
 				((MovableObject) gameObject).moveObject(deltaTime);
+			}
+			if(!(gameObject instanceof Player)) {
+				gameObject.setOffsets(dataHandler.getPlayer().getXOffset(), dataHandler.getPlayer().getYOffset());
 			}
 			gameObject.draw(canvas);
 		}

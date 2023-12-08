@@ -16,7 +16,9 @@ public class Enemy extends Aircraft {
 	public void draw(Canvas canvas) {
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
-            gc.drawOval((int)this.position[0], (int)this.position[1], 100, 100);
+            int x = (int)(this.position[0] + this.offsets[0]);
+            int y = (int)(this.position[1] + this.offsets[1]);
+            gc.drawOval(x, y, 100, 100);
         });
 	}
 }
