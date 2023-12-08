@@ -9,6 +9,10 @@ public class Enemy extends Aircraft {
 		this.speedFactor = 20.0f;
 	}
 	
+	/*	draw()
+	 * 	Renders the enemy object onto the canvas at its current position.
+	 */
+	
 	public void draw(Canvas canvas) {
         canvas.addPaintListener(e -> {
             GC gc = e.gc;

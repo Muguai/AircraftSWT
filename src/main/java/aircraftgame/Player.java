@@ -9,6 +9,10 @@ public class Player extends Aircraft{
 		this.speedFactor = 50.0f;
 	}
 	
+	/*	draw()
+	 * 	Renders the player object onto the canvas at its current position.
+	 */
+	
 	public void draw(Canvas canvas) {
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
