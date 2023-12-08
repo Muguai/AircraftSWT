@@ -28,7 +28,7 @@ public class Main {
         //label.setText("Hello, SWT!");
 
         // Set the size of the shell
-        shell.setSize(800, 600);
+        shell.setSize(1400, 1000);
 
         // Open the shell
         shell.open();
