@@ -66,6 +66,9 @@ public class GameWorld {
         
 	}
 	
+	public Canvas getCanvas() { return canvas; }
+	public DataHandler getDataHandler() { return dataHandler; }
+	
 	/* 	update()
 	 * 	update() is called in the main loop for each frame and updates the state of the game.
 	 * 	Specifically, the method iterates over every game object: gameObject.
@@ -86,7 +89,7 @@ public class GameWorld {
 		canvas.redraw();
 	}
 	
-	public Canvas getCanvas() { return canvas; }
+	
 	
 	
 }
