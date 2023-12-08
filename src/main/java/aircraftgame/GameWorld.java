@@ -26,7 +26,7 @@ public class GameWorld {
 		canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
-            //gc.drawImage(mapImage, 0, 0);
+            gc.drawImage(mapImage, 0, 0);
         });
         
 	}

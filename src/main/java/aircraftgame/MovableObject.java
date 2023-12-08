@@ -28,7 +28,7 @@ public abstract class MovableObject extends GameObject implements Move{
 	
 	public void moveObject(float deltaTime){
 		directionVector.normalize();
-		this.position[0] += directionVector.x*deltaTime*speedFactor;
-		this.position[1] += directionVector.y*deltaTime*speedFactor;
+		this.position[0] += directionVector.getX()*deltaTime*speedFactor;
+		this.position[1] += directionVector.getY()*deltaTime*speedFactor;
 	}
 }

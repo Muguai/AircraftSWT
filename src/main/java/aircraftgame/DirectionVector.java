@@ -20,7 +20,15 @@ public class DirectionVector {
             y /= mag;
         }
     }
-
+    
+    public float getX() {
+    	return x;
+    }
+    
+    public float getY() {
+    	return y;
+    }
+    
     public String toString() {
         return "(" + x + ", " + y + ")";
     }
