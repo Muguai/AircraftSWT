@@ -22,8 +22,8 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		try {
 			String absPath = "C:\\Users\\ADanel\\Desktop\\flygplan3\\AircraftSWT\\src\\main\\java\\aircraftgame\\map.png";
-			String relPath = "AircraftSWT\\src\\main\\java\\aircraftgame\\map.png";
-			mapImage = new Image(display, absPath); 
+			String relPath = "src\\main\\java\\aircraftgame\\map.png";
+			mapImage = new Image(display, relPath); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			// Avsluta programmet
