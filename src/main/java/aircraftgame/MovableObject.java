@@ -14,6 +14,10 @@ public abstract class MovableObject extends GameObject implements Move{
 		return directionVector;
 	};
 	
+	
+	/*	moveObject()
+	 * 
+	 */
 	public void moveObject(float deltaTime){
 		System.out.println(deltaTime);
 		this.position[0] += directionVector.x*deltaTime*speedFactor;

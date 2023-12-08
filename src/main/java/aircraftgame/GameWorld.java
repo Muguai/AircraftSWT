@@ -31,6 +31,13 @@ public class GameWorld {
         
 	}
 	
+	/* 	update()
+	 * 	update() is called in the main loop for each frame and updates the state of the game.
+	 * 	Specifically, the method iterates over every game object: gameObject.
+	 *  1. If gameObject is also a movable object, move the object: gameObject.moveObject()
+	 *  2. Draw gameObject onto the canvas: gameObject().draw
+	 */
+	
 	public void update(float deltaTime) {
 		for(GameObject gameObject : dataHandler.getGameObjects()) {
 			if(gameObject instanceof MovableObject) {
