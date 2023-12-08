@@ -18,10 +18,16 @@ public abstract class MovableObject extends GameObject implements Move{
 		return directionVector;
 	}
 	
-	//public float getSpeedFactor() { return speedFactor; }
-	
 	public void increaseSpeed() { speedFactor = Math.min(speedFactor + speedChange, maxSpeed); }
 	public void decreaseSpeed() { speedFactor = Math.max(speedFactor - speedChange, minSpeed); }
+	
+	public void turnLeft() {
+		
+	}
+	
+	public void turnRight() {
+		
+	}
 	
 	
 	/*	moveObject()

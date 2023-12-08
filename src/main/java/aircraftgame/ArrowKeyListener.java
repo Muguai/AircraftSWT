@@ -28,6 +28,7 @@ public class ArrowKeyListener implements KeyListener {
             	// 4 scenarios
             	// x positiv y positiv
             	//gameWorld.setOffsetX(gameWorld.getOffsetX() - steps);
+            	gameWorld.getDataHandler().getPlayer().getDirectionVector().
                 break;
             case SWT.ARROW_RIGHT:
             	// 4 scenarios
