@@ -1,18 +1,20 @@
 package aircraftgame;
 
+import org.eclipse.swt.widgets.Canvas;
+
 public abstract class GameObject {
-	int[] position = new int[2];	// [x,y]
-	GameObject(int x, int y){
+	float[] position = new float[2];	// [x,y]
+	GameObject(float x, float y){
 		position[0] = x;
 		position[1] = y;
 	}
 	
 	// Getters:
-	public int getX(){
+	public float getX(){
 		return position[0];
 	}
-	public int getY() {
+	public float getY() {
 		return position[1];
 	}
-	public abstract void draw(/*SWT Canvas Component*/); 
+	public abstract void draw(Canvas canvas); 
 }

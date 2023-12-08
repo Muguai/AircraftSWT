@@ -14,4 +14,7 @@ public class DataHandler {
 	
 	public void removeGameObject(GameObject gameObject) { gameObjects.remove(gameObject); }
 	
+	public List<GameObject> getGameObjects() {
+		return gameObjects;
+	}
 }

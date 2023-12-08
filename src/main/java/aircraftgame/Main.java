@@ -10,7 +10,6 @@ public class Main {
     	
     	
     	
-        System.out.println("Hello world!");
 
         // Boilerplate code from chat GPT:
         Display display = new Display();
@@ -21,11 +20,8 @@ public class Main {
         shell.setLayout(new FillLayout());
         
         DataHandler dataHandler = new DataHandler();
-    	GameWorld gameWorld = new GameWorld(display, shell);
-
-        // Create a label widget
-        //Label label = new Label(shell, SWT.CENTER);
-        //label.setText("Hello, SWT!");
+    	GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
+  
 
         // Set the size of the shell
         shell.setSize(300, 200);
@@ -33,11 +29,22 @@ public class Main {
         // Open the shell
         shell.open();
 
-        // Event loop
+        // Test scenario, one enemy, one player:
+        Player player = new Player(200.0f, 200.0f, 1.0f, 0.0f);
+        Enemy enemy = new Enemy(300.0f, 200.0f, 0.0f, 1.0f);
+        dataHandler.addGameObject(player);
+        dataHandler.addGameObject(enemy);
+        
+        long lastUpdateTime = System.currentTimeMillis();
         while (!shell.isDisposed()) {
             if (!display.readAndDispatch()) {
-                display.sleep();
+                //display.sleep();
             }
+            
+            long currentTime = System.currentTimeMillis();
+            float deltaTime = (currentTime - lastUpdateTime) / 1000.0f; // Convert to seconds
+            lastUpdateTime = currentTime;
+            gameWorld.update(deltaTime);
         }
 
         // Dispose of the display when done
