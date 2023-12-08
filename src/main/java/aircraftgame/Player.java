@@ -6,7 +6,7 @@ import org.eclipse.swt.widgets.Canvas;
 public class Player extends Aircraft{
 	Player(float xPosition, float yPosition, float xDirection, float yDirection){
 		super(xPosition, yPosition, xDirection, yDirection);
-		this.speedFactor = 50.0f;
+		this.speedFactor = 20.0f;
 	}
 	
 	/*	draw()
@@ -16,7 +16,8 @@ public class Player extends Aircraft{
 	public void draw(Canvas canvas) {
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
-            gc.drawRectangle((int)this.position[0], (int)this.position[1], 100, 100);
+            //gc.drawRectangle((int)this.position[0], (int)this.position[1], 100, 100);
+            gc.drawRectangle(canvas.getBounds().width/2, canvas.getBounds().height/2, 100, 100);
         });
 	}
 }

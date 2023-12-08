@@ -13,7 +13,7 @@ public abstract class MovableObject extends GameObject implements Move{
 	// getDirectionVector() - Simple getter
 	public DirectionVector getDirectionVector() {
 		return directionVector;
-	};
+	}
 	
 	
 	/*	moveObject()

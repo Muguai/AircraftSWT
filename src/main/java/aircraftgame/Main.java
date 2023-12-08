@@ -13,18 +13,17 @@ public class Main {
         Shell shell = new Shell(display);
         shell.setText("SWT Boilerplate");
         shell.setLayout(new FillLayout());
-        shell.setSize(800, 800);
+        shell.setSize(1400, 1000);
         shell.open();
-        
-        // 2. Create our DataHandler and GameWorld objects:
-        DataHandler dataHandler = new DataHandler();
-    	GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
+          
+		// 2. Create our DataHandler and GameWorld objects:
+        Player player = new Player(200.0f, 200.0f, -1.0f, 0.0f);
+		DataHandler dataHandler = new DataHandler(player);
+		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
 
         // 3. Set up of a test scenario, two enemies, one player:
-        Player player = new Player(200.0f, 200.0f, 1.0f, 0.0f);
         Enemy enemy = new Enemy(300.0f, 200.0f, 0.0f, 1.0f);
         Enemy enemy2 = new Enemy(500f, 500f, -0.5f, -0.5f);
-        dataHandler.addGameObject(player);
         dataHandler.addGameObject(enemy);
         dataHandler.addGameObject(enemy2);
         
