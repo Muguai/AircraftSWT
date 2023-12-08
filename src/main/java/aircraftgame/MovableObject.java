@@ -1,8 +1,11 @@
 package aircraftgame;
 
 public abstract class MovableObject extends GameObject implements Move{
-	DirectionVector directionVector;
-	float speedFactor;
+	private DirectionVector directionVector;
+	protected float speedFactor;
+	private final float speedChange = 20.0f;
+	private final float maxSpeed = 200.0f;
+	private final float minSpeed = 10.0f;
 	
 	MovableObject(float xPosition, float yPosition, float xDirection, float yDirection){
 		super(xPosition, yPosition);
@@ -14,6 +17,11 @@ public abstract class MovableObject extends GameObject implements Move{
 	public DirectionVector getDirectionVector() {
 		return directionVector;
 	}
+	
+	//public float getSpeedFactor() { return speedFactor; }
+	
+	public void increaseSpeed() { speedFactor = Math.min(speedFactor + speedChange, maxSpeed); }
+	public void decreaseSpeed() { speedFactor = Math.max(speedFactor - speedChange, minSpeed); }
 	
 	
 	/*	moveObject()

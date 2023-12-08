@@ -18,12 +18,11 @@ public class ArrowKeyListener implements KeyListener {
 		int steps = 10;
 		
 		switch (e.keyCode) {
-		// TODO: change direction on directionvector 
 			case SWT.ARROW_UP:
-				//gameWorld.setOffsetY(gameWorld.getOffsetY() - steps);
+				gameWorld.getDataHandler().getPlayer().increaseSpeed();
                 break;
             case SWT.ARROW_DOWN:
-            	//gameWorld.setOffsetY(gameWorld.getOffsetY() + steps);
+            	gameWorld.getDataHandler().getPlayer().decreaseSpeed();
                 break;
             case SWT.ARROW_LEFT:
             	// 4 scenarios
