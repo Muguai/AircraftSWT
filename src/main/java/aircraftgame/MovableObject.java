@@ -6,11 +6,15 @@ public abstract class MovableObject extends GameObject implements Move{
 	private final float speedChange = 20.0f;
 	private final float maxSpeed = 200.0f;
 	private final float minSpeed = 10.0f;
+	private float degree;
+	private final float degreeChange = 45.0f;
 	
-	MovableObject(float xPosition, float yPosition, float xDirection, float yDirection){
+	MovableObject(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition);
-		directionVector = new DirectionVector(xDirection, yDirection);
 		speedFactor = 5.0f;
+		this.degree = degree;
+		float radians = (float)Math.toRadians(degree);
+		directionVector = new DirectionVector(radians);
 	}
 	
 	// getDirectionVector() - Simple getter
@@ -21,12 +25,17 @@ public abstract class MovableObject extends GameObject implements Move{
 	public void increaseSpeed() { speedFactor = Math.min(speedFactor + speedChange, maxSpeed); }
 	public void decreaseSpeed() { speedFactor = Math.max(speedFactor - speedChange, minSpeed); }
 	
+	
 	public void turnLeft() {
-		
+		this.degree -= degreeChange;
+		float radians = (float)Math.toRadians(degree);
+		directionVector.setDirection(radians);
 	}
 	
 	public void turnRight() {
-		
+		this.degree += degreeChange;
+		float radians = (float)Math.toRadians(degree);
+		directionVector.setDirection(radians);
 	}
 	
 	

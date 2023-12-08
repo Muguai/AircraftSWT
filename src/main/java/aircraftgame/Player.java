@@ -4,8 +4,8 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 
 public class Player extends Aircraft{
-	Player(float xPosition, float yPosition, float xDirection, float yDirection){
-		super(xPosition, yPosition, xDirection, yDirection);
+	Player(float xPosition, float yPosition, float degree){
+		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
 	}
 	
