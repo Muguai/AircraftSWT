@@ -15,11 +15,13 @@ public class GameWorld {
 	private DataHandler dataHandler;
 	private int offsetX;
 	private int offsetY;
+	private boolean isRunning;
 
 	
 
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
 		this.dataHandler = dataHandler;
+		isRunning = true;
 		try {
 			String relPath = "src\\main\\java\\aircraftgame\\map.png";
 			mapImage = new Image(display, relPath); 
@@ -31,8 +33,7 @@ public class GameWorld {
         
      // Paint up map background
      		canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
-     		
-     		canvas.setSize(600, 400);
+     		canvas.setSize(shell.getSize().x, shell.getSize().y);
      		
              canvas.addPaintListener(e -> {
              	GC gc = e.gc;
@@ -87,6 +88,14 @@ public class GameWorld {
 			gameObject.draw(canvas);
 		}
 		canvas.redraw();
+	}
+	
+	public boolean runs() {
+		return isRunning;
+	}
+	
+	public void exit() {
+		isRunning = false;
 	}
 	
 	

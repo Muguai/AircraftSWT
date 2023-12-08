@@ -13,11 +13,11 @@ public class Main {
         Shell shell = new Shell(display);
         shell.setText("SWT Boilerplate");
         shell.setLayout(new FillLayout());
-        shell.setSize(1400, 1000);
+        shell.setFullScreen(true);
         shell.open();
           
 		// 2. Create our DataHandler and GameWorld objects:
-        Player player = new Player(200.0f, 200.0f, 180);
+        Player player = new Player(0.0f, 0.0f, 180);
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
 
@@ -29,7 +29,7 @@ public class Main {
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
-        while (!shell.isDisposed()) {
+        while (!shell.isDisposed() && gameWorld.runs()) {
         	
         	// 5. Game lags if this is not here:
             if (!display.readAndDispatch()) {

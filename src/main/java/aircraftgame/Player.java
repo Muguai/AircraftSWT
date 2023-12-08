@@ -17,12 +17,18 @@ public class Player extends Aircraft{
 	 */
 	
 	public void draw(Canvas canvas) {
+		int x = canvas.getBounds().width/2;
+		int y = canvas.getBounds().height/2;
+		
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
-            Transform transform = new Transform(gc.getDevice());
-            transform.rotate(this.degree);
-            gc.setTransform(transform);
-            gc.drawRectangle(canvas.getBounds().width/2, canvas.getBounds().height/2, 100, 100);
+            Transform transform = new Transform ( gc.getDevice () );
+            transform.translate(x, y);
+            transform.rotate(degree-1f);
+            gc.setTransform ( transform );
+            gc.drawRectangle(-50, -50, 100, 100);
+            transform.translate(0, 0);
+            gc.setTransform(null);
         });
 	}
 	
