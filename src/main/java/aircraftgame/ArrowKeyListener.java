@@ -35,6 +35,10 @@ public class ArrowKeyListener implements KeyListener {
             	//gameWorld.setOffsetX(gameWorld.getOffsetX() + steps);
             	gameWorld.getDataHandler().getPlayer().turnRight();
                 break;
+                
+            case SWT.TAB:
+            	System.out.println("This could toggle radar!");
+            	break;
 		}
 		
 		gameWorld.getCanvas().redraw();

@@ -6,7 +6,7 @@ public abstract class MovableObject extends GameObject implements Move{
 	private final float speedChange = 20.0f;
 	private final float maxSpeed = 200.0f;
 	private final float minSpeed = 10.0f;
-	private float degree;
+	protected float degree;
 	private final float degreeChange = 45.0f;
 	
 	MovableObject(float xPosition, float yPosition, float degree){

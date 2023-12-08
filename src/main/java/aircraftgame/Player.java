@@ -1,9 +1,12 @@
 package aircraftgame;
 
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 
 public class Player extends Aircraft{
+	private boolean radar;
+	
 	Player(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
@@ -16,7 +19,9 @@ public class Player extends Aircraft{
 	public void draw(Canvas canvas) {
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
-            //gc.drawRectangle((int)this.position[0], (int)this.position[1], 100, 100);
+            Transform transform = new Transform(gc.getDevice());
+            transform.rotate(this.degree);
+            gc.setTransform(transform);
             gc.drawRectangle(canvas.getBounds().width/2, canvas.getBounds().height/2, 100, 100);
         });
 	}
