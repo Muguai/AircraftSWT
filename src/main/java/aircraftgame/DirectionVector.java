@@ -41,6 +41,10 @@ public class DirectionVector {
         }
     }
     
+    /*	toString()
+     * 	Simply return the vector as a string with both components of the vector
+     */
+    
     public String toString() {
         return "(" + x + ", " + y + ")";
     }

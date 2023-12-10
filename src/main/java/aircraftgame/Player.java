@@ -26,9 +26,10 @@ public class Player extends Aircraft{
             transform.translate(x, y);
             transform.rotate(degree-1f);
             gc.setTransform ( transform );
-            gc.drawRectangle(-50, -50, 100, 100);
+            gc.drawRectangle(-50, -25, 100, 50);
             transform.translate(0, 0);
             gc.setTransform(null);
+            transform.dispose();
         });
 	}
 	

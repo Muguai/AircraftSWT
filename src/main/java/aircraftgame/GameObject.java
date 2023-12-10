@@ -19,6 +19,14 @@ public abstract class GameObject {
 		return position[1];
 	}
 	
+	/*	setOffsets()
+	 * 	A function that sets gameObject offsets.
+	 * 	Important: When a player object is moving we update player position but we always
+	 * 	render player at the center of the screen. Instead of player moving every gameObject
+	 * 	moves. This is done via using the player position as the offset and this function then
+	 * 	updates the offset of the gameObject, relative the player object.
+	 */
+	
 	public void setOffsets(float xOffset, float yOffset) {
 		offsets[0] = xOffset;
 		offsets[1] = yOffset;
