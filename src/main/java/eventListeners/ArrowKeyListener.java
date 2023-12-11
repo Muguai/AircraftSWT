@@ -1,9 +1,11 @@
-package aircraftgame;
+package eventListeners;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Canvas;
+
+import components.GameWorld;
 
 public class ArrowKeyListener implements KeyListener {
 	

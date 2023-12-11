@@ -1,4 +1,6 @@
-package aircraftgame;
+package components;
+
+import utils.DirectionVector;
 
 public interface Move {
 	 public DirectionVector getDirectionVector();

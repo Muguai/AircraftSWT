@@ -1,4 +1,4 @@
-package aircraftgame;
+package components;
 
 public abstract class Aircraft extends MovableObject {
 	int health;

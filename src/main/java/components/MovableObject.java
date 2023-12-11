@@ -1,4 +1,6 @@
-package aircraftgame;
+package components;
+
+import utils.DirectionVector;
 
 public abstract class MovableObject extends GameObject implements Move{
 	private DirectionVector directionVector;

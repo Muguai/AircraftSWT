@@ -1,4 +1,4 @@
-package aircraftgame;
+package components;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -7,6 +7,9 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+
+import data.DataHandler;
+import eventListeners.ArrowKeyListener;
 
 public class GameWorld {
 	

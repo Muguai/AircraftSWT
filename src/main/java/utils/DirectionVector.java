@@ -1,4 +1,4 @@
-package aircraftgame;
+package utils;
 
 public class DirectionVector {
     private float x;

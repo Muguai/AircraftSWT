@@ -1,6 +1,9 @@
-package aircraftgame;
+package data;
 import java.util.ArrayList;
 import java.util.List;
+
+import components.GameObject;
+import components.Player;
 
 public class DataHandler {
 	

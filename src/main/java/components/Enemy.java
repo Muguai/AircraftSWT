@@ -1,4 +1,4 @@
-package aircraftgame;
+package components;
 
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
