@@ -5,6 +5,11 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
+import components.Enemy;
+import components.GameWorld;
+import components.Player;
+import data.DataHandler;
+
 public class Main {
     public static void main(String[] args) {
 
