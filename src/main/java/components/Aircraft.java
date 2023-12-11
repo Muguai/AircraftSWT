@@ -1,5 +1,8 @@
 package components;
 
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.widgets.Canvas;
+
 public abstract class Aircraft extends MovableObject {
 	int health;
 	
@@ -7,4 +10,5 @@ public abstract class Aircraft extends MovableObject {
 		super(xPosition, yPosition, degree);
 		health = 100;
 	}
+	
 }

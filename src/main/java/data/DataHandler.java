@@ -16,15 +16,28 @@ public class DataHandler {
 		gameObjects.add(player);
 	}
 	
-	public void addGameObject(GameObject gameObject) { 
-		gameObjects.add(gameObject); 
-	}
+	/*	addGameObject()
+	 *  Takes in a gameObject and adds it to the list of gameObjects
+	 */
+	
+	public void addGameObject(GameObject gameObject) { gameObjects.add(gameObject); }
+	
+	/*	removeGameObject()
+	 * 	Takes in a gameObject and removes it from the internal list of game objects
+	 */
 	
 	public void removeGameObject(GameObject gameObject) { gameObjects.remove(gameObject); }
 	
-	public List<GameObject> getGameObjects() {
-		return gameObjects;
-	}
+	/*	getGameObjects()
+	 * 	Returns the internal list of game objects
+	 */
+	
+	public List<GameObject> getGameObjects() { return gameObjects; }
+	
+	/*	getPlayer()
+	 * 	Returns the player object internally stored in the datahandler
+	 * 
+	 */
 	
 	public Player getPlayer() {
 		return player;
