@@ -1,16 +1,22 @@
 package components;
 
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.swt.widgets.Display;
 
 public class Player extends Aircraft{
 	private boolean radar;
+	private Image planeImage;
 	
-	public Player(float xPosition, float yPosition, float degree){
+	public Player(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
+		String relPath = "src\\main\\java\\resources\\Aircraft_05.png";
+		planeImage = new Image(display, relPath); 
 	}
+	
 	
 	/*	draw()
 	 * 	Renders the player object onto the canvas at its current position.
@@ -30,11 +36,11 @@ public class Player extends Aircraft{
             transform.translate(x, y);
             
             // 2. After this translation, do rotation:
-            transform.rotate(degree);
+            transform.rotate((degree+90));
             
             // 3. Draw out the object centered in the transform's origo:
             gc.setTransform ( transform );
-            gc.drawRectangle(-50, -25, 100, 50);
+            gc.drawImage(planeImage, -planeImage.getBounds().width/2, -planeImage.getBounds().height/2);
             
             // 4. Set the new transform as the identity transform and dispose the old one:
             gc.setTransform(null);
