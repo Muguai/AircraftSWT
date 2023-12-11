@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.Canvas;
 public class Player extends Aircraft{
 	private boolean radar;
 	
-	Player(float xPosition, float yPosition, float degree){
+	public Player(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
 	}

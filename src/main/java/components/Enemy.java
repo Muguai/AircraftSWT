@@ -4,7 +4,7 @@ import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Canvas;
 
 public class Enemy extends Aircraft {
-	Enemy(float xPosition, float yPosition, float degree){
+	public Enemy(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
 	}
