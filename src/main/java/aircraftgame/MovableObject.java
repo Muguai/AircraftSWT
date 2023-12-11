@@ -43,8 +43,8 @@ public abstract class MovableObject extends GameObject implements Move{
 	 * 	The direction vector for the gameObject is then updated (To adjust for the left turn).
 	 
 	 *  Important Note: There are two ways to meassure an angle, degrees and radians. They are
-	 *  not the same. 360 degrees = 2*pi radians. We need to convert degrees to radians.
-	 *  This is why we are using: Math.toRadians()
+	 *  not the same. 360 degrees = 2*pi radians. We need to convert degrees to radians and
+	 *  this is why we are using: Math.toRadians()
 	 */
 	
 	public void turnLeft() {
