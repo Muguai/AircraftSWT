@@ -24,7 +24,7 @@ public class Player extends Aircraft{
             GC gc = e.gc;
             Transform transform = new Transform ( gc.getDevice () );
             transform.translate(x, y);
-            transform.rotate(degree-1f);
+            transform.rotate(degree);
             gc.setTransform ( transform );
             gc.drawRectangle(-50, -25, 100, 50);
             transform.translate(0, 0);

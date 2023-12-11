@@ -40,6 +40,7 @@ public class ArrowKeyListener implements KeyListener {
             case SWT.TAB:
             	System.out.println("This could toggle radar!");
             	break;
+            
             case SWT.ESC:
             	this.gameWorld.exit();
             	break;
