@@ -27,9 +27,11 @@ public class Main {
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
 		
-        // 3. Set up of a test scenario with an enemySpawner: Five enemies, one player:
-		EnemySpawner enemySpawner = new EnemySpawner(display.getBounds().width/2, display.getBounds().height/2, dataHandler, display);
-        enemySpawner.diskSpawn(5, 100, 200);
+        // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
+		EnemySpawner enemySpawner = new EnemySpawner(display.getBounds().width/2-300, display.getBounds().height/2-300, dataHandler, display);
+		EnemySpawner enemySpawner2 = new EnemySpawner(display.getBounds().width/2-1000, display.getBounds().height/2-400, dataHandler, display);
+        enemySpawner.vFormationSpawn(5, 45, -35, 55);
+        enemySpawner2.vFormationSpawn(5, 45, 135, 65);
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();

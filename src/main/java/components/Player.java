@@ -21,7 +21,7 @@ public class Player extends Aircraft{
 	
 	
 	/*	draw()
-	 * 	Renders the player object onto the canvas at its current position.
+	 * 	Sets the actionListener for performing graphics on the Player object.
 	 * 	Since the player graphics should rotate around its own axis we have to make sure
 	 * 	that the graphics is centered in the origo of the object's transform.
 	 */
