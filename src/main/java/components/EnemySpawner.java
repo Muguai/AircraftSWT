@@ -46,21 +46,37 @@ public class EnemySpawner {
 		}
 	}
 	
+	/*	vFormationSpawn()
+	 * 	A spawning scheme that spawns a V-formation.
+	 * 	The Leader of the V-formation is spawned in on coordinates (x,y).
+	 *  Other enemy objects are then filled onto left-V side and right V side until emptied.
+	 *  @Param: enemies - How many enemy objects are in the V-formation.
+	 *  @Param: spacing - The spacing between enemy objects.
+	 *  @Param: degree - The degree of the direction that they are flying towards.
+	 *  @Param: vDegree - The degree from the leader to the left and right side resp.
+	 */
+	
 	public void vFormationSpawn(int enemies, float spacing, float degree, float vDegree) {
+		// 1. Check that the amount of enemies is non-zero:
 		if (enemies == 0) {
 			return;
 		}
 		
+		// 2. Create a leader object. Iterations = 3 will set some special spacing:
 		int iterations = 3;
 		Enemy leader = new Enemy(display, x, y, degree);
-		enemies --;
 		dataHandler.addGameObject(leader);
+		enemies --;
 		
+		// 3. Calculate the degree of the two 
 		float leftDeg = (float)Math.toRadians(degree + vDegree);
 		float rightDeg = (float)Math.toRadians(degree - vDegree);
 		
+		// 4. Fill enemies:
 		while(enemies > 0) {
 			Enemy enemy;
+			
+			// 5. Alternate between left hand side and right hand side:
 			if(iterations % 2 == 0) {
 				float xEnemy = x - (spacing*(iterations-1))*(float)Math.cos(leftDeg);
 				float yEnemy = y - (spacing*(iterations-1))*(float)Math.sin(leftDeg);
@@ -72,6 +88,7 @@ public class EnemySpawner {
 				enemy = new Enemy(display, xEnemy, yEnemy, degree);
 			}
 			
+			// 6. Append the new enemy to the dataHandler.
 			dataHandler.addGameObject(enemy);
 			enemies --;
 			iterations ++;

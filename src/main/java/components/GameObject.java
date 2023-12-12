@@ -2,10 +2,19 @@ package components;
 
 import org.eclipse.swt.widgets.Canvas;
 
+
 public abstract class GameObject {
 	float[] position = new float[2];	// [x,y]
 	float[] offsets = new float[2];
 	
+	
+	/*	[class constructor] GameObject
+	 * 	This is the superclass of almost every object in the game.
+	 * 	It is defined to have methods that can be called for each timestep in the game.
+	 * 	@Param: x - The x position of the game object.
+	 *  @Param: y - The y position of the game object.
+	 */
+
 	GameObject(float x, float y){
 		position[0] = x;
 		position[1] = y;
@@ -31,6 +40,10 @@ public abstract class GameObject {
 		offsets[0] = xOffset;
 		offsets[1] = yOffset;
 	}
+	
+	/*	draw()
+	 * 	An abstract method that children of this class can use to render themselves onto a canvas.
+	 */
 	
 	public abstract void draw(Canvas canvas); 
 }

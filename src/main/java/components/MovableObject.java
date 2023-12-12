@@ -11,6 +11,14 @@ public abstract class MovableObject extends GameObject implements Move{
 	protected float degree;
 	private final float degreeChange = 15.0f;
 	
+	/*	[class constructor] MovableObject()
+	 * 	This superclass handles objects that have some kind of movement, aircrafts, missiles, etc.
+	 *	@Param: xPosition - The x-position in the cartesian plane, passed to parent GameObject.
+	 *	@Param: yPosition - The y-position in the cartesian plane, passed to parent GameObject.
+	 *	@Param: degree - The degree that is used to create an internal direction vector for any
+	 *	MovableObject objects. This is then used to compute the next position (during each frame).
+	 */
+	
 	MovableObject(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition);
 		speedFactor = 5.0f;
