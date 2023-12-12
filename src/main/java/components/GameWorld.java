@@ -10,9 +10,11 @@ import org.eclipse.swt.widgets.Shell;
 
 import data.DataHandler;
 import eventListeners.ArrowKeyListener;
+import eventListeners.SpaceKeyListener;
 
 public class GameWorld {
 	
+	private Display display;
 	private Image mapImage;
 	private Canvas canvas;
 	private DataHandler dataHandler;
@@ -21,6 +23,8 @@ public class GameWorld {
 	private boolean isRunning;
 
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
+		
+		this.display = display;
 		
 		// 1. Initiate data in the gameworld:
 		this.dataHandler = dataHandler;
@@ -63,10 +67,11 @@ public class GameWorld {
 	     
 	     // 7. Setting up event listeners (For player turning, etc)
 	     canvas.addKeyListener(new ArrowKeyListener(this));
-
+	     canvas.addKeyListener(new SpaceKeyListener(this));
         
 	}
 	
+	public Display getDisplay() { return display; }
 	public Canvas getCanvas() { return canvas; }
 	public DataHandler getDataHandler() { return dataHandler; }
 	

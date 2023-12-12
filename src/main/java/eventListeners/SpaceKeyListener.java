@@ -3,8 +3,11 @@ package eventListeners;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.widgets.Display;
 
+import components.Bullet;
 import components.GameWorld;
+import components.Player;
 
 public class SpaceKeyListener implements KeyListener {
 	
@@ -17,7 +20,9 @@ public class SpaceKeyListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if (e.keyCode == SWT.SPACE) {
-			//gameWorld.getDataHandler()
+			Display display = gameWorld.getDisplay();
+			Player player = gameWorld.getDataHandler().getPlayer();
+			gameWorld.getDataHandler().addGameObject(new Bullet(display, player));
 		}
 	}
 
