@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 
 import components.Enemy;
+import components.EnemySpawner;
 import components.GameWorld;
 import components.Player;
 import data.DataHandler;
@@ -21,16 +22,14 @@ public class Main {
         shell.setFullScreen(true);
         shell.open();
           
-		// 2. Create our DataHandler and GameWorld objects:
+		// 2. Create our Player, DataHandler and GameWorld objects:
         Player player = new Player(display, 0.0f, 0.0f, 180);
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
-
-        // 3. Set up of a test scenario, two enemies, one player:
-        Enemy enemy = new Enemy(display, 300.0f, 200.0f, 45);
-        Enemy enemy2 = new Enemy(display, 500f, 500f, 90);
-        dataHandler.addGameObject(enemy);
-        dataHandler.addGameObject(enemy2);
+		
+        // 3. Set up of a test scenario with an enemySpawner: Five enemies, one player:
+		EnemySpawner enemySpawner = new EnemySpawner(200, 400, dataHandler, display);
+        enemySpawner.randomDiskSpawn(5, 100, 400);
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
