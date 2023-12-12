@@ -9,12 +9,14 @@ import org.eclipse.swt.widgets.Display;
 public class Player extends Aircraft{
 	private boolean radar;
 	private Image planeImage;
+	private boolean listenerActive;
 	
 	public Player(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
 		String relPath = "src\\main\\java\\resources\\Aircraft_05.png";
 		planeImage = new Image(display, relPath); 
+		listenerActive = false;
 	}
 	
 	
@@ -25,12 +27,16 @@ public class Player extends Aircraft{
 	 */
 	
 	public void draw(Canvas canvas) {
-		int x = canvas.getBounds().width/2;
-		int y = canvas.getBounds().height/2;
+		if(listenerActive)
+			return;
+		listenerActive = true;
 		
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
             
+    		int x = canvas.getBounds().width/2;
+    		int y = canvas.getBounds().height/2;
+    		
             // 1. Get the transform and translate it to (x,y):
             Transform transform = new Transform ( gc.getDevice () );
             transform.translate(x, y);
