@@ -15,6 +15,8 @@ public class Bullet extends MovableObject {
 	public Bullet(Display display, Aircraft aircraft) {
 		super(aircraft.getX(), aircraft.getY(), aircraft.degree);
 		
+		this.speedFactor = 200.f;
+		
 		// Bullet picture based on player or enemy
 		try {
 			if (aircraft instanceof Player) {
@@ -30,9 +32,9 @@ public class Bullet extends MovableObject {
 	public void draw(Canvas canvas) {
 		canvas.addPaintListener(e -> {
             GC gc = e.gc;
-            int x = (int)(this.position[0] + this.offsets[0]);
-            int y = (int)(this.position[1] + this.offsets[1]);
-    		
+            int x = (int)(this.position[0] + this.offsets[0] + canvas.getBounds().width/2);
+            int y = (int)(this.position[1] + this.offsets[1] + canvas.getBounds().height/2);
+            
             // 1. Get the transform and translate it to (x,y):
             Transform transform = new Transform ( gc.getDevice () );
             transform.translate(x, y);

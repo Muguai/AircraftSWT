@@ -9,13 +9,22 @@ import org.eclipse.swt.widgets.Display;
 public class Player extends Aircraft{
 	private boolean radar;
 	private Image planeImage;
+	private Image hitPlaneImage;
 	private boolean listenerActive;
 	
 	public Player(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
-		String relPath = "src\\main\\java\\resources\\Aircraft_05.png";
-		planeImage = new Image(display, relPath); 
+		try {
+			String planeImagePath = "src\\main\\java\\resources\\Aircraft_05.png";
+			planeImage = new Image(display, planeImagePath); 
+			String hitPlaneImagePath =  "src\\main\\java\\resources\\Aircraft_05_hit.png"; 
+			hitPlaneImage = new Image(display, hitPlaneImagePath);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 		listenerActive = false;
 	}
 	
