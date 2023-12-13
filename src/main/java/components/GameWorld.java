@@ -35,8 +35,8 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String bigMap = "src\\main\\java\\resources\\mapBig.png";
-			String normalMap = "src\\main\\java\\resources\\map.png";
+			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png";
+			String normalMap = "src\\main\\java\\resources\\images\\map.png";
 			mapImage = new Image(display, bigMap); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
