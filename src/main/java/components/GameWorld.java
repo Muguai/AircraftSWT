@@ -4,6 +4,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -19,14 +20,18 @@ public class GameWorld {
 	private int offsetX;
 	private int offsetY;
 	private boolean isRunning;
-
+	
+	/*	[class constructor]	GameWorld
+	 * 	The 
+	 */
+	
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
 		
 		// 1. Initiate data in the gameworld:
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String relPath = "src\\main\\java\\resources\\map.png";
+			String relPath = "src\\main\\java\\resources\\mapBig.png";
 			mapImage = new Image(display, relPath); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -62,9 +67,7 @@ public class GameWorld {
 	     canvas.setFocus();
 	     
 	     // 7. Setting up event listeners (For player turning, etc)
-	     canvas.addKeyListener(new ArrowKeyListener(this));
-
-        
+	     canvas.addKeyListener(new ArrowKeyListener(this));   
 	}
 	
 	public Canvas getCanvas() { return canvas; }

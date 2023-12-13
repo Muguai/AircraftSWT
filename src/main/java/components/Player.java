@@ -11,6 +11,11 @@ public class Player extends Aircraft{
 	private Image planeImage;
 	private boolean listenerActive;
 	
+	/*	[class constructor] player()
+	 * 	This class is used to construct a player object as a child of the Aircraft.
+	 * 	
+	 */
+	
 	public Player(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
