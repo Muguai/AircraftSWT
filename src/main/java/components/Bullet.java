@@ -8,8 +8,8 @@ import org.eclipse.swt.widgets.Display;
 
 public class Bullet extends MovableObject {
 	
-	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\bullet_2_blue.png"; 
-	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\bullet_2_orange.png";
+	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; 
+	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png";
 	private Image bulletImage;
 		
 	public Bullet(Display display, Aircraft aircraft) {
@@ -30,6 +30,11 @@ public class Bullet extends MovableObject {
 	}
 	
 	public void draw(Canvas canvas) {
+		if(listenerActive) {
+			return;
+		}
+		listenerActive = true;
+		
 		canvas.addPaintListener(e -> {
             GC gc = e.gc;
             int x = (int)(this.position[0] + this.offsets[0] + canvas.getBounds().width/2);
