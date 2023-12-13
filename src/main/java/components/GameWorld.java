@@ -11,9 +11,11 @@ import org.eclipse.swt.widgets.Shell;
 
 import data.DataHandler;
 import eventListeners.ArrowKeyListener;
+import eventListeners.SpaceKeyListener;
 
 public class GameWorld {
 	
+	private Display display;
 	private Image mapImage;
 	private Canvas canvas;
 	private DataHandler dataHandler;
@@ -27,12 +29,15 @@ public class GameWorld {
 	
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
 		
+		this.display = display;
+		
 		// 1. Initiate data in the gameworld:
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String relPath = "src\\main\\java\\resources\\mapBig.png";
-			mapImage = new Image(display, relPath); 
+			String bigMap = "src\\main\\java\\resources\\mapBig.png";
+			String normalMap = "src\\main\\java\\resources\\map.png";
+			mapImage = new Image(display, bigMap); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -67,9 +72,12 @@ public class GameWorld {
 	     canvas.setFocus();
 	     
 	     // 7. Setting up event listeners (For player turning, etc)
-	     canvas.addKeyListener(new ArrowKeyListener(this));   
+	     canvas.addKeyListener(new ArrowKeyListener(this));
+	     canvas.addKeyListener(new SpaceKeyListener(this));
+        
 	}
 	
+	public Display getDisplay() { return display; }
 	public Canvas getCanvas() { return canvas; }
 	public DataHandler getDataHandler() { return dataHandler; }
 	

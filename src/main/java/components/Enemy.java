@@ -13,7 +13,7 @@ public class Enemy extends Aircraft {
 	public Enemy(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
-		String relPath = "src\\main\\java\\resources\\Aircraft_06.png";
+		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_06.png";
 		planeImage = new Image(display, relPath); 
 		listenerActive = false;
 	}
