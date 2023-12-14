@@ -13,7 +13,14 @@ public class Player extends Aircraft{
 	
 	/*	[class constructor] player()
 	 * 	This class is used to construct a player object as a child of the Aircraft.
-	 * 	
+	 * 	The player object is a special kind of object and centered in the middle of the screen.
+	 *  Like with other objects the position of the playerObject is updated for each timestep,
+	 *  but since the player object is centered on the screen, the position is used as an offset
+	 *  instead to affect other gameObjects.
+	 * 	@Param: display - The display object.
+	 *  @Param: xPosition - The initial xPosition.
+	 *  @Param: yPosition - The initial yPosition.
+	 *  @Param: degree - The initial degree for the direction of the player.
 	 */
 	
 	public Player(Display display, float xPosition, float yPosition, float degree){

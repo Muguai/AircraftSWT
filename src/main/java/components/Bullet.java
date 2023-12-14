@@ -6,14 +6,15 @@ import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
-public class Bullet extends MovableObject {
+public class Bullet extends Projectile {
 	
 	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; 
 	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png";
+	private final static int damage = 10;
 	private Image bulletImage;
 		
-	public Bullet(Display display, Aircraft aircraft) {
-		super(aircraft.getX(), aircraft.getY(), aircraft.degree);
+	public Bullet(Display display, Aircraft aircraft, boolean friendly) {
+		super(aircraft.getX(), aircraft.getY(), aircraft.degree, friendly, damage);
 		
 		this.speedFactor = 200.f;
 		

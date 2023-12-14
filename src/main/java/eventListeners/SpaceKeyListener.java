@@ -22,7 +22,7 @@ public class SpaceKeyListener implements KeyListener {
 		if (e.keyCode == SWT.SPACE) {
 			Display display = gameWorld.getDisplay();
 			Player player = gameWorld.getDataHandler().getPlayer();
-			gameWorld.getDataHandler().addGameObject(new Bullet(display, player));
+			gameWorld.getDataHandler().addGameObject(new Bullet(display, player, true));
 		}
 	}
 

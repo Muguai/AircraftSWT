@@ -24,7 +24,14 @@ public class GameWorld {
 	private boolean isRunning;
 	
 	/*	[class constructor]	GameWorld
-	 * 	The 
+	 * 	The class that represents an ongoing game for as long as the boolean isRunning is true.
+	 *  GameWorld draws up the world, sets keyListeners for the player and runs the update() function
+	 *  for every frame. The update() function in turn is an iteration over every gameObject in the
+	 *  world. For each such object, movement, collision detection, rendering etc is called upon
+	 *  within the update() function.
+	 *  @Param:	
+	 *  @Param:
+	 *  @Param:	dataHandler - A dataHandler object where every gameObject is stored.
 	 */
 	
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
