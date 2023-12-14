@@ -10,7 +10,6 @@ public abstract class MovableObject extends GameObject implements Move{
 	private final float minSpeed = 10.0f;
 	protected float degree;
 	private final float degreeChange = 15.0f;
-	protected boolean listenerActive;
 	
 	/*	[class constructor] MovableObject()
 	 * 	This superclass handles objects that have some kind of movement, aircrafts, missiles, etc.

@@ -44,6 +44,9 @@ public class Explosion extends GameObject {
 	
 	@Override
 	public void draw(Canvas canvas) {
+        if (listenerActive)
+            return;
+        listenerActive = true;
 		canvas.addPaintListener(e -> {
             GC gc = e.gc;
             

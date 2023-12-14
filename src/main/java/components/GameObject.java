@@ -9,7 +9,7 @@ public abstract class GameObject {
 	protected float[] offsets = new float[2];
 	protected float[] center = new float[2];
 	protected PaintListener paintListener;
-	
+	protected boolean listenerActive;
 	
 	/*	[class constructor] GameObject
 	 * 	This is the superclass of almost every object in the game.
