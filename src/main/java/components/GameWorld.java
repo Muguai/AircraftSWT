@@ -145,7 +145,7 @@ public class GameWorld {
 		while(index < aircrafts.size()) {
 			Aircraft aircraft = aircrafts.get(index);
 			if (aircraft.health <= 0) {
-				dataHandler.addGameObject(new Explosion(display, aircraft.getCenterX(), aircraft.getCenterY()));
+				dataHandler.addGameObject(new Explosion(display, aircraft.getX() + aircraft.getCenterX(), aircraft.getY() + aircraft.getCenterY()));
 				aircraft.removePaintListener(canvas);
 				dataHandler.removeGameObject(aircraft);
 			}

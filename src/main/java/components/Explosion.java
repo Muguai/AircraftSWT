@@ -59,8 +59,8 @@ public class Explosion extends GameObject {
                 totalTime = 0;
     		}
             
-            int x = (int)(this.position[0] + this.offsets[0] + canvas.getBounds().width/2 - explosionImage.getBounds().width/2);
-            int y = (int)(this.position[1] + this.offsets[1] + canvas.getBounds().height/2 - explosionImage.getBounds().height/2);
+            int x = (int)(this.position[0] + this.offsets[0] - explosionImage.getBounds().width/2);
+            int y = (int)(this.position[1] + this.offsets[1] - explosionImage.getBounds().height/2);
             gc.drawImage(explosionImage, x, y);
             
 		});
