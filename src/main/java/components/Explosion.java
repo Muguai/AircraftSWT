@@ -11,13 +11,36 @@ public class Explosion extends GameObject {
 	private String IMAGE_PATH_START = "src/main/java/resources/images/explosion/tile";
 	private String IMAGE_PATH_END = ".png";
 	private Image explosionImage;
-	private int spriteNumber = 0;
-	private int sprites = 15;
+	private int nextSprite = 0;
+	private final int SPRITES = 15;
+	private float totalTime = 0;
+	private final float TIMER = 0.01f;
 	
 	public Explosion(Display display, float x, float y) {
 		super(x, y);
 		this.display = display;
+		setNextSpriteImage();
 	}
+	
+	public float getTotalTime() {
+		return totalTime;
+	}
+	
+	public void setTotalTime(float deltaTime) {
+		totalTime += deltaTime;
+	}
+	
+	public void setNextSpriteImage() {
+		// Finds and sets the next image in the sprite sheet
+        try {
+        	String relPath = IMAGE_PATH_START + String.format("%03d", nextSprite) + IMAGE_PATH_END;
+            explosionImage = new Image(display, relPath);
+            nextSprite++;
+        } catch (Exception error) {
+        	System.out.println(error.getMessage());
+        }
+	}
+	
 	
 	@Override
 	public void draw(Canvas canvas) {
@@ -25,24 +48,21 @@ public class Explosion extends GameObject {
             GC gc = e.gc;
             
             // If explosion animation has come to the end
-            if (spriteNumber >= sprites) {
+            if (nextSprite >= SPRITES) {
             	// remove itself??
             	return;
             }
             
-            // Find the image then draw it on the specified position
-            try {
-            	String relPath = IMAGE_PATH_START + String.format("%03d", spriteNumber) + IMAGE_PATH_END;
-                explosionImage = new Image(display, relPath);
-                
-                int x = (int)(this.position[0] + this.offsets[0] + canvas.getBounds().width/2 - explosionImage.getBounds().width/2);
-                int y = (int)(this.position[1] + this.offsets[1] + canvas.getBounds().height/2 - explosionImage.getBounds().height/2);
-                gc.drawImage(explosionImage, x, y);
-            } catch (Exception error) {
-            	System.out.println(error.getMessage());
-            }
+            // Update to next sprite on the TIMER
+            if (totalTime >= TIMER) {
+            	setNextSpriteImage();
+                totalTime = 0;
+    		}
             
-            spriteNumber++;
+            int x = (int)(this.position[0] + this.offsets[0] + canvas.getBounds().width/2 - explosionImage.getBounds().width/2);
+            int y = (int)(this.position[1] + this.offsets[1] + canvas.getBounds().height/2 - explosionImage.getBounds().height/2);
+            gc.drawImage(explosionImage, x, y);
+            
 		});
 	}
 }
