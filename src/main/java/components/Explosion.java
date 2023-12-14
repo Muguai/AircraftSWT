@@ -14,7 +14,7 @@ public class Explosion extends GameObject {
 	private int nextSprite = 0;
 	private final int SPRITES = 15;
 	private float totalTime = 0;
-	private final float TIMER = 0.01f;
+	private final float TIMER = 0.04f;
 	
 	public Explosion(Display display, float x, float y) {
 		super(x, y);
