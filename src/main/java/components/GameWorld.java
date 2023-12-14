@@ -1,5 +1,8 @@
 package components;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
@@ -95,7 +98,8 @@ public class GameWorld {
 	 */
 	
 	public void update(float deltaTime) {
-
+		List<Projectile> bulletsHit = new ArrayList<Projectile>();
+		
 		// 1. Iterate over every gameObject:
 		for(GameObject gameObject : dataHandler.getGameObjects()) {
 			
@@ -109,9 +113,40 @@ public class GameWorld {
 				gameObject.setOffsets(dataHandler.getPlayer().getXOffset(), dataHandler.getPlayer().getYOffset());
 			}
 			
-			// 4. Draw gameObject onto the canvas:
+			// 4. If the game object is a projectile, see if it hits something:
+			if(gameObject instanceof Projectile) {
+				Aircraft target = ((Projectile) gameObject).checkCollision(dataHandler.getAircrafts());
+				if(target != null) {
+					Projectile bullet = (Projectile)gameObject;
+					bulletsHit.add(bullet);
+					target.takeDamage(bullet.getDamage());
+				}
+			}
+			
+			// 5. Draw gameObject onto the canvas:
 			gameObject.draw(canvas);
 		}
+		
+		// 6. Iterate over bullets that hit a target and remove them from the game:
+		for(Projectile projectile : bulletsHit) {
+			projectile.removePaintListener(canvas);
+			dataHandler.removeGameObject(projectile);
+		}
+		
+		// 7. 
+		int index = 0;
+		List<Aircraft> aircrafts = dataHandler.getAircrafts();
+		while(index < aircrafts.size()) {
+			Aircraft aircraft = aircrafts.get(index);
+			if (aircraft.health <= 0) {
+				aircraft.removePaintListener(canvas);
+				dataHandler.removeGameObject(aircraft);
+			}
+			else {
+				index++;
+			}
+		}
+		
 		canvas.redraw();
 	}
 	

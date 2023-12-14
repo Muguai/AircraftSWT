@@ -19,4 +19,8 @@ public abstract class Aircraft extends MovableObject {
 		health = 100;
 	}
 	
+	public void takeDamage(int damage) {
+		this.health -= damage;
+	}
+	
 }

@@ -1,5 +1,7 @@
 package components;
 
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Transform;
@@ -13,37 +15,39 @@ public class Enemy extends Aircraft {
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
 		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_06.png";
-		planeImage = new Image(display, relPath); 
+		planeImage = new Image(display, relPath);
+		this.health = 100;
+		this.setCenter(planeImage.getBounds().width/4, planeImage.getBounds().height/4);
+		//this.setCenter(0, 0);
 	}
 	
 	/*	draw()
 	 * 	Renders the enemy object onto the canvas at its current position.
 	 */
 	
-	public void draw(Canvas canvas) {
-		if(listenerActive)
-			return;
-		
-		listenerActive = true;
-        canvas.addPaintListener(e -> {
-            GC gc = e.gc;
-            int x = (int)(this.position[0] + this.offsets[0]);
-            int y = (int)(this.position[1] + this.offsets[1]);
-    		
-            // 1. Get the transform and translate it to (x,y):
-            Transform transform = new Transform ( gc.getDevice () );
-            transform.translate(x, y);
-            
-            // 2. After this translation, do rotation:
-            transform.rotate((degree+90));
-            
-            // 3. Draw out the object centered in the transform's origo:
-            gc.setTransform ( transform );
-            gc.drawImage(planeImage, -planeImage.getBounds().width/2, -planeImage.getBounds().height/2);
-            
-            // 4. Set the new transform as the identity transform and dispose the old one:
-            gc.setTransform(null);
-            transform.dispose();
-        });
-	}
+    public void draw(Canvas canvas) {
+        if (listenerActive)
+            return;
+
+        listenerActive = true;
+
+        paintListener = new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                GC gc = e.gc;
+                int x = (int) (position[0] + offsets[0]);
+                int y = (int) (position[1] + offsets[1]);
+
+                Transform transform = new Transform(gc.getDevice());
+                transform.translate(x, y);
+                transform.rotate((degree + 90));
+                gc.setTransform(transform);
+                gc.drawImage(planeImage, -planeImage.getBounds().width / 2, -planeImage.getBounds().height / 2);
+                gc.setTransform(null);
+                transform.dispose();
+            }
+        };
+
+        canvas.addPaintListener(paintListener);
+    }
 }

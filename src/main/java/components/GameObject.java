@@ -1,11 +1,14 @@
 package components;
 
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.widgets.Canvas;
 
 
 public abstract class GameObject {
-	float[] position = new float[2];	// [x,y]
-	float[] offsets = new float[2];
+	protected float[] position = new float[2];	// [x,y]
+	protected float[] offsets = new float[2];
+	protected float[] center = new float[2];
+	protected PaintListener paintListener;
 	
 	
 	/*	[class constructor] GameObject
@@ -41,9 +44,33 @@ public abstract class GameObject {
 		offsets[1] = yOffset;
 	}
 	
+	/*	setCenter()
+	 * 	A function that sets a centerpoint comprised of a x-component and an y-component.
+	 *  This can be used to center an image for collision detection.
+	 */
+	
+	public void setCenter(float x, float y) {
+		center[0] = x;
+		center[1] = y;
+	}
+	
+	public float getCenterX(){
+		return center[0];
+	}
+	
+	public float getCenterY() {
+		return center[1];
+	}
+	
 	/*	draw()
 	 * 	An abstract method that children of this class can use to render themselves onto a canvas.
 	 */
 	
 	public abstract void draw(Canvas canvas); 
+	
+	public void removePaintListener(Canvas canvas) {
+		if(paintListener != null)
+			canvas.removePaintListener(paintListener);
+		paintListener = null;
+	}
 }
