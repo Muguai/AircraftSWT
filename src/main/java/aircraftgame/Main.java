@@ -7,6 +7,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import components.Enemy;
 import components.EnemySpawner;
+import components.Explosion;
 import components.GameWorld;
 import components.Player;
 import data.DataHandler;

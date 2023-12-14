@@ -19,6 +19,10 @@ public abstract class Aircraft extends MovableObject {
 		health = 100;
 	}
 	
+	/*	takeDamage()
+	 * 	A function that subtracts the health of the aircraft according to some inputted damage.
+	 */
+	
 	public void takeDamage(int damage) {
 		this.health -= damage;
 	}
