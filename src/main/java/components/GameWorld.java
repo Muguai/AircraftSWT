@@ -123,7 +123,13 @@ public class GameWorld {
 				}
 			}
 			
-			// 5. Draw gameObject onto the canvas:
+			// 5. Update the explosion sprite's time duration
+			if(gameObject instanceof Explosion) {
+				System.out.println("Finns en explosion");
+				((Explosion) gameObject).setTotalTime(deltaTime);
+			}
+			
+			// 6. Draw gameObject onto the canvas:
 			gameObject.draw(canvas);
 		}
 		
@@ -139,6 +145,7 @@ public class GameWorld {
 		while(index < aircrafts.size()) {
 			Aircraft aircraft = aircrafts.get(index);
 			if (aircraft.health <= 0) {
+				dataHandler.addGameObject(new Explosion(display, aircraft.getCenterX(), aircraft.getCenterY()));
 				aircraft.removePaintListener(canvas);
 				dataHandler.removeGameObject(aircraft);
 			}
