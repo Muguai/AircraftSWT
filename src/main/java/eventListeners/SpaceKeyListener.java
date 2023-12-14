@@ -6,6 +6,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Display;
 
 import components.Bullet;
+import components.Explosion;
 import components.GameWorld;
 import components.Player;
 
@@ -23,6 +24,11 @@ public class SpaceKeyListener implements KeyListener {
 			Display display = gameWorld.getDisplay();
 			Player player = gameWorld.getDataHandler().getPlayer();
 			gameWorld.getDataHandler().addGameObject(new Bullet(display, player));
+		}
+		if (e.keyCode == SWT.TAB) {
+			Display display = gameWorld.getDisplay();
+			Player player = gameWorld.getDataHandler().getPlayer();
+			gameWorld.getDataHandler().addGameObject(new Explosion(display, player.getX(), player.getY()));
 		}
 	}
 
