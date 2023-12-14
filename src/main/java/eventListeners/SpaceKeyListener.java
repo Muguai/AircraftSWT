@@ -28,11 +28,6 @@ public class SpaceKeyListener implements KeyListener {
 			gameWorld.getDataHandler().addGameObject(new Bullet(display, player, offsetX, offsetY, true));
 			
 		}
-		if (e.keyCode == SWT.TAB) {
-			Display display = gameWorld.getDisplay();
-			Player player = gameWorld.getDataHandler().getPlayer();
-			gameWorld.getDataHandler().addGameObject(new Explosion(display, player.getX(), player.getY()));
-		}
 	}
 
 	@Override
