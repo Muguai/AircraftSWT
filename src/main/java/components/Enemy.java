@@ -18,7 +18,6 @@ public class Enemy extends Aircraft {
 		planeImage = new Image(display, relPath);
 		this.health = 100;
 		this.setCenter(planeImage.getBounds().width/4, planeImage.getBounds().height/4);
-		//this.setCenter(0, 0);
 	}
 	
 	/*	draw()
