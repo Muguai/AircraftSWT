@@ -30,7 +30,7 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String relPath = "src\\main\\java\\resources\\map.png";
+			String relPath = "src\\main\\java\\resources\\images\\map.png";
 			mapImage = new Image(display, relPath); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

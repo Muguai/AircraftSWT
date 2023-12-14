@@ -8,8 +8,8 @@ import org.eclipse.swt.widgets.Display;
 
 public class Bullet extends MovableObject {
 	
-	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\bullet_2_blue.png"; 
-	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\bullet_2_orange.png";
+	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; 
+	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png";
 	private Image bulletImage;
 		
 	public Bullet(Display display, Aircraft aircraft) {
