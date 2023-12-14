@@ -4,6 +4,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -21,7 +22,11 @@ public class GameWorld {
 	private int offsetX;
 	private int offsetY;
 	private boolean isRunning;
-
+	
+	/*	[class constructor]	GameWorld
+	 * 	The 
+	 */
+	
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
 		
 		this.display = display;
@@ -30,8 +35,9 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String relPath = "src\\main\\java\\resources\\images\\map.png";
-			mapImage = new Image(display, relPath); 
+			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png";
+			String normalMap = "src\\main\\java\\resources\\images\\map.png";
+			mapImage = new Image(display, bigMap); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

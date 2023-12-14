@@ -8,14 +8,12 @@ import org.eclipse.swt.widgets.Display;
 
 public class Enemy extends Aircraft {
 	private Image planeImage;
-	private boolean listenerActive;
 	
 	public Enemy(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
 		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_06.png";
 		planeImage = new Image(display, relPath); 
-		listenerActive = false;
 	}
 	
 	/*	draw()

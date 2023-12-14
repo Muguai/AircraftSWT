@@ -30,6 +30,11 @@ public class Bullet extends MovableObject {
 	}
 	
 	public void draw(Canvas canvas) {
+		if(listenerActive) {
+			return;
+		}
+		listenerActive = true;
+		
 		canvas.addPaintListener(e -> {
             GC gc = e.gc;
             int x = (int)(this.position[0] + this.offsets[0] + canvas.getBounds().width/2);
