@@ -68,6 +68,13 @@ public abstract class GameObject {
 	
 	public abstract void draw(Canvas canvas); 
 	
+	/*	removePaintListener()
+	 * 	A method that can be invoked by objects that are to be deleted.
+	 *  This makes it so that the paintListener that the object is using is deleted.
+	 *  (An example are bullets that hit the target, their paintListener is removed 
+	 *   and they disappear at the next canvas.redraw())
+	 */
+	
 	public void removePaintListener(Canvas canvas) {
 		if(paintListener != null)
 			canvas.removePaintListener(paintListener);

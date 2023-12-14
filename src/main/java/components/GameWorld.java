@@ -139,7 +139,7 @@ public class GameWorld {
 			dataHandler.removeGameObject(projectile);
 		}
 		
-		// 7. 
+		// 7. Iterate over destroyed airplanes and detach them from the actionListener and remove them from dataHandler:
 		int index = 0;
 		List<Aircraft> aircrafts = dataHandler.getAircrafts();
 		while(index < aircrafts.size()) {

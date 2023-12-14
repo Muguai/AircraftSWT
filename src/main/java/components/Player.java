@@ -92,8 +92,4 @@ public class Player extends Aircraft{
 	public float getYOffset() {
 		return -this.position[1];
 	}
-	
-	public void removePaintListener(Canvas canvas) {
-		
-	}
 }
