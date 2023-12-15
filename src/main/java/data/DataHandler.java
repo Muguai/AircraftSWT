@@ -16,7 +16,7 @@ public class DataHandler {
 		gameObjects = new ArrayList<>();
 		aircrafts = new ArrayList<>();
 		this.player = player;
-		gameObjects.add(player);
+		addGameObject(player);
 	}
 	
 	/*	addGameObject()

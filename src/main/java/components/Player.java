@@ -26,6 +26,7 @@ public class Player extends Aircraft{
 	public Player(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
+		this.friendly = true;
 		try {
 			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
 			planeImage = new Image(display, planeImagePath); 

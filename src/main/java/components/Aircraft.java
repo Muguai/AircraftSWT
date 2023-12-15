@@ -4,6 +4,8 @@ import org.eclipse.swt.widgets.Canvas;
 
 public abstract class Aircraft extends MovableObject {
 	protected int health;
+	protected boolean friendly;
+	protected GunnerAI gunnerAI;
 	
 	/*	[class constructor] Aircraft()
 	 * 	The Aircraft() superclass should contain data that an Aircraft object would have.
@@ -31,5 +33,9 @@ public abstract class Aircraft extends MovableObject {
         this.degree = degree;
         float radians = (float)Math.toRadians(degree);
     	directionVector.setDirection(radians);
+	}
+	
+	public GunnerAI getGunnerAi() {
+		return this.gunnerAI;
 	}
 }

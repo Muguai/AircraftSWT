@@ -14,6 +14,8 @@ public class Enemy extends Aircraft {
 	public Enemy(Display display, float xPosition, float yPosition, float degree, boolean kim){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
+		this.friendly = false;
+		this.gunnerAI = new GunnerAI(false, 500.0f, this);
 		
 		// Hihi
 		String relPath = "";
