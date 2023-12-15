@@ -1,5 +1,5 @@
 package components;
-
+import java.math.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +66,7 @@ public class GameWorld {
 	        int destHeight = canvas.getBounds().height;	
 	 
 	        // 4. Calculate a map offset based on player position:
-	        offsetX =  -canvas.getBounds().width/2 - (int)dataHandler.getPlayer().getX();
+	        offsetX =  -canvas.getBounds().width/2  - (int)dataHandler.getPlayer().getX();
 	        offsetY =  -canvas.getBounds().height/2 - (int)dataHandler.getPlayer().getY();
 	         
 	        // 5. Render the image of the map onto the canvas, with offsets:
@@ -76,7 +76,9 @@ public class GameWorld {
 	        int srcHeight = Math.min(mapImage.getBounds().height - srcY, destHeight);
 	
 	        // 6. Draw the portion of the image on the canvas:
-	        gc.drawImage(mapImage, offsetX, offsetY);
+	        //System.out.println("offsetX: " + offsetX + " offsetY:" + offsetY);
+	        System.out.println(srcWidth + " " + srcHeight);
+	        gc.drawImage(mapImage, offsetX, offsetY-1200);
 	     });
 	    
 	     canvas.setFocus();
@@ -130,31 +132,30 @@ public class GameWorld {
 				((Explosion) gameObject).setTotalTime(deltaTime);
 			}
 			
-			float yFloor = mapImage.getBounds().height - canvas.getBounds().height/2;
-			float yCeil = canvas.getBounds().height/2;
-			float xFloor = mapImage.getBounds().width - canvas.getBounds().width/2;
-			float xCeil = canvas.getBounds().width/2;
-			
-			System.out.println(yFloor + " " + yCeil + " " + xFloor + " " + yFloor );
+			float yFloor =  mapImage.getBounds().height/2 - canvas.getBounds().height/2;
+			float yCeil =   -mapImage.getBounds().height/2 + canvas.getBounds().height/2;
+			float xFloor = -600; //mapImage.getBounds().width - canvas.getBounds().width/2;
+			float xCeil = 600;   //canvas.getBounds().width/2;
  
 			if(gameObject instanceof Player) {
-				System.out.println(gameObject.getX() + " " + gameObject.getY());
+				//System.out.println(yFloor + " " + yCeil + " " + xFloor + " " + yFloor );
+				//System.out.println(gameObject.getX() + " " + gameObject.getY()+"\n");
 			}
 			
 			if(gameObject instanceof Aircraft) {
 				if (gameObject.getY() >= yFloor) {
-					((Aircraft)gameObject).setDegree(90);		
+					((Aircraft)gameObject).setDegree(270);		
 				}
 				
 				if (gameObject.getY() <= yCeil) {
-					((Aircraft)gameObject).setDegree(270);
+					((Aircraft)gameObject).setDegree(90);
 				}
 				
-				if (gameObject.getX() >= xFloor) {
+				if (gameObject.getX() <= xFloor) {
 					((Aircraft)gameObject).setDegree(0);
 				}
 				
-				if (gameObject.getX() <= xCeil) {
+				if (gameObject.getX() >= xCeil) {
 					((Aircraft)gameObject).setDegree(180);
 				}
 			}

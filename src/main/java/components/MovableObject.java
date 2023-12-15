@@ -3,7 +3,7 @@ package components;
 import utils.DirectionVector;
 
 public abstract class MovableObject extends GameObject implements Move{
-	private DirectionVector directionVector;
+	protected DirectionVector directionVector;
 	protected float speedFactor;
 	private final float speedChange = 20.0f;
 	private final float maxSpeed = 200.0f;
