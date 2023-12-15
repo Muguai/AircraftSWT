@@ -66,8 +66,8 @@ public class GameWorld {
 	        int destHeight = canvas.getBounds().height;	
 	 
 	        // 4. Calculate a map offset based on player position:
-	        offsetX =  -canvas.getBounds().width/2  - (int)dataHandler.getPlayer().getX();
-	        offsetY =  -canvas.getBounds().height/2 - (int)dataHandler.getPlayer().getY();
+	        offsetX =  canvas.getBounds().width/2  -mapImage.getBounds().width/2 - (int)dataHandler.getPlayer().getX();
+	        offsetY =  canvas.getBounds().height/2 -mapImage.getBounds().height/2 - (int)dataHandler.getPlayer().getY();
 	         
 	        // 5. Render the image of the map onto the canvas, with offsets:
 	        int srcX = Math.max(0, offsetX);
@@ -78,7 +78,7 @@ public class GameWorld {
 	        // 6. Draw the portion of the image on the canvas:
 	        //System.out.println("offsetX: " + offsetX + " offsetY:" + offsetY);
 	        System.out.println(srcWidth + " " + srcHeight);
-	        gc.drawImage(mapImage, offsetX, offsetY-1200);
+	        gc.drawImage(mapImage, offsetX, offsetY);
 	     });
 	    
 	     canvas.setFocus();
@@ -132,10 +132,10 @@ public class GameWorld {
 				((Explosion) gameObject).setTotalTime(deltaTime);
 			}
 			
-			float yFloor =  mapImage.getBounds().height/2 - canvas.getBounds().height/2;
+			float yFloor =  mapImage.getBounds().height/2  - canvas.getBounds().height/2;
 			float yCeil =   -mapImage.getBounds().height/2 + canvas.getBounds().height/2;
-			float xFloor = -600; //mapImage.getBounds().width - canvas.getBounds().width/2;
-			float xCeil = 600;   //canvas.getBounds().width/2;
+			float xFloor =  -mapImage.getBounds().width/2  + canvas.getBounds().width/2;
+			float xCeil =   mapImage.getBounds().width/2   - canvas.getBounds().width/2;
  
 			if(gameObject instanceof Player) {
 				//System.out.println(yFloor + " " + yCeil + " " + xFloor + " " + yFloor );
