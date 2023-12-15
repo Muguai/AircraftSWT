@@ -166,6 +166,7 @@ public class GameWorld {
 		
 		// 7. Iterate over bullets that hit a target and remove them from the game:
 		for(Projectile projectile : bulletsHit) {
+			dataHandler.addGameObject(new Explosion(display, projectile.getX(), projectile.getY(), true));
 			projectile.removePaintListener(canvas);
 			dataHandler.removeGameObject(projectile);
 		}

@@ -2,6 +2,7 @@ package components;
 
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
@@ -15,11 +16,20 @@ public class Explosion extends GameObject {
 	private final int SPRITES = 15;
 	private float totalTime = 0;
 	private final float TIMER = 0.04f;
+	private boolean isSmall = false;
+	private final int SMALL_IMAGE_SIZE = 100;
 	
 	public Explosion(Display display, float x, float y) {
 		super(x, y);
 		this.display = display;
 		setNextSpriteImage();
+	}
+	
+	public Explosion(Display display, float x, float y, boolean isSmall) {
+		super(x,y);
+		this.display = display;
+		setNextSpriteImage();
+		this.isSmall = isSmall;
 	}
 	
 	public float getTotalTime() {
@@ -34,12 +44,23 @@ public class Explosion extends GameObject {
 		// Finds and sets the next image in the sprite sheet
         try {
         	String relPath = IMAGE_PATH_START + String.format("%03d", nextSprite) + IMAGE_PATH_END;
-            explosionImage = new Image(display, relPath);
+        	// if its a small explosion resize the image to a smaller size
+        	Image image = new Image(display, relPath);;
+        	if (isSmall) {
+        		image = resizeImage(image, SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE);
+        	}
+            explosionImage = image;
             nextSprite++;
         } catch (Exception error) {
         	System.out.println(error.getMessage());
         }
 	}
+	
+	private Image resizeImage(Image originalImage, int newWidth, int newHeight) {
+        ImageData imageData = originalImage.getImageData();
+        ImageData scaledImageData = imageData.scaledTo(newWidth, newHeight);
+        return new Image(Display.getDefault(), scaledImageData);
+    }
 	
 	
 	@Override
