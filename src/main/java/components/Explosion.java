@@ -47,6 +47,7 @@ public class Explosion extends GameObject {
         if (listenerActive)
             return;
         listenerActive = true;
+        
 		canvas.addPaintListener(e -> {
             GC gc = e.gc;
             

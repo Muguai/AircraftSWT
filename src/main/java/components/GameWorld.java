@@ -100,6 +100,7 @@ public class GameWorld {
 	public void update(float deltaTime) {
 		List<Projectile> bulletsHit = new ArrayList<Projectile>();
 		
+		
 		// 1. Iterate over every gameObject:
 		for(GameObject gameObject : dataHandler.getGameObjects()) {
 			
@@ -129,17 +130,46 @@ public class GameWorld {
 				((Explosion) gameObject).setTotalTime(deltaTime);
 			}
 			
+			float yFloor = mapImage.getBounds().height - canvas.getBounds().height/2;
+			float yCeil = canvas.getBounds().height/2;
+			float xFloor = mapImage.getBounds().width - canvas.getBounds().width/2;
+			float xCeil = canvas.getBounds().width/2;
+			
+			System.out.println(yFloor + " " + yCeil + " " + xFloor + " " + yFloor );
+ 
+			if(gameObject instanceof Player) {
+				System.out.println(gameObject.getX() + " " + gameObject.getY());
+			}
+			
+			if(gameObject instanceof Aircraft) {
+				if (gameObject.getY() >= yFloor) {
+					((Aircraft)gameObject).setDegree(90);		
+				}
+				
+				if (gameObject.getY() <= yCeil) {
+					((Aircraft)gameObject).setDegree(270);
+				}
+				
+				if (gameObject.getX() >= xFloor) {
+					((Aircraft)gameObject).setDegree(0);
+				}
+				
+				if (gameObject.getX() <= xCeil) {
+					((Aircraft)gameObject).setDegree(180);
+				}
+			}
+			
 			// 6. Draw gameObject onto the canvas:
 			gameObject.draw(canvas);
 		}
 		
-		// 6. Iterate over bullets that hit a target and remove them from the game:
+		// 7. Iterate over bullets that hit a target and remove them from the game:
 		for(Projectile projectile : bulletsHit) {
 			projectile.removePaintListener(canvas);
 			dataHandler.removeGameObject(projectile);
 		}
 		
-		// 7. Iterate over destroyed airplanes and detach them from the actionListener and remove them from dataHandler:
+		// 8. Iterate over destroyed airplanes and detach them from the actionListener and remove them from dataHandler:
 		int index = 0;
 		List<Aircraft> aircrafts = dataHandler.getAircrafts();
 		while(index < aircrafts.size()) {
@@ -153,6 +183,8 @@ public class GameWorld {
 				index++;
 			}
 		}
+
+		
 		
 		canvas.redraw();
 	}

@@ -27,4 +27,7 @@ public abstract class Aircraft extends MovableObject {
 		this.health -= damage;
 	}
 	
+	public void setDegree(float degree) {
+        this.degree = degree;
+	}
 }
