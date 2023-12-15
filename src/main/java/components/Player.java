@@ -27,10 +27,10 @@ public class Player extends Aircraft{
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
 		try {
-			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
+			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\peanut_butter_and_jelly.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
 			planeImage = new Image(display, planeImagePath); 
-			String hitPlaneImagePath =  "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05_hit.png"; 
-			hitPlaneImage = new Image(display, hitPlaneImagePath);
+//			String hitPlaneImagePath =  "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05_hit.png"; 
+//			hitPlaneImage = new Image(display, hitPlaneImagePath);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

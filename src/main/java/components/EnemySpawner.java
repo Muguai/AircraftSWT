@@ -75,7 +75,6 @@ public class EnemySpawner {
 		float rightDeg = (float)Math.toRadians(degree - vDegree);
 		
 		// 4. Fill enemies:
-		boolean kim = false; // hihi
 		while(enemies > 0) {
 			Enemy enemy;
 			
@@ -83,14 +82,12 @@ public class EnemySpawner {
 			if(iterations % 2 == 0) {
 				float xEnemy = x - (spacing*(iterations-1))*(float)Math.cos(leftDeg);
 				float yEnemy = y - (spacing*(iterations-1))*(float)Math.sin(leftDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree, kim);
-				kim = !kim; // håhå
+				enemy = new Enemy(display, xEnemy, yEnemy, degree, false);
 			}
 			else {
 				float xEnemy = x - (spacing*(iterations))*(float)Math.cos(rightDeg);
 				float yEnemy = y - (spacing*(iterations))*(float)Math.sin(rightDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree, kim);
-				kim = !kim; // håhå
+				enemy = new Enemy(display, xEnemy, yEnemy, degree, false);
 			}
 			
 			// 6. Append the new enemy to the dataHandler.

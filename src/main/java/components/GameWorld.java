@@ -45,7 +45,7 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png";
+			String bigMap = "src\\main\\java\\resources\\images\\love_map.jpg"; //"src\\main\\java\\resources\\images\\mapBig.png";
 			String normalMap = "src\\main\\java\\resources\\images\\map.png";
 			mapImage = new Image(display, bigMap); 
 		} catch (Exception e) {
@@ -77,7 +77,7 @@ public class GameWorld {
 	
 	        // 6. Draw the portion of the image on the canvas:
 	        //System.out.println("offsetX: " + offsetX + " offsetY:" + offsetY);
-	        System.out.println(srcWidth + " " + srcHeight);
+	        //System.out.println(srcWidth + " " + srcHeight);
 	        gc.drawImage(mapImage, offsetX, offsetY);
 	     });
 	    
@@ -128,7 +128,6 @@ public class GameWorld {
 			
 			// 5. Update the explosion sprite's time duration
 			if(gameObject instanceof Explosion) {
-				System.out.println("Finns en explosion");
 				((Explosion) gameObject).setTotalTime(deltaTime);
 			}
 			

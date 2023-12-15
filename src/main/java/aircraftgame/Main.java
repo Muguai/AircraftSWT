@@ -1,9 +1,15 @@
 package aircraftgame;
+import java.net.URL;
+
+import javax.sound.sampled.*;
+
 import org.eclipse.swt.*;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 
 import components.Enemy;
 import components.EnemySpawner;
@@ -22,6 +28,15 @@ public class Main {
         shell.setLayout(new FillLayout());
         shell.setFullScreen(true);
         shell.open();
+        
+        /******************************/
+        // Path to your sound file (replace with the actual path)
+        String soundFilePath = "C:\\Users\\NLeven\\OneDrive - ManpowerGroup\\Documents\\GitHub\\AircraftSWT\\src\\main\\java\\resources\\sounds\\run_amok.wav";
+        
+        // Play the sound on a separate thread
+        new Thread(() -> playSoundAsync(soundFilePath)).start();
+        
+        /******************************/
           
 		// 2. Create our Player, DataHandler and GameWorld objects:
         Player player = new Player(display, 0.0f, 0.0f, 180);
@@ -53,4 +68,41 @@ public class Main {
         // 7. Dispose of the display when done
         display.dispose();
     }
+    
+    /***********************************/
+    private static void playSoundAsync(String soundFilePath) {
+        try {
+            System.out.println("Trying to play sound...");
+
+            URL soundUrl = ClassLoader.getSystemResource(soundFilePath);
+            if (soundUrl == null) {
+                System.err.println("Sound file not found: " + soundFilePath);
+                return;
+            }
+
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundUrl);
+            if (audioInputStream == null) {
+                System.err.println("Failed to get audio input stream for: " + soundFilePath);
+                return;
+            }
+
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+
+            // Add a listener to mark sound as finished when it completes
+            clip.addLineListener(event -> {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    System.out.println("Sound stopped.");
+                    clip.close();
+                }
+            });
+
+            // Start playing asynchronously
+            clip.start();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
