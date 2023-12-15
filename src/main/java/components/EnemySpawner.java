@@ -35,14 +35,16 @@ public class EnemySpawner {
 	 */
 	
 	public void diskSpawn(int enemies, float innerRadius, float outerRadius) {
+		boolean kim = false; // hehe
 		while(enemies > 0) {
 			float radius = innerRadius + (float)Math.random()*(outerRadius - innerRadius);
 			float deg = (float)Math.random()*360;
 			float xOffset = radius*(float)Math.cos(Math.toRadians(deg));
 			float yOffset = radius*(float)Math.sin(Math.toRadians(deg));
-			Enemy enemy = new Enemy(display, x+xOffset, y+yOffset, deg);
+			Enemy enemy = new Enemy(display, x+xOffset, y+yOffset, deg, kim);
 			dataHandler.addGameObject(enemy);
 			enemies --;
+			kim = !kim; // hoho
 		}
 	}
 	
@@ -64,7 +66,7 @@ public class EnemySpawner {
 		
 		// 2. Create a leader object. Iterations = 3 will set some special spacing:
 		int iterations = 3;
-		Enemy leader = new Enemy(display, x, y, degree);
+		Enemy leader = new Enemy(display, x, y, degree, true);
 		dataHandler.addGameObject(leader);
 		enemies --;
 		
@@ -73,6 +75,7 @@ public class EnemySpawner {
 		float rightDeg = (float)Math.toRadians(degree - vDegree);
 		
 		// 4. Fill enemies:
+		boolean kim = false; // hihi
 		while(enemies > 0) {
 			Enemy enemy;
 			
@@ -80,12 +83,14 @@ public class EnemySpawner {
 			if(iterations % 2 == 0) {
 				float xEnemy = x - (spacing*(iterations-1))*(float)Math.cos(leftDeg);
 				float yEnemy = y - (spacing*(iterations-1))*(float)Math.sin(leftDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree);
+				enemy = new Enemy(display, xEnemy, yEnemy, degree, kim);
+				kim = !kim; // håhå
 			}
 			else {
 				float xEnemy = x - (spacing*(iterations))*(float)Math.cos(rightDeg);
 				float yEnemy = y - (spacing*(iterations))*(float)Math.sin(rightDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree);
+				enemy = new Enemy(display, xEnemy, yEnemy, degree, kim);
+				kim = !kim; // håhå
 			}
 			
 			// 6. Append the new enemy to the dataHandler.

@@ -11,10 +11,19 @@ import org.eclipse.swt.widgets.Display;
 public class Enemy extends Aircraft {
 	private Image planeImage;
 	
-	public Enemy(Display display, float xPosition, float yPosition, float degree){
+	public Enemy(Display display, float xPosition, float yPosition, float degree, boolean kim){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
-		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\putin.png";
+		
+		// Hihi
+		String relPath = "";
+		if (kim) {
+			relPath = "src\\main\\java\\resources\\images\\aircrafts\\kim_jong_un.png";
+		} else {
+			relPath = "src\\main\\java\\resources\\images\\aircrafts\\putin.png";
+		}
+		//
+		
 		planeImage = new Image(display, relPath);
 		this.health = 100;
 		this.setCenter(planeImage.getBounds().width/4, planeImage.getBounds().height/4);
