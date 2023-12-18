@@ -22,6 +22,11 @@ public class GunnerAI {
 		this.totalTime = this.timer;
 	}
 	
+	public float getDegree(float x1, float y1, float x2, float y2) {
+		float radians = (float)(Math.atan2(y1 - y2, x1 - x2));
+		return (float)Math.toDegrees(radians);
+	}
+	
 	public Projectile detectAndShoot(Display display, DataHandler dataHandler, float deltaTime) {
 		for(Aircraft target : dataHandler.getAircrafts()) {
 			if(aircraft == target)
@@ -41,10 +46,15 @@ public class GunnerAI {
 			float distance = (float)Math.sqrt(xRes + yRes);
 			if(distance <= detectionRange && totalTime >= timer) {
 				if(aircraft.friendly != target.friendly) {
+					float fireDegree = getDegree(x1, y1, x2, y2);
+					float initDegree = aircraft.degree;
 					totalTime = 0;
 					System.out.println("Aircraft: " + x1 + " " + y1);
 					System.out.println("Target: " + x2 + " " + y2);
+					
+					aircraft.degree = 180+fireDegree;
 					Bullet bullet = new Bullet(display, aircraft, 0, 0, aircraft.friendly);
+					aircraft.degree = initDegree;
 					return bullet;
 				}
 			}
