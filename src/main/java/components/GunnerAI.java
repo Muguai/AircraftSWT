@@ -21,7 +21,7 @@ public class GunnerAI {
 		this.aircraft = aircraft;
 		this.timer = 3.0f;
 		this.totalTime = this.timer;
-		this.spreadAngle = 15;
+		this.spreadAngle = 30;
 	}
 	
 	public float getDegree(float x1, float y1, float x2, float y2) {
