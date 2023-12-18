@@ -18,7 +18,7 @@ public class Enemy extends Aircraft {
 		this.gunnerAI = new GunnerAI(false, 500.0f, this);
 		
 		// Hihi
-		String relPath = "";
+		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\";
 		if (kim) {
 			relPath = "src\\main\\java\\resources\\images\\aircrafts\\kim_jong_un.png";
 		} else {

@@ -10,8 +10,8 @@ import org.eclipse.swt.widgets.Display;
 
 public class Bullet extends Projectile {
 	
-	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; 
-	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png";
+	private final String PLAYER_IMAGE_PATH =  "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; //"src\\main\\java\\resources\\images\\bullets\\baby.png";
+	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png"; // "src\\main\\java\\resources\\images\\bullets\\baby.png"; //
 	private final static int damage = 50;
 	private Image bulletImage;
 		
@@ -30,6 +30,8 @@ public class Bullet extends Projectile {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	
 	
 	public void draw(Canvas canvas) {
 		if(listenerActive) {

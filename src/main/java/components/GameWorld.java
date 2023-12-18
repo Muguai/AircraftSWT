@@ -45,7 +45,7 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png";
+			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png"; //"src\\main\\java\\resources\\images\\mapBig.png";
 			String normalMap = "src\\main\\java\\resources\\images\\map.png";
 			mapImage = new Image(display, bigMap); 
 		} catch (Exception e) {
@@ -75,7 +75,6 @@ public class GameWorld {
 	        int srcWidth = Math.min(mapImage.getBounds().width - srcX, destWidth);
 	        int srcHeight = Math.min(mapImage.getBounds().height - srcY, destHeight);
 	
-	        // 6. Draw the portion of the image on the canvas:
 	        gc.drawImage(mapImage, offsetX, offsetY);
 	     });
 	    
@@ -116,7 +115,7 @@ public class GameWorld {
 				
 				// 3.1. Also, if the non-player gameObject is an Aircraft, shoot at nearby enemies:
 				if(gameObject instanceof Aircraft) {
-					Projectile bullet = ((Aircraft) gameObject).getGunnerAi().detectAndShoot(display, dataHandler);
+					Projectile bullet = ((Aircraft) gameObject).getGunnerAi().detectAndShoot(display, dataHandler, deltaTime);
 					if(bullet != null) {
 						newAIBullets.add(bullet);
 					}
@@ -135,7 +134,6 @@ public class GameWorld {
 			
 			// 5. Update the explosion sprite's time duration
 			if(gameObject instanceof Explosion) {
-				System.out.println("Finns en explosion");
 				((Explosion) gameObject).setTotalTime(deltaTime);
 			}
 			
