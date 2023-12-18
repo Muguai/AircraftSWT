@@ -39,7 +39,7 @@ public class Main {
         /******************************/
           
 		// 2. Create our Player, DataHandler and GameWorld objects:
-        Player player = new Player(display, 0.0f, 0.0f, 180);
+        Player player = new Player(display, 300.0f, 300.0f, 180);
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
 		

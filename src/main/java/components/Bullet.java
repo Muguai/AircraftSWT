@@ -17,7 +17,7 @@ public class Bullet extends Projectile {
 		
 	public Bullet(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly) {
 		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage);
-		this.speedFactor = 200.f;
+		this.speedFactor = 300.f;
 		
 		// Bullet picture based on player or enemy
 		try {

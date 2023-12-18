@@ -13,6 +13,7 @@ public class GunnerAI {
 	private Aircraft aircraft;
 	private float totalTime;
 	private float timer;
+	private float spreadAngle;
 	
 	public GunnerAI(boolean friendly, float detectionRange, Aircraft aircraft) {
 		this.friendly = friendly;
@@ -20,6 +21,7 @@ public class GunnerAI {
 		this.aircraft = aircraft;
 		this.timer = 3.0f;
 		this.totalTime = this.timer;
+		this.spreadAngle = 15;
 	}
 	
 	public float getDegree(float x1, float y1, float x2, float y2) {
@@ -49,10 +51,8 @@ public class GunnerAI {
 					float fireDegree = getDegree(x1, y1, x2, y2);
 					float initDegree = aircraft.degree;
 					totalTime = 0;
-					System.out.println("Aircraft: " + x1 + " " + y1);
-					System.out.println("Target: " + x2 + " " + y2);
-					
-					aircraft.degree = 180+fireDegree;
+					float randomDegree = (float)(Math.random()-0.5)*(2*this.spreadAngle);
+					aircraft.degree = 180+fireDegree + randomDegree;
 					Bullet bullet = new Bullet(display, aircraft, 0, 0, aircraft.friendly);
 					aircraft.degree = initDegree;
 					return bullet;
