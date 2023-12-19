@@ -27,7 +27,7 @@ public class GunnerAI {
 		this.friendly = friendly;
 		this.detectionRange = detectionRange;
 		this.aircraft = aircraft;
-		this.reloadTime = 3.0f;
+		this.reloadTime = 10.0f;
 		this.totalTime = this.reloadTime;
 		this.spreadAngle = 30;
 	}

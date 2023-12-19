@@ -7,7 +7,8 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
 public class Player extends Aircraft{
-	private boolean radar;
+	private Radar radar;
+	private boolean radarActive;
 	private Image planeImage;
 	private Image hitPlaneImage;
 	private Display display;
@@ -29,6 +30,8 @@ public class Player extends Aircraft{
 		this.speedFactor = 50.0f;
 		this.friendly = true;
 		this.display = display;
+		this.radar = new Radar(300.0f, this);
+		this.radarActive = false;
 		
 		try {
 			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\peanut_butter_and_jelly.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
@@ -99,5 +102,20 @@ public class Player extends Aircraft{
 	
 	public Display getDisplay() {
 		return display;
+	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public Radar getRadar() {
+		return radar;
+	}
+	
+	public boolean radarActive() {
+		return radarActive;
+	}
+	public void toggleRadar() {
+		radarActive = !radarActive;
 	}
 }

@@ -51,7 +51,7 @@ public class Main {
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
-        while (!shell.isDisposed() && gameWorld.runs()) {
+        while (!shell.isDisposed() && gameWorld.runs() && player.getHealth() > 0) {
         	
         	// 5. Game lags if this is not here:
             if (!display.readAndDispatch()) {
