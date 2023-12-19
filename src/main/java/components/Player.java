@@ -30,8 +30,8 @@ public class Player extends Aircraft{
 		this.speedFactor = 50.0f;
 		this.friendly = true;
 		this.display = display;
-		this.radar = new Radar(300.0f, this);
 		this.radarActive = false;
+		this.radar = radar;
 		
 		try {
 			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\peanut_butter_and_jelly.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
@@ -108,9 +108,6 @@ public class Player extends Aircraft{
 		return health;
 	}
 	
-	public Radar getRadar() {
-		return radar;
-	}
 	
 	public boolean radarActive() {
 		return radarActive;

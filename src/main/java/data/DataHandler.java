@@ -5,12 +5,14 @@ import java.util.List;
 import components.Aircraft;
 import components.GameObject;
 import components.Player;
+import components.Radar;
 
 public class DataHandler {
 	
 	private List<GameObject> gameObjects;
 	private List<Aircraft> aircrafts;
 	private final Player player;
+	private Radar radar;
 	
 	public DataHandler(Player player) {
 		gameObjects = new ArrayList<>();
@@ -65,5 +67,13 @@ public class DataHandler {
 	
 	public Player getPlayer() {
 		return player;
+	}
+	
+	public void setRadar(Radar radar) {
+		this.radar = radar;
+	}
+	
+	public Radar getRadar() {
+		return radar;
 	}
 }

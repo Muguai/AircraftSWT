@@ -18,7 +18,7 @@ public abstract class Aircraft extends MovableObject {
 	
 	Aircraft(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
-		health = 100;
+		health = 10000;
 	}
 	
 	/*	takeDamage()

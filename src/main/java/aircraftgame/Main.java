@@ -16,6 +16,7 @@ import components.EnemySpawner;
 import components.Explosion;
 import components.GameWorld;
 import components.Player;
+import components.Radar;
 import data.DataHandler;
 
 public class Main {
@@ -42,6 +43,7 @@ public class Main {
         Player player = new Player(display, 300.0f, 300.0f, 180);
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
+		Radar playerRadar = new Radar(1500.0f, dataHandler);
 		
         // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
 		EnemySpawner enemySpawner = new EnemySpawner(display.getBounds().width/2-300, display.getBounds().height/2-300, dataHandler, display);
