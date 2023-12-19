@@ -30,13 +30,15 @@ public class Main {
         shell.setFullScreen(true);
         shell.open();
         
+        StartMenu startMenu = new StartMenu(display, shell);
+        
         /******************************/
-        // Path to your sound file (replace with the actual path)
-        String soundFilePath = "C:\\Users\\NLeven\\OneDrive - ManpowerGroup\\Documents\\GitHub\\AircraftSWT\\src\\main\\java\\resources\\sounds\\run_amok.wav";
-        
-        // Play the sound on a separate thread
-        new Thread(() -> playSoundAsync(soundFilePath)).start();
-        
+//        // Path to your sound file (replace with the actual path)
+//        String soundFilePath = "C:\\Users\\NLeven\\OneDrive - ManpowerGroup\\Documents\\GitHub\\AircraftSWT\\src\\main\\java\\resources\\sounds\\run_amok.wav";
+//        
+//        // Play the sound on a separate thread
+//        new Thread(() -> playSoundAsync(soundFilePath)).start();
+//        
         /******************************/
           
 		// 2. Create our Player, DataHandler and GameWorld objects:
@@ -72,39 +74,39 @@ public class Main {
     }
     
     /***********************************/
-    private static void playSoundAsync(String soundFilePath) {
-        try {
-            System.out.println("Trying to play sound...");
-
-            URL soundUrl = ClassLoader.getSystemResource(soundFilePath);
-            if (soundUrl == null) {
-                System.err.println("Sound file not found: " + soundFilePath);
-                return;
-            }
-
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundUrl);
-            if (audioInputStream == null) {
-                System.err.println("Failed to get audio input stream for: " + soundFilePath);
-                return;
-            }
-
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-
-            // Add a listener to mark sound as finished when it completes
-            clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    System.out.println("Sound stopped.");
-                    clip.close();
-                }
-            });
-
-            // Start playing asynchronously
-            clip.start();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private static void playSoundAsync(String soundFilePath) {
+//        try {
+//            System.out.println("Trying to play sound...");
+//
+//            URL soundUrl = ClassLoader.getSystemResource(soundFilePath);
+//            if (soundUrl == null) {
+//                System.err.println("Sound file not found: " + soundFilePath);
+//                return;
+//            }
+//
+//            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundUrl);
+//            if (audioInputStream == null) {
+//                System.err.println("Failed to get audio input stream for: " + soundFilePath);
+//                return;
+//            }
+//
+//            Clip clip = AudioSystem.getClip();
+//            clip.open(audioInputStream);
+//
+//            // Add a listener to mark sound as finished when it completes
+//            clip.addLineListener(event -> {
+//                if (event.getType() == LineEvent.Type.STOP) {
+//                    System.out.println("Sound stopped.");
+//                    clip.close();
+//                }
+//            });
+//
+//            // Start playing asynchronously
+//            clip.start();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
     
 }
