@@ -64,20 +64,27 @@ public abstract class Projectile extends MovableObject{
 				// 4. Calculate the distance to the target:
 				float centeredAircraftX = aircraft.getCenterX() + aircraft.getX();
 				float centeredAircraftY = aircraft.getCenterY() + aircraft.getY();
+				
+				// 5. Account for screen offset for a player:
+				if(aircraft instanceof Player) {
+					centeredAircraftX += ((Player) aircraft).getDisplay().getBounds().width/2;
+					centeredAircraftY += ((Player) aircraft).getDisplay().getBounds().height/2;
+				}
+				
 				float hitRadius = aircraft.getCenterX() + 20.0f;
 				float dist = this.euclideanDist(centeredProjectileX, centeredProjectileY, centeredAircraftX, centeredAircraftY);
 				
-				// 5. Check if the distance is within the target radius, if so, return the hit target:
+				// 6. Check if the distance is within the target radius, if so, return the hit target:
 				if(dist <= hitRadius) {
 					boolean print = true;
 					return aircraft;
 				}
 			}
-			// 6. If no target was hit, go to the next aircraft:
+			// 7. If no target was hit, go to the next aircraft:
 			index ++;
 		}
 		
-		// 7. If we have iterated over every aircraft with no hits we are guaranteed to get here, and we return null: 
+		// 8. If we have iterated over every aircraft with no hits we are guaranteed to get here, and we return null: 
 		return null;
 	}
 	

@@ -10,6 +10,7 @@ public class Player extends Aircraft{
 	private boolean radar;
 	private Image planeImage;
 	private Image hitPlaneImage;
+	private Display display;
 	
 	/*	[class constructor] player()
 	 * 	This class is used to construct a player object as a child of the Aircraft.
@@ -26,6 +27,9 @@ public class Player extends Aircraft{
 	public Player(Display display, float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 50.0f;
+		this.friendly = true;
+		this.display = display;
+		
 		try {
 			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\peanut_butter_and_jelly.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
 			planeImage = new Image(display, planeImagePath); 
@@ -91,5 +95,9 @@ public class Player extends Aircraft{
 	
 	public float getYOffset() {
 		return -this.position[1];
+	}
+	
+	public Display getDisplay() {
+		return display;
 	}
 }

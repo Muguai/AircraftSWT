@@ -10,14 +10,23 @@ import org.eclipse.swt.widgets.Display;
 
 public class Bullet extends Projectile {
 	
-	private final String PLAYER_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\baby.png"; //"src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; 
-	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\baby.png"; //"src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png";
+	private final String PLAYER_IMAGE_PATH =  "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; //"src\\main\\java\\resources\\images\\bullets\\baby.png";
+	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png"; // "src\\main\\java\\resources\\images\\bullets\\baby.png"; //
 	private final static int damage = 50;
 	private Image bulletImage;
 		
+	
+	/* 	[class constructor] bullet
+	 * 	A class that defines a bullet object.
+	 * 	A bullet has a set speedFactor and moves forward with that speed.
+	 *  The bullet will collide with the first enemy (aircraft with non-matching 'friendly' boolean).
+	 *  At that point that aircraft will take sustaing damage according to the variable: 'damage'-
+	 *  Blue bullets are friendly to the player team and orange bullets are friendly to the enemy team.
+	 */
+	
 	public Bullet(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly) {
 		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage);
-		this.speedFactor = 200.f;
+		this.speedFactor = 400.f;
 		
 		// Bullet picture based on player or enemy
 		try {
@@ -30,6 +39,8 @@ public class Bullet extends Projectile {
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	
 	
 	public void draw(Canvas canvas) {
 		if(listenerActive) {

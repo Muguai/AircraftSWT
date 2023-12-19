@@ -45,7 +45,7 @@ public class GameWorld {
 		this.dataHandler = dataHandler;
 		isRunning = true;
 		try {
-			String bigMap = "src\\main\\java\\resources\\images\\love_map.jpg"; //"src\\main\\java\\resources\\images\\mapBig.png";
+			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png"; //"src\\main\\java\\resources\\images\\mapBig.png";
 			String normalMap = "src\\main\\java\\resources\\images\\map.png";
 			mapImage = new Image(display, bigMap); 
 		} catch (Exception e) {
@@ -75,9 +75,6 @@ public class GameWorld {
 	        int srcWidth = Math.min(mapImage.getBounds().width - srcX, destWidth);
 	        int srcHeight = Math.min(mapImage.getBounds().height - srcY, destHeight);
 	
-	        // 6. Draw the portion of the image on the canvas:
-	        //System.out.println("offsetX: " + offsetX + " offsetY:" + offsetY);
-	        //System.out.println(srcWidth + " " + srcHeight);
 	        gc.drawImage(mapImage, offsetX, offsetY);
 	     });
 	    
@@ -101,6 +98,7 @@ public class GameWorld {
 	
 	public void update(float deltaTime) {
 		List<Projectile> bulletsHit = new ArrayList<Projectile>();
+		List<Projectile> newAIBullets = new ArrayList<Projectile>();
 		
 		
 		// 1. Iterate over every gameObject:
@@ -114,6 +112,14 @@ public class GameWorld {
 			// 3. If the game object is not of the player instance, update offset based on player position:
 			if(!(gameObject instanceof Player)) {
 				gameObject.setOffsets(dataHandler.getPlayer().getXOffset(), dataHandler.getPlayer().getYOffset());
+				
+				// 3.1. Also, if the non-player gameObject is an Aircraft, shoot at nearby enemies:
+				if(gameObject instanceof Aircraft) {
+					Projectile bullet = ((Aircraft) gameObject).getGunnerAi().detectAndShoot(display, dataHandler, deltaTime);
+					if(bullet != null) {
+						newAIBullets.add(bullet);
+					}
+				}
 			}
 			
 			// 4. If the game object is a projectile, see if it hits something:
@@ -135,11 +141,6 @@ public class GameWorld {
 			float yCeil =   -mapImage.getBounds().height/2 + canvas.getBounds().height/2;
 			float xFloor =  -mapImage.getBounds().width/2  + canvas.getBounds().width/2;
 			float xCeil =   mapImage.getBounds().width/2   - canvas.getBounds().width/2;
- 
-			if(gameObject instanceof Player) {
-				//System.out.println(yFloor + " " + yCeil + " " + xFloor + " " + yFloor );
-				//System.out.println(gameObject.getX() + " " + gameObject.getY()+"\n");
-			}
 			
 			if(gameObject instanceof Aircraft) {
 				if (gameObject.getY() >= yFloor) {
@@ -176,13 +177,25 @@ public class GameWorld {
 		while(index < aircrafts.size()) {
 			Aircraft aircraft = aircrafts.get(index);
 			if (aircraft.health <= 0) {
-				dataHandler.addGameObject(new Explosion(display, aircraft.getX() + aircraft.getCenterX(), aircraft.getY() + aircraft.getCenterY()));
+				float explosionX = aircraft.getX() + aircraft.getCenterX();
+				float explosionY = aircraft.getY() + aircraft.getCenterY();
+				if(aircraft instanceof Player) {
+					explosionX += dataHandler.getPlayer().getDisplay().getBounds().width/2;
+					explosionY += dataHandler.getPlayer().getDisplay().getBounds().height/2;
+				}
+				
+				dataHandler.addGameObject(new Explosion(display, explosionX, explosionY));
 				aircraft.removePaintListener(canvas);
 				dataHandler.removeGameObject(aircraft);
 			}
 			else {
 				index++;
 			}
+		}
+		
+		// 9. Iterate over new bullets and add them to the dataHandler:
+		for(Projectile bullet : newAIBullets) {
+			dataHandler.addGameObject(bullet);
 		}
 
 		
