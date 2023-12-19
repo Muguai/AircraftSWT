@@ -15,6 +15,14 @@ public class GunnerAI {
 	private float timer;
 	private float spreadAngle;
 	
+	/*	[class constructor] GunnerAI()
+	 * 	An object that can attach to friendly aircrafts and/or enemy aircrafts.
+	 *  A GunnerAI object detects an enemy in a radius and opens fire at them.
+	 *  @Param: friendly - A boolean to discern what team the object is on.
+	 *  @Param: detectionRange - A radius where we can discover aircrafts.
+	 *  @Param: aircraft - The aircraft object that the GunnerAI is attached to.
+	 */
+	
 	public GunnerAI(boolean friendly, float detectionRange, Aircraft aircraft) {
 		this.friendly = friendly;
 		this.detectionRange = detectionRange;

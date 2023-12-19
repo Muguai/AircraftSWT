@@ -177,7 +177,14 @@ public class GameWorld {
 		while(index < aircrafts.size()) {
 			Aircraft aircraft = aircrafts.get(index);
 			if (aircraft.health <= 0) {
-				dataHandler.addGameObject(new Explosion(display, aircraft.getX() + aircraft.getCenterX(), aircraft.getY() + aircraft.getCenterY()));
+				float explosionX = aircraft.getX() + aircraft.getCenterX();
+				float explosionY = aircraft.getY() + aircraft.getCenterY();
+				if(aircraft instanceof Player) {
+					explosionX += dataHandler.getPlayer().getDisplay().getBounds().width/2;
+					explosionY += dataHandler.getPlayer().getDisplay().getBounds().height/2;
+				}
+				
+				dataHandler.addGameObject(new Explosion(display, explosionX, explosionY));
 				aircraft.removePaintListener(canvas);
 				dataHandler.removeGameObject(aircraft);
 			}

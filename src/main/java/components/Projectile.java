@@ -74,17 +74,17 @@ public abstract class Projectile extends MovableObject{
 				float hitRadius = aircraft.getCenterX() + 20.0f;
 				float dist = this.euclideanDist(centeredProjectileX, centeredProjectileY, centeredAircraftX, centeredAircraftY);
 				
-				// 5. Check if the distance is within the target radius, if so, return the hit target:
+				// 6. Check if the distance is within the target radius, if so, return the hit target:
 				if(dist <= hitRadius) {
 					boolean print = true;
 					return aircraft;
 				}
 			}
-			// 6. If no target was hit, go to the next aircraft:
+			// 7. If no target was hit, go to the next aircraft:
 			index ++;
 		}
 		
-		// 7. If we have iterated over every aircraft with no hits we are guaranteed to get here, and we return null: 
+		// 8. If we have iterated over every aircraft with no hits we are guaranteed to get here, and we return null: 
 		return null;
 	}
 	
