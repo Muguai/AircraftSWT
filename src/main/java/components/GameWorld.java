@@ -200,8 +200,8 @@ public class GameWorld {
 
 		// 10. 
 		if(dataHandler.getPlayer().radarActive()) {
-			
-			dataHandler.getPlayer().getRadar().drawRadar(canvas, deltaTime);
+			dataHandler.getPlayer().getRadar().setDeltaTime(deltaTime);
+			dataHandler.getPlayer().getRadar().drawRadar(canvas);
 		}
 		
 		canvas.redraw();
