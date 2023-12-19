@@ -115,4 +115,8 @@ public class Player extends Aircraft{
 	public void toggleRadar() {
 		radarActive = !radarActive;
 	}
+	
+	public float getDegree() {
+		return this.degree;
+	}
 }

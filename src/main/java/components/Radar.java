@@ -2,6 +2,7 @@ package components;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
@@ -25,6 +26,9 @@ public class Radar{
 	private float prevPlayerX;
 	private float prevPlayerY;
 	
+	private final String TRIANGLE_MARKER_PATH =  "src\\main\\java\\resources\\images\\triangle.png";
+	private Image triangleImage;
+	
 	
 	public Radar(float detectionRadius, DataHandler dataHandler) {
 		this.detectionRadius = detectionRadius;
@@ -36,9 +40,15 @@ public class Radar{
 		this.levels = 5;
 		this.dataHandler = dataHandler;
     	deepCopyAircrafts(dataHandler.getAircrafts());
-		dataHandler.setRadar(this);
-		prevPlayerX = dataHandler.getPlayer().getX();
-		prevPlayerY = dataHandler.getPlayer().getY();
+		this.dataHandler.setRadar(this);
+		this.prevPlayerX = dataHandler.getPlayer().getX();
+		this.prevPlayerY = dataHandler.getPlayer().getY();
+		
+		try {
+			triangleImage = new Image(player.getDisplay(), TRIANGLE_MARKER_PATH); 
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -53,13 +63,13 @@ public class Radar{
             if (!player.radarActive())
             	return;
             
-			GC gc = e.gc;            
+			GC gc = e.gc;
+			
 			float margin = 20.0f;
 			int x = (int)(player.getDisplay().getBounds().width  - drawRadius - margin);
 			int y = (int)(player.getDisplay().getBounds().height - drawRadius - margin);
 			int centerX = (int)(x + drawRadius/2);
 			int centerY = (int)(y + drawRadius/2);
-		
 			
 			gc.setBackground(black);
 			gc.fillOval(x, y, drawRadius, drawRadius);
@@ -71,7 +81,7 @@ public class Radar{
 			}
 			
 			float timeFraction = totalTime / period;
-			float angle = timeFraction*360;
+			float angle = timeFraction*360-90;
 			int a = (int)(centerX + Math.cos(Math.toRadians(angle)) * drawRadius/2);
 			int b = (int)(centerY + Math.sin(Math.toRadians(angle)) * drawRadius/2);
 			gc.drawLine(centerX, centerY, a, b);
@@ -86,13 +96,12 @@ public class Radar{
 				float resX = (float)Math.pow(playerX - targetX, 2);
 				float resY = (float)Math.pow(playerY - targetY, 2);
 				float distance = (float)Math.sqrt(resX + resY);
+				
 				if(distance <= this.detectionRadius) {
 					int enemyDist = (int)(drawRadius*(distance/detectionRadius));
 					float enemyDegree = (float)Math.PI +(float)(Math.atan2(playerY - targetY, playerX - targetX));
 					int enemyX = centerX + (int)(((float)Math.cos((enemyDegree))) * enemyDist/2);
 					int enemyY = centerY + (int)(((float)Math.sin((enemyDegree))) * enemyDist/2);
-					
-					System.out.println(enemyDist);
 					int gradialRed = (int)((detectionRadius-enemyDist)*255/this.detectionRadius);
 					Color red = new Color(gradialRed, 0, 0);
 					gc.setBackground(red);
@@ -100,6 +109,14 @@ public class Radar{
 					
 				}
 			}
+			
+			Transform transform = new Transform(gc.getDevice());
+			transform.translate(centerX, centerY);
+			transform.scale(0.15f, 0.15f);
+			transform.rotate(dataHandler.getPlayer().getDegree()+90);
+			gc.setTransform(transform);
+			gc.drawImage(triangleImage, -triangleImage.getBounds().width/2, -triangleImage.getBounds().height/2);
+			gc.setTransform(null);
 			
 		});
 	}

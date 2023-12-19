@@ -40,10 +40,10 @@ public class Main {
         /******************************/
           
 		// 2. Create our Player, DataHandler and GameWorld objects:
-        Player player = new Player(display, 300.0f, 300.0f, 180);
+        Player player = new Player(display, 500.0f, 500.0f, 180);
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
-		Radar playerRadar = new Radar(1500.0f, dataHandler);
+		Radar playerRadar = new Radar(2000.0f, dataHandler);
 		
         // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
 		EnemySpawner enemySpawner = new EnemySpawner(display.getBounds().width/2-300, display.getBounds().height/2-300, dataHandler, display);
