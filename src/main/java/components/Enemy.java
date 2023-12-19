@@ -11,6 +11,14 @@ import org.eclipse.swt.widgets.Display;
 public class Enemy extends Aircraft {
 	private Image planeImage;
 	
+	/*	[class constructor] Enemy()
+	 * 	This class defines an enemy aircraft.
+	 * 	The enemy aircraft has a position that is affected by offsets set via the root super parent: Game Object.
+	 *  The enemy aircraft moves around at a predefined speed factor.
+	 *  A gunnerAI object is attached to the enemy and will open fire on the player and player teammates possibly.
+	 *  
+	 */
+	
 	public Enemy(Display display, float xPosition, float yPosition, float degree, boolean kim){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;

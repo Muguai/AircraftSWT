@@ -15,6 +15,15 @@ public class Bullet extends Projectile {
 	private final static int damage = 50;
 	private Image bulletImage;
 		
+	
+	/* 	[class constructor] bullet
+	 * 	A class that defines a bullet object.
+	 * 	A bullet has a set speedFactor and moves forward with that speed.
+	 *  The bullet will collide with the first enemy (aircraft with non-matching 'friendly' boolean).
+	 *  At that point that aircraft will take sustaing damage according to the variable: 'damage'-
+	 *  Blue bullets are friendly to the player team and orange bullets are friendly to the enemy team.
+	 */
+	
 	public Bullet(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly) {
 		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage);
 		this.speedFactor = 400.f;

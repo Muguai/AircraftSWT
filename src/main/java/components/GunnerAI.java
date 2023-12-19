@@ -12,7 +12,7 @@ public class GunnerAI {
 	private float detectionRange;
 	private Aircraft aircraft;
 	private float totalTime;
-	private float timer;
+	private float reloadTime;
 	private float spreadAngle;
 	
 	/*	[class constructor] GunnerAI()
@@ -27,8 +27,8 @@ public class GunnerAI {
 		this.friendly = friendly;
 		this.detectionRange = detectionRange;
 		this.aircraft = aircraft;
-		this.timer = 3.0f;
-		this.totalTime = this.timer;
+		this.reloadTime = 3.0f;
+		this.totalTime = this.reloadTime;
 		this.spreadAngle = 30;
 	}
 	
@@ -38,12 +38,16 @@ public class GunnerAI {
 	}
 	
 	public Projectile detectAndShoot(Display display, DataHandler dataHandler, float deltaTime) {
+		// 1. Iterate over every aircraft:
 		for(Aircraft target : dataHandler.getAircrafts()) {
+			
+			// 2. If the target is ourselves, continue:
 			if(aircraft == target)
 				continue;
 
-			float x1 = aircraft.getX(); //+ aircraft.offsets[0];
-			float y1 = aircraft.getY(); //+ aircraft.offsets[1];
+			// 3. Obtain coordinates for the aircraft and the target:
+			float x1 = aircraft.getX(); 
+			float y1 = aircraft.getY(); 
  			float x2 = target.getX();
 			float y2 = target.getY();
 			if(target instanceof Player) {
@@ -51,10 +55,13 @@ public class GunnerAI {
 				y2 += ((Player)target).getDisplay().getBounds().height/2;
 			}
 			
+			// 4. Calculate the distance between aircraft and target:
 			float xRes = (float)Math.pow(x1-x2, 2);
 			float yRes = (float)Math.pow(y1-y2, 2);
 			float distance = (float)Math.sqrt(xRes + yRes);
-			if(distance <= detectionRange && totalTime >= timer) {
+			
+			// 5. If the airplane has reloaded and an enemy is in range, fire in a spread angle and start to reload again:
+			if(distance <= detectionRange && totalTime >= reloadTime) {
 				if(aircraft.friendly != target.friendly) {
 					float fireDegree = getDegree(x1, y1, x2, y2);
 					float initDegree = aircraft.degree;
