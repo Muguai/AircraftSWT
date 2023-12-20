@@ -9,12 +9,26 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineEvent;
 
 public class SoundManager {
-	public void playRunAmok() {
-        String soundFilePath = "src\\main\\java\\resources\\sounds\\run_amok.wav";
-        new Thread(() -> playSoundAsync(soundFilePath)).start();
+	public SoundManager() {
+		
 	}
 	
-	private static void playSoundAsync(String soundFilePath) {
+	public void playRunAmok() {
+        String soundFilePath = "src\\main\\java\\resources\\sounds\\run_amok.wav";
+        new Thread(() -> playSoundAsync(soundFilePath, true)).start();
+	}
+	
+	public void playRandomExplosion() {
+        int randomInt = 1+ (int)(Math.random()*9);
+        String soundFilePath = "src\\main\\java\\resources\\sounds\\explosion0" + randomInt+ ".wav";
+        new Thread(() -> playSoundAsync(soundFilePath, false)).start();
+	}
+	
+	public void playGunshot() {
+		
+	}
+	
+	private static void playSoundAsync(String soundFilePath, boolean infiniteLoop) {
         try {
             System.out.println("Trying to play sound...");
 
@@ -35,6 +49,9 @@ public class SoundManager {
                 if (event.getType() == LineEvent.Type.STOP) {
                     System.out.println("Sound stopped.");
                     clip.close();
+                    if(infiniteLoop) {
+                    	playSoundAsync(soundFilePath, infiniteLoop);
+                    }
                 }
             });
 
