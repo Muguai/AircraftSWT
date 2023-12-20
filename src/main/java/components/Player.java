@@ -37,7 +37,7 @@ public class Player extends Aircraft{
 		this.radar = radar;
 		
 		try {
-			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\peanut_butter_and_jelly.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
+			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_06.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
 			planeImage = new Image(display, planeImagePath); 
 //			String hitPlaneImagePath =  "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05_hit.png"; 
 //			hitPlaneImage = new Image(display, hitPlaneImagePath);
