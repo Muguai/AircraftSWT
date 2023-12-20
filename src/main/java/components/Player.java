@@ -1,5 +1,8 @@
 package components;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Transform;
@@ -60,6 +63,30 @@ public class Player extends Aircraft{
 		
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
+            
+     
+            FontData fontData = new FontData("Arial", 18, SWT.NORMAL);
+ 
+            // Dispose of the existing font to avoid memory leaks
+            if (gc.getFont() != null) {
+                gc.getFont().dispose();
+            }
+ 
+            Font font = new Font(canvas.getDisplay(), fontData);
+ 
+            // Set the new Font to the GC
+            gc.setFont(font);
+ 
+            // Calculate the position for the bottom right
+            int fontX = canvas.getBounds().width - 500; // Adjust as needed
+            int fontY = canvas.getBounds().height - 50; // Adjust as needed
+ 
+            // Draw your health bar
+            gc.drawText("Health: " + this.health, fontX, fontY);
+ 
+            // Dispose of the Font to free up resources
+            font.dispose();
+  
             
     		int x = canvas.getBounds().width/2;
     		int y = canvas.getBounds().height/2;

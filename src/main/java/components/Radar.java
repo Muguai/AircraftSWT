@@ -41,7 +41,7 @@ public class Radar{
 	public Radar(float detectionRadius, DataHandler dataHandler) {
 		this.detectionRadius = detectionRadius;
 		this.player = dataHandler.getPlayer();
-		this.drawRadius = 400;
+		this.drawRadius = 300;
 		this.listener = false;
 		this.totalTime = 0;
 		this.period = 2.0f;
