@@ -25,8 +25,15 @@ public class SoundManager {
 	}
 	
 	public void playGunshot() {
-		
+		String soundFilePath = "src\\main\\java\\resources\\sounds\\pistol.wav";
+        new Thread(() -> playSoundAsync(soundFilePath, false)).start();
 	}
+	
+	/*	playSoundAsync()
+	 * 	Create a new thread and play a sound file on that new thread.
+	 *  @Param: soundFilePath - The relative file path of the sound to play.
+	 *  @Param: infiniteLoop - If set true, the method will always restart when the sound file is done playing.
+	 */
 	
 	private static void playSoundAsync(String soundFilePath, boolean infiniteLoop) {
         try {

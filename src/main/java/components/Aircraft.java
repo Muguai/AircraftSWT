@@ -29,11 +29,21 @@ public abstract class Aircraft extends MovableObject {
 		this.health -= damage;
 	}
 	
+	/*	setDegree()
+	 * 	Sets the degree of the aircraft.
+	 * 	This is done when the player turns or if enemies reach the end of the map.
+	 */
+	
 	public void setDegree(float degree) {
         this.degree = degree;
         float radians = (float)Math.toRadians(degree);
     	directionVector.setDirection(radians);
 	}
+	
+	/*	getGunnerAi()
+	 * 	Simple getter for the gunner AI object inside Aircraft.
+	 *  A gunner AI will fire bullets at nearby enemies.
+	 */
 	
 	public GunnerAI getGunnerAi() {
 		return this.gunnerAI;

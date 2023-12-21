@@ -8,13 +8,15 @@ import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
+import utils.SoundManager;
+
 public class Bullet extends Projectile {
 	
 	private final String PLAYER_IMAGE_PATH =  "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; //"src\\main\\java\\resources\\images\\bullets\\baby.png";
 	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png"; // "src\\main\\java\\resources\\images\\bullets\\baby.png"; //
 	private final static int damage = 50;
 	private Image bulletImage;
-		
+	private SoundManager soundManager;
 	
 	/* 	[class constructor] bullet
 	 * 	A class that defines a bullet object.
@@ -38,6 +40,8 @@ public class Bullet extends Projectile {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		soundManager = new SoundManager();
+		this.soundManager.playGunshot();
 	}
 	
 	

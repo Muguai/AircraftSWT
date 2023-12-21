@@ -42,7 +42,7 @@ public abstract class GameObject {
 	public void setOffsets(float xOffset, float yOffset) {
 		offsets[0] = xOffset;
 		offsets[1] = yOffset;
-	}
+	}	
 	
 	/*	setCenter()
 	 * 	A function that sets a centerpoint comprised of a x-component and an y-component.
@@ -54,10 +54,12 @@ public abstract class GameObject {
 		center[1] = y;
 	}
 	
+	// getCenterX - Simple getter for the x component of the center.
 	public float getCenterX(){
 		return center[0];
 	}
 	
+	// getCenterY - Simple getter for the y component of the center.
 	public float getCenterY() {
 		return center[1];
 	}
