@@ -28,9 +28,9 @@ public class Enemy extends Aircraft {
 		// Hihi
 		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\";
 		if (kim) {
-			relPath = "src\\main\\java\\resources\\images\\aircrafts\\kim_jong_un.png";
+			relPath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_02.png";
 		} else {
-			relPath = "src\\main\\java\\resources\\images\\aircrafts\\putin.png";
+			relPath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_05.png";
 		}
 		//
 		

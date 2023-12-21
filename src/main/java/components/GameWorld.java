@@ -198,7 +198,11 @@ public class GameWorld {
 			dataHandler.addGameObject(bullet);
 		}
 
-		
+		// 10. 
+		if(dataHandler.getPlayer().radarActive()) {
+			dataHandler.getRadar().setDeltaTime(deltaTime);
+			dataHandler.getRadar().drawRadar(canvas);
+		}
 		
 		canvas.redraw();
 	}

@@ -1,5 +1,8 @@
 package components;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Transform;
@@ -7,7 +10,8 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
 public class Player extends Aircraft{
-	private boolean radar;
+	private Radar radar;
+	private boolean radarActive;
 	private Image planeImage;
 	private Image hitPlaneImage;
 	private Display display;
@@ -29,12 +33,12 @@ public class Player extends Aircraft{
 		this.speedFactor = 50.0f;
 		this.friendly = true;
 		this.display = display;
+		this.radarActive = false;
+		this.radar = radar;
 		
 		try {
-			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\peanut_butter_and_jelly.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
+			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_06.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
 			planeImage = new Image(display, planeImagePath); 
-//			String hitPlaneImagePath =  "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05_hit.png"; 
-//			hitPlaneImage = new Image(display, hitPlaneImagePath);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -57,6 +61,30 @@ public class Player extends Aircraft{
 		
         canvas.addPaintListener(e -> {
             GC gc = e.gc;
+            
+     
+            FontData fontData = new FontData("Arial", 18, SWT.NORMAL);
+ 
+            // Dispose of the existing font to avoid memory leaks
+            if (gc.getFont() != null) {
+                gc.getFont().dispose();
+            }
+ 
+            Font font = new Font(canvas.getDisplay(), fontData);
+ 
+            // Set the new Font to the GC
+            gc.setFont(font);
+ 
+            // Calculate the position for the bottom right with an offset
+            int fontX = canvas.getBounds().width - 500; 
+            int fontY = canvas.getBounds().height - 50; 
+ 
+            // Draw your health bar
+            gc.drawText("Health: " + this.health, fontX, fontY);
+ 
+            // Dispose of the Font to free up resources
+            font.dispose();
+  
             
     		int x = canvas.getBounds().width/2;
     		int y = canvas.getBounds().height/2;
@@ -97,7 +125,29 @@ public class Player extends Aircraft{
 		return -this.position[1];
 	}
 	
+	// getDisplay - Returns the display object.
 	public Display getDisplay() {
 		return display;
+	}
+	
+	// getHealth - Returns how much health we have.
+	public int getHealth() {
+		return health;
+	}
+	
+	
+	// radarActive - Returns the boolean value of the radar being active.
+	public boolean radarActive() {
+		return radarActive;
+	}
+	
+	// toggleRadar - Toggles the radar by setting the radarActive bool to its negation.
+	public void toggleRadar() {
+		radarActive = !radarActive;
+	}
+	
+	// getDegree - Returns the degree.
+	public float getDegree() {
+		return this.degree;
 	}
 }

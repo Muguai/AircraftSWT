@@ -6,6 +6,8 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
+import utils.SoundManager;
+
 public class Explosion extends GameObject {
 	
 	private Display display;
@@ -18,11 +20,14 @@ public class Explosion extends GameObject {
 	private final float TIMER = 0.04f;
 	private boolean isSmall = false;
 	private final int SMALL_IMAGE_SIZE = 100;
+	private SoundManager soundManager;
 	
 	public Explosion(Display display, float x, float y) {
 		super(x, y);
 		this.display = display;
 		setNextSpriteImage();
+		soundManager = new SoundManager();
+		soundManager.playRandomExplosion();
 	}
 	
 	public Explosion(Display display, float x, float y, boolean isSmall) {
