@@ -58,7 +58,7 @@ public class EnemySpawner {
 	 *  @Param: vDegree - The degree from the leader to the left and right side resp.
 	 */
 	
-	public void vFormationSpawn(int enemies, float spacing, float degree, float vDegree) {
+	public void vFormationSpawn(int enemies, float spacing, float degree, float vDegree, boolean friendly) {
 		// 1. Check that the amount of enemies is non-zero:
 		if (enemies == 0) {
 			return;
@@ -66,7 +66,7 @@ public class EnemySpawner {
 		
 		// 2. Create a leader object. Iterations = 3 will set some special spacing:
 		int iterations = 3;
-		Enemy leader = new Enemy(display, x, y, degree, true);
+		Enemy leader = new Enemy(display, x, y, degree, friendly);
 		dataHandler.addGameObject(leader);
 		enemies --;
 		
@@ -82,12 +82,12 @@ public class EnemySpawner {
 			if(iterations % 2 == 0) {
 				float xEnemy = x - (spacing*(iterations-1))*(float)Math.cos(leftDeg);
 				float yEnemy = y - (spacing*(iterations-1))*(float)Math.sin(leftDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree, false);
+				enemy = new Enemy(display, xEnemy, yEnemy, degree, friendly);
 			}
 			else {
 				float xEnemy = x - (spacing*(iterations))*(float)Math.cos(rightDeg);
 				float yEnemy = y - (spacing*(iterations))*(float)Math.sin(rightDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree, false);
+				enemy = new Enemy(display, xEnemy, yEnemy, degree, friendly);
 			}
 			
 			// 6. Append the new enemy to the dataHandler.

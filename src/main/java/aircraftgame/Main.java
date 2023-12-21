@@ -41,17 +41,19 @@ public class Main {
 		Radar playerRadar = new Radar(2000.0f, dataHandler);
 		
         // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
-		EnemySpawner enemySpawner = new EnemySpawner(display.getBounds().width/2-300, display.getBounds().height/2-300, dataHandler, display);
-		EnemySpawner enemySpawner2 = new EnemySpawner(display.getBounds().width/2-1000, display.getBounds().height/2-400, dataHandler, display);
-        enemySpawner.vFormationSpawn(5, 45, -35, 55);
-        enemySpawner2.vFormationSpawn(5, 45, 135, 65);
+		EnemySpawner enemySpawner = new EnemySpawner(0, 0, dataHandler, display);
+		EnemySpawner enemySpawner2 = new EnemySpawner(1200, 0, dataHandler, display);
+        enemySpawner.vFormationSpawn(10, 45, 0, 55, true);
+        enemySpawner2.vFormationSpawn(10, 45, 180, 65, false);
         SoundManager soundManager = new SoundManager();
         soundManager.playBackgroundOnRepeat();
         
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
+        boolean test = true;
         while (!shell.isDisposed() && gameWorld.runs() && player.getHealth() > 0) {
+        	
         	// 5. Game lags if this is not here:
             if (!display.readAndDispatch()) {
                 display.sleep();

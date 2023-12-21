@@ -19,15 +19,15 @@ public class Enemy extends Aircraft {
 	 *  
 	 */
 	
-	public Enemy(Display display, float xPosition, float yPosition, float degree, boolean kim){
+	public Enemy(Display display, float xPosition, float yPosition, float degree, boolean friendly){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
-		this.friendly = false;
-		this.gunnerAI = new GunnerAI(false, 500.0f, this);
+		this.friendly = friendly;
+		this.gunnerAI = new GunnerAI(friendly, 500.0f, this);
 		
 		// Hihi
 		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\";
-		if (kim) {
+		if (friendly) {
 			relPath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_02.png";
 		} else {
 			relPath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_05.png";
@@ -69,3 +69,4 @@ public class Enemy extends Aircraft {
         canvas.addPaintListener(paintListener);
     }
 }
+  

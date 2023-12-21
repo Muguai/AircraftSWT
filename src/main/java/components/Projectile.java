@@ -59,7 +59,7 @@ public abstract class Projectile extends MovableObject{
 			Aircraft aircraft = aircrafts.get(index);
 			
 			// 3. Check if the projectile can hit the aircraft (Friendly bullets hurt enemies, unfriendly hurt the player):
-			if(aircraft instanceof Player && !friendly || !(aircraft instanceof Player) && friendly) {
+			if(aircraft.friendly && !friendly || !(aircraft.friendly) && friendly) {
 				
 				// 4. Calculate the distance to the target:
 				float centeredAircraftX = aircraft.getCenterX() + aircraft.getX();
