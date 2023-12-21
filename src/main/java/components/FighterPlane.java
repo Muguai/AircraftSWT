@@ -8,7 +8,7 @@ import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
-public class Enemy extends Aircraft {
+public class FighterPlane extends Aircraft {
 	private Image planeImage;
 	
 	/*	[class constructor] Enemy()
@@ -19,7 +19,7 @@ public class Enemy extends Aircraft {
 	 *  
 	 */
 	
-	public Enemy(Display display, float xPosition, float yPosition, float degree, boolean friendly){
+	public FighterPlane(Display display, float xPosition, float yPosition, float degree, boolean friendly){
 		super(xPosition, yPosition, degree);
 		this.speedFactor = 20.0f;
 		this.friendly = friendly;

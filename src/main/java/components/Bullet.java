@@ -34,9 +34,9 @@ public class Bullet extends Projectile {
 		
 		// 2. Bullet picture based on player or enemy:
 		try {
-			if (aircraft instanceof Player) {
+			if (friendly) {
 				bulletImage = new Image(display, PLAYER_IMAGE_PATH);
-			} else if (aircraft instanceof Enemy) {
+			} else if (aircraft instanceof FighterPlane) {
 				bulletImage = new Image(display, ENEMY_IMAGE_PATH);
 			}
 		} catch (Exception e) {

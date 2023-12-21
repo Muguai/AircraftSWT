@@ -12,8 +12,8 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 
-import components.Enemy;
-import components.EnemySpawner;
+import components.FighterPlane;
+import components.PlaneSpawner;
 import components.Explosion;
 import components.GameWorld;
 import components.Player;
@@ -41,8 +41,8 @@ public class Main {
 		Radar playerRadar = new Radar(2000.0f, dataHandler);
 		
         // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
-		EnemySpawner enemySpawner = new EnemySpawner(0, 0, dataHandler, display);
-		EnemySpawner enemySpawner2 = new EnemySpawner(1200, 0, dataHandler, display);
+		PlaneSpawner enemySpawner = new PlaneSpawner(0, 0, dataHandler, display);
+		PlaneSpawner enemySpawner2 = new PlaneSpawner(1200, 0, dataHandler, display);
         enemySpawner.vFormationSpawn(10, 45, 0, 55, true);
         enemySpawner2.vFormationSpawn(10, 45, 180, 65, false);
         SoundManager soundManager = new SoundManager();

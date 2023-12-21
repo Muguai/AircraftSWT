@@ -5,7 +5,7 @@ import org.eclipse.swt.widgets.Display;
 
 import data.DataHandler;
 
-public class EnemySpawner {
+public class PlaneSpawner {
 	private float x;
 	private float y;
 	private DataHandler dataHandler;
@@ -20,7 +20,7 @@ public class EnemySpawner {
 	 *  @Param: Display display - The display object needed to initiate enemies.
 	 */
 	
-	public EnemySpawner(float x, float y, DataHandler dataHandler, Display display) {
+	public PlaneSpawner(float x, float y, DataHandler dataHandler, Display display) {
 		this.x = x;
 		this.y = y;
 		this.dataHandler = dataHandler;
@@ -34,17 +34,15 @@ public class EnemySpawner {
 	 *  @param: outerRadius - Defines the outer radius of the spawning disk. 
 	 */
 	
-	public void diskSpawn(int enemies, float innerRadius, float outerRadius) {
-		boolean kim = false; // hehe
+	public void diskSpawn(int enemies, float innerRadius, float outerRadius, boolean friendly) {
 		while(enemies > 0) {
 			float radius = innerRadius + (float)Math.random()*(outerRadius - innerRadius);
 			float deg = (float)Math.random()*360;
 			float xOffset = radius*(float)Math.cos(Math.toRadians(deg));
 			float yOffset = radius*(float)Math.sin(Math.toRadians(deg));
-			Enemy enemy = new Enemy(display, x+xOffset, y+yOffset, deg, kim);
+			FighterPlane enemy = new FighterPlane(display, x+xOffset, y+yOffset, deg, friendly);
 			dataHandler.addGameObject(enemy);
 			enemies --;
-			kim = !kim; // hoho
 		}
 	}
 	
@@ -66,7 +64,7 @@ public class EnemySpawner {
 		
 		// 2. Create a leader object. Iterations = 3 will set some special spacing:
 		int iterations = 3;
-		Enemy leader = new Enemy(display, x, y, degree, friendly);
+		FighterPlane leader = new FighterPlane(display, x, y, degree, friendly);
 		dataHandler.addGameObject(leader);
 		enemies --;
 		
@@ -76,18 +74,18 @@ public class EnemySpawner {
 		
 		// 4. Fill enemies:
 		while(enemies > 0) {
-			Enemy enemy;
+			FighterPlane enemy;
 			
 			// 5. Alternate between left hand side and right hand side:
 			if(iterations % 2 == 0) {
 				float xEnemy = x - (spacing*(iterations-1))*(float)Math.cos(leftDeg);
 				float yEnemy = y - (spacing*(iterations-1))*(float)Math.sin(leftDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree, friendly);
+				enemy = new FighterPlane(display, xEnemy, yEnemy, degree, friendly);
 			}
 			else {
 				float xEnemy = x - (spacing*(iterations))*(float)Math.cos(rightDeg);
 				float yEnemy = y - (spacing*(iterations))*(float)Math.sin(rightDeg);
-				enemy = new Enemy(display, xEnemy, yEnemy, degree, friendly);
+				enemy = new FighterPlane(display, xEnemy, yEnemy, degree, friendly);
 			}
 			
 			// 6. Append the new enemy to the dataHandler.
