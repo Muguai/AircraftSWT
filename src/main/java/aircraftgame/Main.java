@@ -45,6 +45,9 @@ public class Main {
 		EnemySpawner enemySpawner2 = new EnemySpawner(display.getBounds().width/2-1000, display.getBounds().height/2-400, dataHandler, display);
         enemySpawner.vFormationSpawn(5, 45, -35, 55);
         enemySpawner2.vFormationSpawn(5, 45, 135, 65);
+        SoundManager soundManager = new SoundManager();
+        soundManager.playBackgroundOnRepeat();
+        
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
