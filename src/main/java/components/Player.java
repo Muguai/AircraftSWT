@@ -39,8 +39,6 @@ public class Player extends Aircraft{
 		try {
 			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_06.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
 			planeImage = new Image(display, planeImagePath); 
-//			String hitPlaneImagePath =  "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05_hit.png"; 
-//			hitPlaneImage = new Image(display, hitPlaneImagePath);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -77,9 +75,9 @@ public class Player extends Aircraft{
             // Set the new Font to the GC
             gc.setFont(font);
  
-            // Calculate the position for the bottom right
-            int fontX = canvas.getBounds().width - 500; // Adjust as needed
-            int fontY = canvas.getBounds().height - 50; // Adjust as needed
+            // Calculate the position for the bottom right with an offset
+            int fontX = canvas.getBounds().width - 500; 
+            int fontY = canvas.getBounds().height - 50; 
  
             // Draw your health bar
             gc.drawText("Health: " + this.health, fontX, fontY);
@@ -127,22 +125,28 @@ public class Player extends Aircraft{
 		return -this.position[1];
 	}
 	
+	// getDisplay - Returns the display object.
 	public Display getDisplay() {
 		return display;
 	}
 	
+	// getHealth - Returns how much health we have.
 	public int getHealth() {
 		return health;
 	}
 	
 	
+	// radarActive - Returns the boolean value of the radar being active.
 	public boolean radarActive() {
 		return radarActive;
 	}
+	
+	// toggleRadar - Toggles the radar by setting the radarActive bool to its negation.
 	public void toggleRadar() {
 		radarActive = !radarActive;
 	}
 	
+	// getDegree - Returns the degree.
 	public float getDegree() {
 		return this.degree;
 	}

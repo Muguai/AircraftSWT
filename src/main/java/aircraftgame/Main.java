@@ -39,8 +39,6 @@ public class Main {
 		DataHandler dataHandler = new DataHandler(player);
 		GameWorld gameWorld = new GameWorld(display, shell, dataHandler);
 		Radar playerRadar = new Radar(2000.0f, dataHandler);
-		SoundManager soundManager = new SoundManager();
-		soundManager.playRandomExplosion();
 		
         // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
 		EnemySpawner enemySpawner = new EnemySpawner(display.getBounds().width/2-300, display.getBounds().height/2-300, dataHandler, display);

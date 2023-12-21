@@ -9,11 +9,14 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineEvent;
 
 public class SoundManager {
-	public SoundManager() {
-		
-	}
 	
-	public void playRunAmok() {
+	/*	[class constructor] SoundManager()
+	 * 	The SoundManager class is a class that any object can create an instance of.
+	 *  From that object any sound file can then be played via the sound manager.
+	 */
+	public SoundManager() {	}
+	
+	public void playBackgroundOnRepeat() {
         String soundFilePath = "src\\main\\java\\resources\\sounds\\run_amok.wav";
         new Thread(() -> playSoundAsync(soundFilePath, true)).start();
 	}
