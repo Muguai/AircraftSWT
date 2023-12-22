@@ -3,12 +3,17 @@ package components;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.swt.events.PaintEvent;
+import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 
 public abstract class Projectile extends MovableObject{
 	private boolean friendly;
 	private int damage;
-	
+	protected Image projectileImage;
 	
 	/*	[class constructor] Projectile
 	 * 	A class that defines projectiles and their collision detction with flights.
@@ -88,5 +93,29 @@ public abstract class Projectile extends MovableObject{
 		return null;
 	}
 	
-	
+	public void draw(Canvas canvas) {
+		if(listenerActive) {
+			return;
+		}
+		listenerActive = true;
+        paintListener = new PaintListener() {
+            @Override
+            public void paintControl(PaintEvent e) {
+                GC gc = e.gc;
+                int x = (int) (position[0] + offsets[0]);
+                int y = (int) (position[1] + offsets[1]);
+
+                Transform transform = new Transform(gc.getDevice());
+                transform.translate(x, y);
+                transform.rotate((degree + 90));
+                gc.setTransform(transform);
+                gc.drawImage(projectileImage, -projectileImage.getBounds().width / 2, -projectileImage.getBounds().height / 2);
+                gc.setTransform(null);
+                transform.dispose();
+            }
+
+        };
+
+        canvas.addPaintListener(paintListener);
+	}
 }
