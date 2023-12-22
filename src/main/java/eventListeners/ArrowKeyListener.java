@@ -3,9 +3,13 @@ package eventListeners;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
 
 import components.GameWorld;
+import components.HeatseekingMissile;
+import components.Player;
+import data.DataHandler;
 
 public class ArrowKeyListener implements KeyListener {
 	
@@ -38,7 +42,6 @@ public class ArrowKeyListener implements KeyListener {
             	gameWorld.getDataHandler().getPlayer().turnRight();
                 break;
             
-            
             case SWT.TAB:
             	gameWorld.getDataHandler().getPlayer().toggleRadar();
             	break;
@@ -46,6 +49,14 @@ public class ArrowKeyListener implements KeyListener {
             case SWT.ESC:
             	this.gameWorld.exit();
             	break;
+            	
+            case SWT.ALT:
+            	Player player = gameWorld.getDataHandler().getPlayer();
+            	float offsetX = gameWorld.getCanvas().getBounds().width/2;
+            	float offsetY = gameWorld.getCanvas().getBounds().height/2;
+            	DataHandler dataHandler = gameWorld.getDataHandler();
+            	gameWorld.getDataHandler().addGameObject(
+            			new HeatseekingMissile(player.getDisplay(), player, offsetX, offsetY, true, dataHandler));
 		}
 		
 		gameWorld.getCanvas().redraw();
