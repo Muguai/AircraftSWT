@@ -3,6 +3,9 @@
 Author: chabull, on opengameart.org
 URL: https://opengameart.org/content/aircrafts
 
+Missile: https://opengameart.org/content/custom-missiles
+
+
 Sound effects:
 https://opengameart.org/content/9-explosion-sounds
 https://opengameart.org/content/gun-sound-effects
