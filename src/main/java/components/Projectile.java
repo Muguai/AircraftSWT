@@ -58,6 +58,8 @@ public abstract class Projectile extends MovableObject{
 		float centeredProjectileX = center[0] + position[0];
 		float centeredProjectileY = center[1] + position[1];
 		
+		System.out.println(aircrafts.get(0));
+		
 		// 2. Iterate over every aircraft (Using a while loop so we can dynamically update the list):
 		int index = 0;
 		while(index < aircrafts.size()) {
