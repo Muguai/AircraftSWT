@@ -14,10 +14,13 @@ public class HeatseekingMissile extends Projectile{
 	private final static float DETECTION_RADIUS = 120f;
 	private final static String MISSILE_URL = "src\\main\\java\\resources\\images\\bullets\\storm_shadow.png"; 
 
+	/*	[class constructor] HeastseekingMissile
+	 * 	A type of projectile that deals a lot of damage and that uses homing on nearby enemies. 
+	 */
 	
 	public HeatseekingMissile(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly, DataHandler dataHandler) {
 		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage);
-		this.speedFactor = 550;
+		this.speedFactor = 750;
 		try {
 			projectileImage = new Image(display, MISSILE_URL);
 		}
@@ -26,7 +29,13 @@ public class HeatseekingMissile extends Projectile{
 		}
 	}
 	
+	/*	heatseekAdjustDirection()
+	 * 	A method that scans the air for enemies and uses homing towards them if one such can be found.
+	 */
+	
 	public void heatseekAdjustDirection(List<Aircraft> aircrafts) {
+		
+		// 1. Scan for enemies:
 		Aircraft closestTarget = null;
 		float smallestDistance = -1;
 		float enemyDegree = 0;
@@ -48,6 +57,7 @@ public class HeatseekingMissile extends Projectile{
 			}
 		}
 		
+		// 2. If an enemy is found, change direction vector towards them:
 		if(closestTarget != null) {
 			this.degree = enemyDegree;
 			this.directionVector.setDirection(enemyDegree);
