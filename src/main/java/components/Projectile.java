@@ -11,7 +11,7 @@ import org.eclipse.swt.graphics.Transform;
 import org.eclipse.swt.widgets.Canvas;
 
 public abstract class Projectile extends MovableObject{
-	private boolean friendly;
+	protected boolean friendly;
 	private int damage;
 	protected Image projectileImage;
 	

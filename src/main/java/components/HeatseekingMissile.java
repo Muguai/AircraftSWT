@@ -31,6 +31,9 @@ public class HeatseekingMissile extends Projectile{
 		float smallestDistance = -1;
 		float enemyDegree = 0;
 		for(Aircraft aircraft : aircrafts) {
+			if(aircraft.friendly == this.friendly)
+				continue;
+			
 			float targetX = aircraft.getX();
 			float targetY = aircraft.getY();
 			float x = this.getX();
