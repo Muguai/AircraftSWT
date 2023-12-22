@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Display;
 import data.DataHandler;
 
 public class HeatseekingMissile extends Projectile{
-	private final static int damage = 100;
+	private final static int damage = 250;
 	private final static float DETECTION_RADIUS = 120f;
 	private final static String MISSILE_URL = "src\\main\\java\\resources\\images\\bullets\\storm_shadow.png"; 
 

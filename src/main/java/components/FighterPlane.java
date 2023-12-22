@@ -25,6 +25,12 @@ public class FighterPlane extends Aircraft {
 		this.friendly = friendly;
 		this.gunnerAI = new GunnerAI(friendly, 500.0f, this);
 		
+		// Making enemies stronger than friendlies:
+		if(!friendly) {
+			this.gunnerAI = new GunnerAI(friendly, 550.0f, this);
+			this.health = 150;
+		}
+		
 		// Hihi
 		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\";
 		if (friendly) {

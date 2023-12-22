@@ -72,6 +72,7 @@ public class GunnerAI {
 					aircraft.degree = initDegree;
 					return bullet;
 				}
+				
 			}
 			else {
 				totalTime += deltaTime;
