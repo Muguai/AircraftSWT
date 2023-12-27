@@ -162,6 +162,11 @@ public class Radar{
 		});
 	}
 	
+	/*	deepCopyAircrafts()
+	 * 	A method that iterates over the aircrafts in play and saves their current values as data.
+	 *  For each radar update this method is called.
+	 */
+	
 	public void deepCopyAircrafts(List<Aircraft> aircrafts) {
 		aircraftData = new ArrayList<int[]>();
 		for(Aircraft aircraft : aircrafts) {
@@ -176,10 +181,19 @@ public class Radar{
 		}
 	}
 	
+	
+	/*	getDeltaTime()
+	 * 	A getter for the delta time.
+	 */
+	
 	public float getDeltaTime() {
 		return this.deltaTime;
 	}
 	
+	
+	/*	setDeltaTime()
+	 * 	A setter method for the delta time.
+	 */
 	public void setDeltaTime(float deltaTime) {
 		this.deltaTime = deltaTime;
         if (totalTime >= period) {
