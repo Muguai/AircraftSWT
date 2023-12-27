@@ -1,6 +1,7 @@
 package utils;
 
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Display;
 
 /*
@@ -9,13 +10,9 @@ import org.eclipse.swt.widgets.Display;
 public class ImageManager {
 
 	
-	public static Image findImage(Display display, String path) {
-		Image image = null;
-		try {
-			image = new Image(display, path); 
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return image;
-	}
+	public static Image resizeImage(Image originalImage, int newWidth, int newHeight) {
+        ImageData imageData = originalImage.getImageData();
+        ImageData scaledImageData = imageData.scaledTo(newWidth, newHeight);
+        return new Image(Display.getDefault(), scaledImageData);
+    }
 }
