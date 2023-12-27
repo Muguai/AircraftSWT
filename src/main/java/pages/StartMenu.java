@@ -1,6 +1,7 @@
-package aircraftgame;
+package pages;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.GC;
@@ -11,14 +12,22 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-public class StartMenu {
+import data.DataHandler;
+import eventListeners.EscapeKeyListener;
 
-	Canvas canvas;
+public class StartMenu extends Page {
 
-	public StartMenu(Display display, Shell shell) {
-		canvas = new Canvas(shell, SWT.NONE);
-		// canvas.setSize(shell.getSize().x, shell.getSize().y);
-		Image backgroundImage = new Image(display, "src\\main\\java\\resources\\images\\cloud_background.jpg");
+	private Image backgroundImage;
+
+	public StartMenu(Display display, Shell shell, DataHandler dataHandler) {
+		super(display, shell, dataHandler);
+
+//		try {
+//			backgroundImage = new Image(display, "src\\main\\java\\resources\\images\\cloud_background.jpg");
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//		}
+		 
 
 		// Set up a PaintListener to draw the background image
 //		canvas.addPaintListener(e -> {
@@ -33,9 +42,10 @@ public class StartMenu {
 //			}
 //
 //		});
-		Button startGameButton = new Button(shell, SWT.PUSH);
-		startGameButton.setText("Start Game");
 		
+//		Button startGameButton = new Button(shell, SWT.PUSH);
+//		startGameButton.setText("Start Game");
+//		
 //		startGameButton.addSelectionListener(new SelectionAdapter() {
 //            @Override
 //            public void widgetSelected(SelectionEvent e) {
@@ -44,6 +54,13 @@ public class StartMenu {
 //            }
 //
 //        });
+		
+		canvas.addKeyListener(new EscapeKeyListener(this));
+	}
+
+	
+	public void update() {
+		
 	}
 	
 	

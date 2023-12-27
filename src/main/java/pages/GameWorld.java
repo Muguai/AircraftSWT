@@ -1,4 +1,4 @@
-package components;
+package pages;
 import java.math.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,19 +12,22 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import components.Aircraft;
+import components.Explosion;
+import components.GameObject;
+import components.MovableObject;
+import components.Player;
+import components.Projectile;
 import data.DataHandler;
-import eventListeners.ArrowKeyListener;
-import eventListeners.SpaceKeyListener;
+import eventListeners.EscapeKeyListener;
+import eventListeners.GameKeyListener;
+import utils.ImageManager;
 
-public class GameWorld {
+public class GameWorld extends Page {
 	
-	private Display display;
 	private Image mapImage;
-	private Canvas canvas;
-	private DataHandler dataHandler;
 	private int offsetX;
 	private int offsetY;
-	private boolean isRunning;
 	
 	/*	[class constructor]	GameWorld
 	 * 	The class that represents an ongoing game for as long as the boolean isRunning is true.
@@ -38,24 +41,35 @@ public class GameWorld {
 	 */
 	
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
+		super(display, shell, dataHandler);
 		
-		this.display = display;
+		setMapImage("src\\main\\java\\resources\\images\\mapBig.png");
+	
+		// Setting up paint listener 
+		setMapImagePaintListener();
+        
 		
-		// 1. Initiate data in the gameworld:
-		this.dataHandler = dataHandler;
-		isRunning = true;
+	     // 7. Setting up event listeners (For player turning, etc)
+	     canvas.addKeyListener(new GameKeyListener(this));
+	     canvas.addKeyListener(new EscapeKeyListener(this));
+	}
+
+	/* setMapImage()
+	 * Attempts to retrieve the map image 
+	 */
+	public void setMapImage(String path) {
 		try {
-			String bigMap = "src\\main\\java\\resources\\images\\mapBig.png"; //"src\\main\\java\\resources\\images\\mapBig.png";
-			String normalMap = "src\\main\\java\\resources\\images\\map.png";
-			mapImage = new Image(display, bigMap); 
+			mapImage = new Image(display, path); 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		
-        
+	}
+	
+	/*
+	 * 
+	 */
+	public void setMapImagePaintListener() {
 		// 2. Create a new canvas to render on:
- 		canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
- 		canvas.setSize(shell.getSize().x, shell.getSize().y);
 	    canvas.addPaintListener(e -> {
 	     	GC gc = e.gc;
 	     	
@@ -79,16 +93,7 @@ public class GameWorld {
 	     });
 	    
 	     canvas.setFocus();
-	     
-	     // 7. Setting up event listeners (For player turning, etc)
-	     canvas.addKeyListener(new ArrowKeyListener(this));
-	     canvas.addKeyListener(new SpaceKeyListener(this));
-        
 	}
-	
-	public Display getDisplay() { return display; }
-	public Canvas getCanvas() { return canvas; }
-	public DataHandler getDataHandler() { return dataHandler; }
 	
 	/* 	update()
 	 * 	update() is called in the main loop for each frame and updates the state of the game.
@@ -176,7 +181,7 @@ public class GameWorld {
 		List<Aircraft> aircrafts = dataHandler.getAircrafts();
 		while(index < aircrafts.size()) {
 			Aircraft aircraft = aircrafts.get(index);
-			if (aircraft.health <= 0) {
+			if (aircraft.getHealth() <= 0) {
 				float explosionX = aircraft.getX() + aircraft.getCenterX();
 				float explosionY = aircraft.getY() + aircraft.getCenterY();
 				if(aircraft instanceof Player) {
@@ -206,23 +211,5 @@ public class GameWorld {
 		
 		canvas.redraw();
 	}
-	
-	/*	runs()
-	 * 	Returns the state of the game.
-	 */
-	
-	public boolean runs() {
-		return isRunning;
-	}
-	
-	/* exit()
-	 * Sets the state of the game to be false.
-	 */
-	public void exit() {
-		isRunning = false;
-	}
-	
-	
-	
 	
 }

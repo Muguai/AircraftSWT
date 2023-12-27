@@ -16,9 +16,13 @@ public abstract class Aircraft extends MovableObject {
 	 *  @See: The parent class, MovableObject
 	 */
 	
-	Aircraft(float xPosition, float yPosition, float degree){
+	public Aircraft(float xPosition, float yPosition, float degree){
 		super(xPosition, yPosition, degree);
 		health = 100;
+	}
+	
+	public int getHealth() {
+		return health;
 	}
 	
 	/*	takeDamage()
