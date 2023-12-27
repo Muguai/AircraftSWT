@@ -14,13 +14,13 @@ public abstract class Page {
 	protected Canvas canvas;
 	private boolean isRunning;
 
-	public Page(Display display, Shell shell, DataHandler dataHandler) {
+	public Page(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
 		this.display = display;
 		this.dataHandler = dataHandler;
 		
 		// Create a new canvas as big as the screen
-		this.canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
-		canvas.setSize(shell.getSize().x, shell.getSize().y);
+		this.canvas = canvas;
+		//canvas.setSize(shell.getSize().x, shell.getSize().y);
 		
 		isRunning = true;
 	}

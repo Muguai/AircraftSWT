@@ -19,8 +19,8 @@ public class StartMenu extends Page {
 
 	private Image backgroundImage;
 
-	public StartMenu(Display display, Shell shell, DataHandler dataHandler) {
-		super(display, shell, dataHandler);
+	public StartMenu(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
+		super(display, shell, dataHandler, canvas);
 
 //		try {
 //			backgroundImage = new Image(display, "src\\main\\java\\resources\\images\\cloud_background.jpg");

@@ -18,6 +18,7 @@ import components.GameObject;
 import components.MovableObject;
 import components.Player;
 import components.Projectile;
+import components.HeatseekingMissile;
 import data.DataHandler;
 import eventListeners.EscapeKeyListener;
 import eventListeners.GameKeyListener;
@@ -40,11 +41,12 @@ public class GameWorld extends Page {
 	 *  @Param:	dataHandler - A dataHandler object where every gameObject is stored.
 	 */
 	
-	public GameWorld(Display display, Shell shell, DataHandler dataHandler) {
-		super(display, shell, dataHandler);
+	public GameWorld(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
+		super(display, shell, dataHandler, canvas);
 		
 		setMapImage("src\\main\\java\\resources\\images\\mapBig.png");
-	
+		this.canvas = canvas;
+		
 		// Setting up paint listener 
 		setMapImagePaintListener();
         
