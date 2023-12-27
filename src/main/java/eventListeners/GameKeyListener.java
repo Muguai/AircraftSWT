@@ -7,7 +7,9 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
 import components.Bullet;
+import components.HeatseekingMissile;
 import components.Player;
+import data.DataHandler;
 import pages.GameWorld;
 
 public class GameKeyListener implements KeyListener {
@@ -20,6 +22,10 @@ public class GameKeyListener implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		Display display = gameWorld.getDisplay();
+		Player player = gameWorld.getDataHandler().getPlayer();
+		float offsetX = gameWorld.getCanvas().getBounds().width / 2;
+		float offsetY = gameWorld.getCanvas().getBounds().height / 2;
 
 		switch (e.keyCode) {
 		// Arrow cases
@@ -43,12 +49,13 @@ public class GameKeyListener implements KeyListener {
 
 		// Shooting bullet
 		case SWT.SPACE:
-			Display display = gameWorld.getDisplay();
-			Player player = gameWorld.getDataHandler().getPlayer();
-			float offsetX = gameWorld.getCanvas().getBounds().width / 2;
-			float offsetY = gameWorld.getCanvas().getBounds().height / 2;
 			gameWorld.getDataHandler().addGameObject(new Bullet(display, player, offsetX, offsetY, true));
 			break;
+			
+		case SWT.ALT:
+        	DataHandler dataHandler = gameWorld.getDataHandler();
+        	gameWorld.getDataHandler().addGameObject(
+        			new HeatseekingMissile(player.getDisplay(), player, offsetX, offsetY, true, dataHandler));
 
 		}
 
