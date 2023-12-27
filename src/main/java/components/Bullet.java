@@ -15,7 +15,6 @@ public class Bullet extends Projectile {
 	private final String PLAYER_IMAGE_PATH =  "src\\main\\java\\resources\\images\\bullets\\bullet_2_blue.png"; //"src\\main\\java\\resources\\images\\bullets\\baby.png";
 	private final String ENEMY_IMAGE_PATH = "src\\main\\java\\resources\\images\\bullets\\bullet_2_orange.png"; // "src\\main\\java\\resources\\images\\bullets\\baby.png"; //
 	private final static int damage = 50;
-	private Image bulletImage;
 	private SoundManager soundManager;
 	
 	/* 	[class constructor] bullet
@@ -34,10 +33,10 @@ public class Bullet extends Projectile {
 		
 		// 2. Bullet picture based on player or enemy:
 		try {
-			if (aircraft instanceof Player) {
-				bulletImage = new Image(display, PLAYER_IMAGE_PATH);
-			} else if (aircraft instanceof Enemy) {
-				bulletImage = new Image(display, ENEMY_IMAGE_PATH);
+			if (friendly) {
+				projectileImage = new Image(display, PLAYER_IMAGE_PATH);
+			} else if (aircraft instanceof FighterPlane) {
+				projectileImage = new Image(display, ENEMY_IMAGE_PATH);
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -46,34 +45,6 @@ public class Bullet extends Projectile {
 		// 3. Play the gun shot sound file:
 		soundManager = new SoundManager();
 		this.soundManager.playGunshot();
-	}
-	
-	
-	
-	public void draw(Canvas canvas) {
-		if(listenerActive) {
-			return;
-		}
-		listenerActive = true;
-        paintListener = new PaintListener() {
-            @Override
-            public void paintControl(PaintEvent e) {
-                GC gc = e.gc;
-                int x = (int) (position[0] + offsets[0]);
-                int y = (int) (position[1] + offsets[1]);
-
-                Transform transform = new Transform(gc.getDevice());
-                transform.translate(x, y);
-                transform.rotate((degree + 90));
-                gc.setTransform(transform);
-                gc.drawImage(bulletImage, -bulletImage.getBounds().width / 2, -bulletImage.getBounds().height / 2);
-                gc.setTransform(null);
-                transform.dispose();
-            }
-
-        };
-
-        canvas.addPaintListener(paintListener);
 	}
 
 }

@@ -32,6 +32,9 @@ public class GunnerAI {
 		this.spreadAngle = 30;
 	}
 	
+	/*	getDegree()
+	 * 	A method for calculating and getting the degree between two points in the cartesian plane:
+	 */
 	public float getDegree(float x1, float y1, float x2, float y2) {
 		float radians = (float)(Math.atan2(y1 - y2, x1 - x2));
 		return (float)Math.toDegrees(radians);
@@ -72,6 +75,7 @@ public class GunnerAI {
 					aircraft.degree = initDegree;
 					return bullet;
 				}
+				
 			}
 			else {
 				totalTime += deltaTime;

@@ -21,7 +21,7 @@ public class Radar{
 	private float totalTime;
 	private float period;
 	private float deltaTime;
-	private ArrayList<int[]> aircraftPositions;
+	private ArrayList<int[]> aircraftData;
 	private DataHandler dataHandler;
 	private float prevPlayerX;
 	private float prevPlayerY;
@@ -117,11 +117,12 @@ public class Radar{
 			int playerY = (int)prevPlayerY + canvas.getBounds().height/2;
 			
 			// 9. Iterate over each position of the last update of enemy aircrafts:
-			for(int i = 0; i < this.aircraftPositions.size(); i++) {
+			for(int i = 0; i < this.aircraftData.size(); i++) {
 				
 				// 10. Extract target coordinates and calculate a distance (euclidean distance):
-				int targetX = (int)this.aircraftPositions.get(i)[0];
-				int targetY = (int)this.aircraftPositions.get(i)[1];
+				int targetX = (int)this.aircraftData.get(i)[0];
+				int targetY = (int)this.aircraftData.get(i)[1];
+				int friendly = (int)this.aircraftData.get(i)[2];
 				float resX = (float)Math.pow(playerX - targetX, 2);
 				float resY = (float)Math.pow(playerY - targetY, 2);
 				float distance = (float)Math.sqrt(resX + resY);
@@ -136,9 +137,14 @@ public class Radar{
 					int enemyY = centerY + (int)(((float)Math.sin((enemyDegree))) * enemyDist/2);
 					
 					// 13. Use the "virtual distance" to write enemies as closer as more red.
-					int gradialRed = (int)((detectionRadius-enemyDist)*255/this.detectionRadius);
-					Color red = new Color(gradialRed, 0, 0);
-					gc.setBackground(red);
+					int gradialHue = (int)((detectionRadius-enemyDist)*255/this.detectionRadius);
+					Color redPlane = new Color(gradialHue, 0, 0);
+					Color greenPlane = new Color(0, gradialHue, 0);
+					
+					if(friendly == 0)
+						gc.setBackground(redPlane);
+					else
+						gc.setBackground(greenPlane);
 					gc.fillOval(enemyX, enemyY, 10, 10);
 					
 				}
@@ -157,11 +163,15 @@ public class Radar{
 	}
 	
 	public void deepCopyAircrafts(List<Aircraft> aircrafts) {
-		aircraftPositions = new ArrayList<int[]>();
+		aircraftData = new ArrayList<int[]>();
 		for(Aircraft aircraft : aircrafts) {
-			if(!aircraft.friendly) {
-				int[] positionTuple = {(int)aircraft.getX(), (int)aircraft.getY()};
-				this.aircraftPositions.add(positionTuple);
+			if(!(aircraft instanceof Player)) {
+				int isFriend = 0;
+				if(aircraft.friendly)
+					isFriend = 1;
+				
+				int[] positionTuple = {(int)aircraft.getX(), (int)aircraft.getY(), isFriend};
+				this.aircraftData.add(positionTuple);
 			}
 		}
 	}

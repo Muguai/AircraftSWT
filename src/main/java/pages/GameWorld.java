@@ -135,6 +135,11 @@ public class GameWorld extends Page {
 					bulletsHit.add(bullet);
 					target.takeDamage(bullet.getDamage());
 				}
+				
+				// 4.1 If the projectile is a heatseeking missile, run a detection scan:
+				if(gameObject instanceof HeatseekingMissile) {
+					((HeatseekingMissile)gameObject).heatseekAdjustDirection(dataHandler.getAircrafts());
+				}
 			}
 			
 			// 5. Update the explosion sprite's time duration

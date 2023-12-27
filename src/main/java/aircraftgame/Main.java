@@ -12,8 +12,8 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Image;
 
-import components.Enemy;
-import components.EnemySpawner;
+import components.FighterPlane;
+import components.PlaneSpawner;
 import components.Explosion;
 import components.Player;
 import components.Radar;
@@ -40,6 +40,7 @@ public class Main {
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
         while (!shell.isDisposed() && (startMenu.runs())) {
+
         	// 5. Game lags if this is not here:
             if (!display.readAndDispatch()) {
                 display.sleep();

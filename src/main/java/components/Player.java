@@ -35,6 +35,7 @@ public class Player extends Aircraft{
 		this.display = display;
 		this.radarActive = false;
 		this.radar = radar;
+		this.health = 1000;
 		
 		try {
 			String planeImagePath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_06.png"; // "src\\main\\java\\resources\\images\\aircrafts\\Aircraft_05.png";
