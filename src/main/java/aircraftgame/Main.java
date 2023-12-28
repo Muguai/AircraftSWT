@@ -34,6 +34,7 @@ public class Main {
         shell.setFullScreen(true);
         shell.open();
         
+        // 2. Set up mutual canvas, player and Datahandler:
         Player player = new Player(display, 500.0f, 500.0f, 180);
 		DataHandler dataHandler = new DataHandler(player);
         Canvas canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
@@ -41,14 +42,15 @@ public class Main {
         StartMenu startMenu = new StartMenu(display, shell, dataHandler, canvas, player);
         
         
-        // 4. Game Loop, for each frame, update the game world:
+        // 3. Shell:
         long lastUpdateTime = System.currentTimeMillis();
         if (!shell.isDisposed()) {
-            while(startMenu.runs()) {
+            
+        	// 4. Iterate over the start menu:
+        	while(startMenu.runs()) {
                 if (!display.readAndDispatch()) {
                     display.sleep();
                 }
-            	//System.out.println("In start menu");
             	long currentTime = System.currentTimeMillis();
                 float deltaTime = (currentTime - lastUpdateTime) / 1000.0f; 
                 lastUpdateTime = currentTime;
@@ -56,21 +58,21 @@ public class Main {
             }
             
 
-            // 2. Create our Player, DataHandler and GameWorld objects:            
+            // 5. Create Game Objects:            
     		GameWorld gameWorld = new GameWorld(display, shell, dataHandler, canvas);
     		Radar playerRadar = new Radar(2000.0f, dataHandler);
-    		
-            // 3. Set up of a test scenario with two enemySpawners: Five enemies, each:
     		PlaneSpawner enemySpawner = new PlaneSpawner(display.getBounds().width/2-300, display.getBounds().height/2-300, dataHandler, display);
     		PlaneSpawner enemySpawner2 = new PlaneSpawner(display.getBounds().width/2-1000, display.getBounds().height/2-400, dataHandler, display);
-            enemySpawner.vFormationSpawn(5, 45, -35, 55, false);
+            PlaneSpawner enemySpawner3 = new PlaneSpawner(500, 1200, dataHandler, display);
+            
+    		enemySpawner.vFormationSpawn(5, 45, -35, 55, false);
             enemySpawner2.vFormationSpawn(5, 45, 135, 65, false);
+            enemySpawner3.vFormationSpawn(7, 45, -90, 65, true);
             SoundManager soundManager = new SoundManager();
             soundManager.playBackgroundOnRepeat();
             
+            // 6. Iterate over the game world, and update for each frame:
             while (gameWorld.runs() && player.getHealth() > 0) {
-            	System.out.println("In game");
-            	// 6. Calculate a deltaTime (time difference from last frame) and pass it to GameWorld:
                 if (!display.readAndDispatch()) {
                     display.sleep();
                 }
