@@ -16,12 +16,15 @@ public class HeatseekingMissile extends Projectile{
 
 	/*	[class constructor] HeastseekingMissile
 	 * 	A type of projectile that deals a lot of damage and that uses homing on nearby enemies. 
+	 *	The heatseeking missile has some attributes that one can play around with.
+	 *  - speedFactor : Defines the speed at which the missile is travelling.
+	 *  - lifetime : Defines how long the missile is present in the game. 
 	 */
 	
 	public HeatseekingMissile(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly, DataHandler dataHandler) {
 		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage, 3.0f);
 		this.speedFactor = 750;
-		this.lifetime = 2.0f;
+		this.lifetime = 0.5f;
 		try {
 			projectileImage = new Image(display, MISSILE_URL);
 		}
@@ -44,6 +47,7 @@ public class HeatseekingMissile extends Projectile{
 			if(aircraft.friendly == this.friendly)
 				continue;
 			
+			// 2. Calculate the distance to the enemy.
 			float targetX = aircraft.getX();
 			float targetY = aircraft.getY();
 			float x = this.getX();
@@ -58,7 +62,7 @@ public class HeatseekingMissile extends Projectile{
 			}
 		}
 		
-		// 2. If an enemy is found, change direction vector towards them:
+		// 3. If an enemy was found, change direction vector towards the closest one found:
 		if(closestTarget != null) {
 			this.degree = enemyDegree;
 			this.directionVector.setDirection(enemyDegree);
