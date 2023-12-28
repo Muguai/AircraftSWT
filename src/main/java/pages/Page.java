@@ -13,7 +13,7 @@ public abstract class Page {
 	protected Display display;
 	protected DataHandler dataHandler;
 	protected Canvas canvas;
-	private boolean isRunning;
+	protected boolean isRunning;
 
 	public Page(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
 		this.display = display;
@@ -45,14 +45,5 @@ public abstract class Page {
 		isRunning = false;
 	}
 	
-	
-	/*
-	 * Clears all PaintListeners
-	 */
-	public void clearPaintListeners() {
-        for (PaintListener listener : canvas.getPaintListeners()) {
-            canvas.removePaintListener(listener);
-        }
-    }
 	
 }

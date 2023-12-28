@@ -1,6 +1,7 @@
 package pages;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -26,20 +27,63 @@ public class StartMenu extends Page {
 	private Image planeImage;
 	private Player player;
 	private int offsetX;
+	private PaintListener menuPaintListener;
+	private PaintListener planePaintListener;
+	private boolean menuPaintListenerActive = false;
+	private boolean planePaintListenerActive = false;
 
 	public StartMenu(Display display, Shell shell, DataHandler dataHandler, Canvas canvas, Player player) {
 		super(display, shell, dataHandler, canvas);
 		this.player = player;
 
-		// We want the player to go in an east direction
-		player.setDegree(180);
-
 		setBackgroundImage("src\\main\\java\\resources\\images\\cloud_background.jpg");
 		setPlaneImage("src\\main\\java\\resources\\images\\aircrafts\\aircraft_06.png");
 
-		// Set up a PaintListener to draw the background image
+		// Set up a PaintListener to draw the background image and instructions
+		drawMenu();
+		
+		// Draw the image at 270 degrees, in west direction
+		drawPlane(270);
+
+		canvas.setFocus();
+
+		canvas.addKeyListener(new EscapeKeyListener(this));
+	}
+
+	/*
+	 * setBackgroundImage() Get and resize the backgroundimage
+	 */
+	public void setBackgroundImage(String path) {
+		try {
+			Image image = new Image(display, path);
+			backgroundImage = ImageManager.resizeImage(image, canvas.getBounds().width, canvas.getBounds().height);
+			System.out.println("hello");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	/*
+	 * setPlaneImage() Get the planeImage
+	 */
+	public void setPlaneImage(String path) {
+		try {
+			planeImage = new Image(display, path);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void drawMenu() {
+		if(menuPaintListenerActive) {
+			return;
+		}
+		menuPaintListenerActive = true;
+		
 		canvas.addPaintListener(e -> {
 			GC gc = e.gc;
+			
+			// 1. Draw the background
 
 			// Window sizes and background image width
 			Rectangle bounds = canvas.getBounds();
@@ -62,25 +106,7 @@ public class StartMenu extends Page {
 				gc.drawImage(backgroundImage, x, 0);
 			}
 
-			// Draw the image at 0 degrees, in east direction
-			drawPlane(0);
-
-//			Button startGameButton = new Button(shell, SWT.PUSH);
-//			startGameButton.setText("Start Game");
-//			int buttonXCoordinate = canvas.getBounds().width/2;
-//			int buttonYCoordinate = 3 * canvas.getBounds().height/4;
-//			startGameButton.setBounds(buttonXCoordinate, buttonYCoordinate, startGameButton.computeSize(SWT.DEFAULT, SWT.DEFAULT).x, startGameButton.computeSize(SWT.DEFAULT, SWT.DEFAULT).y);
-//
-//			
-//			startGameButton.addSelectionListener(new SelectionAdapter() {
-//	            @Override
-//	            public void widgetSelected(SelectionEvent e) {
-//	                // Notify the main game application to start the game
-//	                //startGame();
-//	            }
-//
-//	        });
-
+			
 			// 2. Add start game instruction text
 			FontData fontData = new FontData("Arial", 18, SWT.NORMAL);
 
@@ -108,64 +134,33 @@ public class StartMenu extends Page {
 			font.dispose();
 
 		});
-
-		canvas.setFocus();
-
-		canvas.addKeyListener(new EscapeKeyListener(this));
-	}
-
-	/*
-	 * setBackgroundImage() Get and resize the backgroundimage
-	 */
-	public void setBackgroundImage(String path) {
-		try {
-			Image image = new Image(display, path);
-			// Calculating image sizes so that it is customized to the canvas height
-//			int originalHeight = image.getBounds().height;
-//			int originalWidth = image.getBounds().width;
-//			
-//			int newHeight = canvas.getBounds().height;
-//			float scaleFactor = newHeight / originalHeight;
-//			int newWidth = (int)(scaleFactor * originalWidth);
-
-			// backgroundImage = ImageManager.resizeImage(image, newWidth, newHeight);
-			backgroundImage = ImageManager.resizeImage(image, canvas.getBounds().width, canvas.getBounds().height);
-			System.out.println("hello");
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	/*
-	 * setPlaneImage() Get the planeImage
-	 */
-	public void setPlaneImage(String path) {
-		try {
-			planeImage = new Image(display, path);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
 	}
 
 	public void drawPlane(float degrees) {
+		if(planePaintListenerActive) {
+			return;
+		}
+		planePaintListenerActive = true;
+		
 		canvas.addPaintListener(e -> {
 			GC gc = e.gc;
 
+			// 1. Calculate positions for middle of the screen
 			int x = canvas.getBounds().width / 2;
 			int y = canvas.getBounds().height / 2;
 
-			// 1. Get the transform and translate it to (x,y):
+			// 2. Get the transform and translate it to (x,y):
 			Transform transform = new Transform(gc.getDevice());
 			transform.translate(x, y);
 
-			// 2. After this translation, do rotation:
+			// 3. After this translation, do rotation:
 			transform.rotate((degrees));
 
-			// 3. Draw out the object centered in the transform's origo:
+			// 4. Draw out the object centered in the transform's origo:
 			gc.setTransform(transform);
 			gc.drawImage(planeImage, -planeImage.getBounds().width / 2, -planeImage.getBounds().height / 2);
 
-			// 4. Set the new transform as the identity transform and dispose the old one:
+			// 5. Set the new transform as the identity transform and dispose the old one:
 			gc.setTransform(null);
 			transform.dispose();
 		});
@@ -176,6 +171,19 @@ public class StartMenu extends Page {
 		player.moveObject(deltaTime);
 		player.setOffsets(dataHandler.getPlayer().getXOffset(), dataHandler.getPlayer().getYOffset());
 		canvas.redraw();
+	}
+	
+	@Override
+	public void exit() {
+		isRunning = false;
+		removePaintListener(menuPaintListener);
+		removePaintListener(planePaintListener);
+	}
+	
+	public void removePaintListener(PaintListener paintListener) {
+		if(paintListener != null)
+			canvas.removePaintListener(paintListener);
+		paintListener = null;
 	}
 
 }
