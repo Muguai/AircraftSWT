@@ -211,13 +211,13 @@ public class GameWorld extends Page {
 			dataHandler.addGameObject(bullet);
 		}
 
-		// 10. 
+		// 10. Feed in radar data if it is activated:
 		if(dataHandler.getPlayer().radarActive()) {
 			dataHandler.getRadar().setDeltaTime(deltaTime);
 			dataHandler.getRadar().drawRadar(canvas);
 		}
 		
-		// 11. Iterate over projectiles reaching their end of life time:
+		// 11. Iterate over projectiles reaching the end of their life time:
 		int indexLife = 0;
 		while(indexLife < dataHandler.getGameObjects().size()) {
 			GameObject gameObject = dataHandler.getGameObjects().get(indexLife);

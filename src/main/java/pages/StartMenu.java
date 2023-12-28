@@ -1,6 +1,7 @@
 package pages;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -57,7 +58,6 @@ public class StartMenu extends Page {
 		try {
 			Image image = new Image(display, path);
 			backgroundImage = ImageManager.resizeImage(image, canvas.getBounds().width, canvas.getBounds().height);
-			System.out.println("hello");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -102,7 +102,6 @@ public class StartMenu extends Page {
 			// Draw the image
 			for (int i = 0; i < numImages; i++) {
 				int x = i * imageWidth + offsetX;
-				System.out.println("i " + i + " imagewidth " + imageWidth + " offx " + offsetX + " x " + x);
 				gc.drawImage(backgroundImage, x, 0);
 			}
 
@@ -141,8 +140,10 @@ public class StartMenu extends Page {
 			return;
 		}
 		planePaintListenerActive = true;
-		
-		canvas.addPaintListener(e -> {
+
+	    planePaintListener = new PaintListener() {
+	        @Override
+	        public void paintControl(PaintEvent e) {
 			GC gc = e.gc;
 
 			// 1. Calculate positions for middle of the screen
@@ -163,7 +164,9 @@ public class StartMenu extends Page {
 			// 5. Set the new transform as the identity transform and dispose the old one:
 			gc.setTransform(null);
 			transform.dispose();
-		});
+	        }
+		};
+		 canvas.addPaintListener(planePaintListener);
 	}
 
 	public void update(float deltaTime) {
@@ -175,7 +178,7 @@ public class StartMenu extends Page {
 	
 	@Override
 	public void exit() {
-		isRunning = false;
+		this.isRunning = false;
 		removePaintListener(menuPaintListener);
 		removePaintListener(planePaintListener);
 	}
