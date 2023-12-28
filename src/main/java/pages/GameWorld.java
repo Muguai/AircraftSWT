@@ -217,6 +217,18 @@ public class GameWorld extends Page {
 			dataHandler.getRadar().drawRadar(canvas);
 		}
 		
+		// 11. Iterate over projectiles reaching their end of life time:
+		int indexLife = 0;
+		while(indexLife < dataHandler.getGameObjects().size()) {
+			GameObject gameObject = dataHandler.getGameObjects().get(indexLife);
+			if(gameObject instanceof Projectile && ((Projectile) gameObject).endOfLife(deltaTime, canvas)) {
+				dataHandler.removeGameObject(gameObject);
+			}
+			else {
+				indexLife ++;
+			}
+		}
+		
 		canvas.redraw();
 	}
 	

@@ -63,7 +63,7 @@ public class StartMenu extends Page {
 			}
 
 			// Draw the image at 0 degrees, in east direction
-			drawPlane(0);
+			//drawPlane(90);
 
 //			Button startGameButton = new Button(shell, SWT.PUSH);
 //			startGameButton.setText("Start Game");

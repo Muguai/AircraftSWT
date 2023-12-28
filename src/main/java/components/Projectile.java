@@ -15,6 +15,7 @@ public abstract class Projectile extends MovableObject{
 	private int damage;
 	protected Image projectileImage;
 	protected float lifetime;
+	protected float timer;
 	
 	/*	[class constructor] Projectile
 	 * 	A class that defines projectiles and their collision detction with flights.
@@ -29,6 +30,7 @@ public abstract class Projectile extends MovableObject{
 		this.damage = damage;
 		this.lifetime = lifetime;
 		this.setCenter(0, 0);
+		this.timer = 0.0f;
 	}
 	
 	/*	euclideanDist()
@@ -95,6 +97,15 @@ public abstract class Projectile extends MovableObject{
 		
 		// 8. If we have iterated over every aircraft with no hits we are guaranteed to get here, and we return null: 
 		return null;
+	}
+	
+	public boolean endOfLife(float deltaTime, Canvas canvas) {
+		timer += deltaTime;
+		if(timer >= lifetime) {
+			this.removePaintListener(canvas);
+			return true;
+		}
+		return false;
 	}
 	
 	public void draw(Canvas canvas) {

@@ -18,9 +18,10 @@ public class HeatseekingMissile extends Projectile{
 	 * 	A type of projectile that deals a lot of damage and that uses homing on nearby enemies. 
 	 */
 	
-	public HeatseekingMissile(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly, DataHandler dataHandler, float lifetime) {
-		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage, lifetime);
+	public HeatseekingMissile(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly, DataHandler dataHandler) {
+		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage, 3.0f);
 		this.speedFactor = 750;
+		this.lifetime = 2.0f;
 		try {
 			projectileImage = new Image(display, MISSILE_URL);
 		}

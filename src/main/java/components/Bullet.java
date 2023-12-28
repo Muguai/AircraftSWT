@@ -25,11 +25,12 @@ public class Bullet extends Projectile {
 	 *  Blue bullets are friendly to the player team and orange bullets are friendly to the enemy team.
 	 */
 	
-	public Bullet(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly, float lifetime) {
+	public Bullet(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly) {
 		
 		// 1. Set fields via the superclass:
-		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage, lifetime);
+		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage, 3.0f);
 		this.speedFactor = 400.f;
+		this.lifetime = 2.0f;
 		
 		// 2. Bullet picture based on player or enemy:
 		try {

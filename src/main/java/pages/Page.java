@@ -21,7 +21,6 @@ public abstract class Page {
 		
 		// Create a new canvas as big as the screen
 		this.canvas = canvas;
-		//canvas.setSize(shell.getSize().x, shell.getSize().y);
 		
 		isRunning = true;
 	}
@@ -50,9 +49,9 @@ public abstract class Page {
 	 * Clears all PaintListeners
 	 */
 	public void clearPaintListeners() {
-        for (PaintListener listener : canvas.getPaintListeners()) {
-            canvas.removePaintListener(listener);
-        }
+        //for (PaintListener listener : canvas.getPaintListeners()) {
+        //    canvas.removePaintListener(listener);
+        //}
     }
 	
 }
