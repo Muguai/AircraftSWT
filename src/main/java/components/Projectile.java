@@ -14,6 +14,7 @@ public abstract class Projectile extends MovableObject{
 	protected boolean friendly;
 	private int damage;
 	protected Image projectileImage;
+	protected float lifetime;
 	
 	/*	[class constructor] Projectile
 	 * 	A class that defines projectiles and their collision detction with flights.
@@ -22,10 +23,11 @@ public abstract class Projectile extends MovableObject{
 	 *  function in gameWorld, and we can see if projectiles hit their target.
 	 */
 	
-	Projectile(float x, float y, float degree, boolean friendly, int damage){
+	Projectile(float x, float y, float degree, boolean friendly, int damage, float lifetime){
 		super(x, y, degree);
 		this.friendly = friendly;
 		this.damage = damage;
+		this.lifetime = lifetime;
 		this.setCenter(0, 0);
 	}
 	

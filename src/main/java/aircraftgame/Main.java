@@ -43,7 +43,7 @@ public class Main {
         
         // 4. Game Loop, for each frame, update the game world:
         long lastUpdateTime = System.currentTimeMillis();
-        while (!shell.isDisposed()) {
+        if (!shell.isDisposed()) {
             while(startMenu.runs()) {
                 if (!display.readAndDispatch()) {
                     display.sleep();
