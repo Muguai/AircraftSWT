@@ -19,8 +19,9 @@ public class HeatseekingMissile extends Projectile{
 	 */
 	
 	public HeatseekingMissile(Display display, Aircraft aircraft, float offsetX, float offsetY, boolean friendly, DataHandler dataHandler) {
-		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage);
+		super(aircraft.getX() + offsetX, aircraft.getY() + offsetY, aircraft.degree, friendly, damage, 3.0f);
 		this.speedFactor = 750;
+		this.lifetime = 2.0f;
 		try {
 			projectileImage = new Image(display, MISSILE_URL);
 		}

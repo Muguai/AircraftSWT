@@ -106,7 +106,7 @@ public class StartMenu extends Page {
 				gc.drawImage(backgroundImage, x, 0);
 			}
 
-			
+
 			// 2. Add start game instruction text
 			FontData fontData = new FontData("Arial", 18, SWT.NORMAL);
 
