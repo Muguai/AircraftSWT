@@ -1,6 +1,7 @@
 package pages;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -44,5 +45,14 @@ public abstract class Page {
 		isRunning = false;
 	}
 	
+	
+	/*
+	 * Clears all PaintListeners
+	 */
+	public void clearPaintListeners() {
+        for (PaintListener listener : canvas.getPaintListeners()) {
+            canvas.removePaintListener(listener);
+        }
+    }
 	
 }

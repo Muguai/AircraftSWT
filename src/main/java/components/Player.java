@@ -107,6 +107,7 @@ public class Player extends Aircraft{
         });
 	}
 	
+	
 	/*	getXOffset()
 	 * 	A getter for the offset that other gameObjects (other than player) should use.
 	 *  Since every gameObject is offsetted by the position of the player we simply return it

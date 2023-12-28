@@ -38,7 +38,7 @@ public class Main {
 		DataHandler dataHandler = new DataHandler(player);
         Canvas canvas = new Canvas(shell, SWT.DOUBLE_BUFFERED);
         canvas.setSize(shell.getSize().x, shell.getSize().y);
-        StartMenu startMenu = new StartMenu(display, shell, dataHandler, canvas);
+        StartMenu startMenu = new StartMenu(display, shell, dataHandler, canvas, player);
         
         
         // 4. Game Loop, for each frame, update the game world:
@@ -48,11 +48,11 @@ public class Main {
                 if (!display.readAndDispatch()) {
                     display.sleep();
                 }
-            	System.out.println("In start menu");
+            	//System.out.println("In start menu");
             	long currentTime = System.currentTimeMillis();
                 float deltaTime = (currentTime - lastUpdateTime) / 1000.0f; 
                 lastUpdateTime = currentTime;
-                //startMenu.update(deltaTime);
+                startMenu.update(deltaTime);
             }
             
 

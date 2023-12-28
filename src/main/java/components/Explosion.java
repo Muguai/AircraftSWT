@@ -6,6 +6,7 @@ import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Display;
 
+import utils.ImageManager;
 import utils.SoundManager;
 
 public class Explosion extends GameObject {
@@ -52,7 +53,7 @@ public class Explosion extends GameObject {
         	// if its a small explosion resize the image to a smaller size
         	Image image = new Image(display, relPath);;
         	if (isSmall) {
-        		image = resizeImage(image, SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE);
+        		image = ImageManager.resizeImage(image, SMALL_IMAGE_SIZE, SMALL_IMAGE_SIZE);
         	}
             explosionImage = image;
             nextSprite++;
@@ -60,12 +61,6 @@ public class Explosion extends GameObject {
         	System.out.println(error.getMessage());
         }
 	}
-	
-	private Image resizeImage(Image originalImage, int newWidth, int newHeight) {
-        ImageData imageData = originalImage.getImageData();
-        ImageData scaledImageData = imageData.scaledTo(newWidth, newHeight);
-        return new Image(Display.getDefault(), scaledImageData);
-    }
 	
 	
 	@Override
