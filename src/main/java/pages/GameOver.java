@@ -1,6 +1,7 @@
 package pages;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.GC;
@@ -37,11 +38,15 @@ public class GameOver extends Page {
             gc.setFont(font);
             
             // Calculate the position for the bottom right with an offset
-            int fontX = canvas.getBounds().width/2 - 500; 
+            int fontX = canvas.getBounds().width/2-100; 
             int fontY = canvas.getBounds().height/2 - 50; 
  
             // Draw your health bar
-            gc.drawText("Game Over! \n(Press ESC to exit)", fontX, fontY);
+            gc.setBackground(new Color(255,255,255));
+            gc.setAlpha(140);
+            gc.fillRectangle(fontX, fontY, 300, 100);
+            gc.setAlpha(255);
+            gc.drawText("Game Over! \n(Press ESC to exit)", fontX, fontY, true);
 		});
 	}
 	
