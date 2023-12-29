@@ -16,6 +16,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import components.Aircraft;
 import components.Explosion;
+import components.FighterPlane;
 import components.GameObject;
 import components.MovableObject;
 import components.Player;
@@ -204,7 +205,8 @@ public class GameWorld extends Page {
 				dataHandler.addGameObject(new Explosion(display, explosionX, explosionY));
 				aircraft.removePaintListener(canvas);
 				dataHandler.removeGameObject(aircraft);
-				dataHandler.incrementKillCount();
+				if(!aircraft.isFriendly())
+					dataHandler.incrementKillCount();
 			}
 			else {
 				index++;

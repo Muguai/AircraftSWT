@@ -52,4 +52,8 @@ public abstract class Aircraft extends MovableObject {
 	public GunnerAI getGunnerAi() {
 		return this.gunnerAI;
 	}
+	
+	public boolean isFriendly() {
+		return this.friendly;
+	}
 }
