@@ -44,13 +44,6 @@ public abstract class Page {
 	 */
 	public void exit() {
 		isRunning = false;
-		Listener[] listeners = canvas.getListeners(SWT.Paint);
-		for(Listener listener : listeners) {
-			if(listener instanceof PaintListener) {
-				canvas.removePaintListener(((PaintListener) listener));
-			}
-		}
-		canvas.update();
 	}
 	
 

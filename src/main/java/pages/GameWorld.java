@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
@@ -30,6 +31,7 @@ public class GameWorld extends Page {
 	private Image mapImage;
 	private int offsetX;
 	private int offsetY;
+	private KeyListener keyListener;
 	
 	/*	[class constructor]	GameWorld
 	 * 	The class that represents an ongoing game for as long as the boolean isRunning is true.
@@ -53,7 +55,8 @@ public class GameWorld extends Page {
         
 		
 	     // 7. Setting up event listeners (For player turning, etc)
-	     canvas.addKeyListener(new GameKeyListener(this));
+		 keyListener = new GameKeyListener(this);
+	     canvas.addKeyListener(keyListener);
 	     canvas.addKeyListener(new EscapeKeyListener(this));
 	}
 
@@ -230,6 +233,12 @@ public class GameWorld extends Page {
 		}
 		
 		canvas.redraw();
+	}
+
+	@Override
+	public void exit() {
+		isRunning = false;
+		canvas.removeKeyListener(keyListener);
 	}
 	
 }
