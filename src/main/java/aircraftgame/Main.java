@@ -19,6 +19,7 @@ import components.Explosion;
 import components.Player;
 import components.Radar;
 import data.DataHandler;
+import pages.GameOver;
 import pages.GameWorld;
 import pages.StartMenu;
 import utils.SoundManager;
@@ -82,9 +83,20 @@ public class Main {
                 gameWorld.update(deltaTime);
             }
             
+            // 7. Iterate over the game over menu:
+            GameOver gameOverMenu = new GameOver(display, shell, dataHandler, canvas);
+            while(gameOverMenu.runs()) {
+                if (!display.readAndDispatch()) {
+                    display.sleep();
+                }
+            	long currentTime = System.currentTimeMillis();
+                float deltaTime = (currentTime - lastUpdateTime) / 1000.0f; 
+                lastUpdateTime = currentTime;
+                gameOverMenu.update(deltaTime);
+            }
         }
-
-        // 7. Dispose of the display when done
+        
+        // 8. Dispose of the display when done
         display.dispose();
     }
     
