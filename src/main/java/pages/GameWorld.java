@@ -39,9 +39,10 @@ public class GameWorld extends Page {
 	 *  for every frame. The update() function in turn is an iteration over every gameObject in the
 	 *  world. For each such object, movement, collision detection, rendering etc is called upon
 	 *  within the update() function.
-	 *  @Param:	
-	 *  @Param:
+	 *  @Param:	display - The display object of the application.
+	 *  @Param: shell - The shell object of the application.
 	 *  @Param:	dataHandler - A dataHandler object where every gameObject is stored.
+	 *  @Param: canvas - A Canvas object that is all shared between the classes.
 	 */
 	
 	public GameWorld(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
@@ -203,6 +204,7 @@ public class GameWorld extends Page {
 				dataHandler.addGameObject(new Explosion(display, explosionX, explosionY));
 				aircraft.removePaintListener(canvas);
 				dataHandler.removeGameObject(aircraft);
+				dataHandler.incrementKillCount();
 			}
 			else {
 				index++;

@@ -13,12 +13,14 @@ public class DataHandler {
 	private List<Aircraft> aircrafts;
 	private final Player player;
 	private Radar radar;
+	private int enemiesKilled;
 	
 	public DataHandler(Player player) {
 		gameObjects = new ArrayList<>();
 		aircrafts = new ArrayList<>();
 		this.player = player;
 		addGameObject(player);
+		this.enemiesKilled = 0;
 	}
 	
 	/*	addGameObject()
@@ -67,6 +69,18 @@ public class DataHandler {
 	
 	public Player getPlayer() {
 		return player;
+	}
+	
+	/*	incrementKillCount()
+	 * 
+	 */
+	
+	public void incrementKillCount() {
+		this.enemiesKilled ++;
+	}
+	
+	public int getKills() {
+		return this.enemiesKilled;
 	}
 	
 	public void setRadar(Radar radar) {

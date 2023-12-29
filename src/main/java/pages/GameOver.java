@@ -44,9 +44,11 @@ public class GameOver extends Page {
             // Draw your health bar
             gc.setBackground(new Color(255,255,255));
             gc.setAlpha(140);
-            gc.fillRectangle(fontX, fontY, 300, 100);
+            gc.fillRectangle(fontX, fontY-50, 300, 200);
             gc.setAlpha(255);
-            gc.drawText("Game Over! \n(Press ESC to exit)", fontX, fontY, true);
+            gc.drawText("Game Over! "
+            		+ "\n(Press ESC to exit)"
+            		+ "\n\n Enemies killed: " + this.dataHandler.getKills(), fontX, fontY-50, true);
 		});
 	}
 	
