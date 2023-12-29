@@ -13,6 +13,14 @@ import data.DataHandler;
 import eventListeners.EscapeKeyListener;
 
 public class GameOver extends Page {
+	
+	/*	[Class Constructor] GameOver
+	 *  A gameOver object is used as stage 3/3 in the main loop.
+	 *  The gameOver page will freeze the game and display a game over section, where the player
+	 *  is greeted with how many enemies he / she has shot down.
+	 *  The player can then press ESC to exit the game. 
+	 */
+	
 	public GameOver(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
 		super(display, shell, dataHandler, canvas);
 		drawGameOver();

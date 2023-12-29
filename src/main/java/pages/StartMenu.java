@@ -33,6 +33,13 @@ public class StartMenu extends Page {
 	private boolean menuPaintListenerActive = false;
 	private boolean planePaintListenerActive = false;
 
+	/*	[Class Constructor] StartMenu
+	 *  Stage 1/3 in the main loop.
+	 *  This class runs animation via the update() method, using deltaTime.
+	 *  A background is rendered and a label where the user is prompted to press ESC to start a new game.
+	 *  On pressing ESC, running is set to false, and start menu exits and the game loop begins in main (stage 2/3).
+	 */
+	
 	public StartMenu(Display display, Shell shell, DataHandler dataHandler, Canvas canvas, Player player) {
 		super(display, shell, dataHandler, canvas);
 		this.player = player;
@@ -176,6 +183,9 @@ public class StartMenu extends Page {
 		canvas.redraw();
 	}
 	
+	/*	exit()
+	 * 	Override page's exit to remove the paint listeners we have used. 
+	 */
 	@Override
 	public void exit() {
 		this.isRunning = false;
@@ -183,10 +193,5 @@ public class StartMenu extends Page {
 		removePaintListener(planePaintListener);
 	}
 	
-	public void removePaintListener(PaintListener paintListener) {
-		if(paintListener != null)
-			canvas.removePaintListener(paintListener);
-		paintListener = null;
-	}
 
 }

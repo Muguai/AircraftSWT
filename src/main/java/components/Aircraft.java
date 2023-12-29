@@ -53,6 +53,10 @@ public abstract class Aircraft extends MovableObject {
 		return this.gunnerAI;
 	}
 	
+	/*	isFriendly()
+	 * 	Returns the friendly boolean.
+	 */
+	
 	public boolean isFriendly() {
 		return this.friendly;
 	}

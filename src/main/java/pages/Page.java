@@ -17,14 +17,19 @@ public abstract class Page {
 	protected boolean isRunning;
 	protected Shell shell;
 
+	/*	[Class Constructor] Page
+	 * 	Page is an abstract class that different stages of the game can extend, for example:
+	 *  Start Menu, Game World, and Game Over Screen.
+	 *  With the abstract page class we can use functionalities that they all should have in common
+	 *  such as the isRunning() and exit() methods.
+	 */
+	
 	public Page(Display display, Shell shell, DataHandler dataHandler, Canvas canvas) {
 		this.display = display;
 		this.dataHandler = dataHandler;
 		this.shell = shell;
-		// Create a new canvas as big as the screen
-		this.canvas = canvas;
-		
-		isRunning = true;
+		this.canvas = canvas;		
+		this.isRunning = true;
 	}
 	
 	public Display getDisplay() { return display; }
@@ -46,5 +51,13 @@ public abstract class Page {
 		isRunning = false;
 	}
 	
-
+	/*	removePaintListener()
+	 * 	A method that reads in a paint listener and removes it from the canvas.
+	 */
+	
+	public void removePaintListener(PaintListener paintListener) {
+		if(paintListener != null)
+			canvas.removePaintListener(paintListener);
+		paintListener = null;
+	}
 }

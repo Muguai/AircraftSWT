@@ -35,6 +35,7 @@ public class GameWorld extends Page {
 	private KeyListener keyListener;
 	
 	/*	[class constructor]	GameWorld
+	 *  A GameWorld object is used as stage 2 / 3 in the main loop.
 	 * 	The class that represents an ongoing game for as long as the boolean isRunning is true.
 	 *  GameWorld draws up the world, sets keyListeners for the player and runs the update() function
 	 *  for every frame. The update() function in turn is an iteration over every gameObject in the
@@ -63,7 +64,7 @@ public class GameWorld extends Page {
 	}
 
 	/* setMapImage()
-	 * Attempts to retrieve the map image 
+	 * Attempts to retrieve the map image. 
 	 */
 	public void setMapImage(String path) {
 		try {
@@ -77,21 +78,21 @@ public class GameWorld extends Page {
 	 * 
 	 */
 	public void setMapImagePaintListener() {
-		// 2. Create a new canvas to render on:
+		// 1. Create a new canvas to render on:
 	    canvas.addPaintListener(e -> {
 	     	GC gc = e.gc;
 	     	
-	     	// 3. Calculate the destination rectangle within the canvas:
+	     	// 2. Calculate the destination rectangle within the canvas:
 	        int destX = 0; 								
 	        int destY = 0; 								
 	        int destWidth = canvas.getBounds().width; 	
 	        int destHeight = canvas.getBounds().height;	
 	 
-	        // 4. Calculate a map offset based on player position:
+	        // 3. Calculate a map offset based on player position:
 	        offsetX =  canvas.getBounds().width/2  -mapImage.getBounds().width/2 - (int)dataHandler.getPlayer().getX();
 	        offsetY =  canvas.getBounds().height/2 -mapImage.getBounds().height/2 - (int)dataHandler.getPlayer().getY();
 	         
-	        // 5. Render the image of the map onto the canvas, with offsets:
+	        // 4. Render the image of the map onto the canvas, with offsets:
 	        int srcX = Math.max(0, offsetX);
 	        int srcY = Math.max(0, offsetY);
 	        int srcWidth = Math.min(mapImage.getBounds().width - srcX, destWidth);
