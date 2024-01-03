@@ -14,7 +14,7 @@ public class DataHandler {
 	private final Player player;
 	private Radar radar;
 	private int enemiesKilled;
-	private int totalEnemies;
+	private int enemiesKillToWin;
 	
 	
 	public DataHandler(Player player) {
@@ -105,11 +105,17 @@ public class DataHandler {
 		return radar;
 	}
 	
-	public void setTotalEnemies(int enemies) {
-		this.totalEnemies = enemies;
+	/*	setEnemiesKillToWin
+	 * 	Sets how many enemies are to be the limit before we win the game.
+	 */
+	public void setEnemiesKillToWin(int enemies) {
+		this.enemiesKillToWin = enemies;
 	}
 	
-	public int getTotalEnemies() {
-		return this.totalEnemies;
+	/*  getEnemiesKillToWin()
+	 *  Returns the kill limit to the GameLoop for checking.
+	 */
+	public int getEnemiesKillToWin() {
+		return this.enemiesKillToWin;
 	}
 }
