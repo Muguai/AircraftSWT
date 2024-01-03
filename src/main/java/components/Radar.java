@@ -63,18 +63,18 @@ public class Radar{
 	/*	drawRadar()
 	 * 	This is the workhorse of the radar class, we can divide the draw methods in 3 steps:
 	 
-	 *  Prework:
+	 *  A) Prework:
 	 *  1. Make sure to set up only one paintListener.
 	 *  2. Check if radar is toggled.
 	 *  3. Calculate where to place the centerpoint of the radar on the screen.
 	 *  4. Draw out equidistant circles to make it look like a radar.
 	 *  5. Draw a horizontal and vertical line, again, to make it look better.
 	 
-	 *  Scanning Line: 
+	 *  B) Set up the Scanning Line: 
 	 *  1. Sin(x) and Cos(x) can be used to create a point on the perifery of the circle.
 	 *  2. We can then just draw a line from the center to the point: [Cos(angle), Sin(angle)]
 	 
-	 *  Load in enemies:
+	 *  C) Load in Enemies:
 	 *  1. We can use the euclidean formula to calculate a distance to every aircraft.
 	 *  2. We can then filter out aircrafts that are too far, that is to say, distance > detectionRadius.
 	 *  3. We can calculate a quotient (distance/detectionRadius), where distance is the distance to the aircraft object.
@@ -86,7 +86,7 @@ public class Radar{
 	
 	public void drawRadar(Canvas canvas) {
 		
-		// Prework:
+		// A) Prework:
 		// 1. Set up only one listener:
 		if(listener)
 			return;
@@ -123,7 +123,7 @@ public class Radar{
 			gc.drawLine(x, centerY, x+drawRadius, centerY);
 			gc.drawLine(centerX, y, centerX, y + drawRadius);
 			
-			// Scanning Line:
+			// B) Setting up the Scanning Line:
 			// 1. Calculate the angle:
 			float timeFraction = totalTime / period;
 			float angle = timeFraction*360-90;
@@ -136,7 +136,7 @@ public class Radar{
 			gc.fillRectangle(a-5, b-5, 10, 10);
 			
 			
-			// Load in enemies:
+			// C) Load in Enemies:
 			// Get the centered gameWorld coordinates of the player:
 			int playerX = (int)prevPlayerX + canvas.getBounds().width/2;
 			int playerY = (int)prevPlayerY + canvas.getBounds().height/2;
