@@ -17,6 +17,13 @@ public class DataHandler {
 	private int enemiesKillToWin;
 	
 	
+	/*	[Class Constructor] DataHandler()
+	 * 	The DataHandler is a class that keeps track of the GameObjects in the world
+	 *  as well as other misc. data, such as how many enemies have been killed, etc.
+	 *  A shared DataHandler object can then be used between the different stages of
+	 *  the game, and the different objects that need to know some kind of data.
+	 */
+	
 	public DataHandler(Player player) {
 		gameObjects = new ArrayList<>();
 		aircrafts = new ArrayList<>();
