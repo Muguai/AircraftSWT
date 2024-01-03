@@ -14,6 +14,8 @@ public class DataHandler {
 	private final Player player;
 	private Radar radar;
 	private int enemiesKilled;
+	private int totalEnemies;
+	
 	
 	public DataHandler(Player player) {
 		gameObjects = new ArrayList<>();
@@ -101,5 +103,13 @@ public class DataHandler {
 	
 	public Radar getRadar() {
 		return radar;
+	}
+	
+	public void setTotalEnemies(int enemies) {
+		this.totalEnemies = enemies;
+	}
+	
+	public int getTotalEnemies() {
+		return this.totalEnemies;
 	}
 }

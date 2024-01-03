@@ -68,12 +68,13 @@ public class Main {
             
     		enemySpawner.vFormationSpawn(5, 45, -35, 55, false);
             enemySpawner2.vFormationSpawn(5, 45, 135, 65, false);
+            dataHandler.setTotalEnemies(10);
             enemySpawner3.vFormationSpawn(7, 45, -90, 65, true);
             SoundManager soundManager = new SoundManager();
             soundManager.playBackgroundOnRepeat();
             
             // 6. Iterate over the game world, and update for each frame:
-            while (gameWorld.runs() && player.getHealth() > 0) {
+            while (gameWorld.runs() && player.getHealth() > 0 && dataHandler.getTotalEnemies() > dataHandler.getKills()) {
                 if (!display.readAndDispatch()) {
                     display.sleep();
                 }
