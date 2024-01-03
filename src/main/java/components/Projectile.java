@@ -45,6 +45,10 @@ public abstract class Projectile extends MovableObject{
 		return (float)Math.sqrt(xRes + yRes);
 	}
 	
+	/*	getDamage()
+	 * 	A getter for the damage of the impact of the projectile.
+	 */
+	
 	public int getDamage() {
 		return damage;
 	}
@@ -98,6 +102,13 @@ public abstract class Projectile extends MovableObject{
 		// 8. If we have iterated over every aircraft with no hits we are guaranteed to get here, and we return null: 
 		return null;
 	}
+	
+	/*	endOfLife()
+	 * 	A function that is called in update in the Game World for each timestep.
+	 *  The method checks if the Projectile object has reached its lifetime.
+	 *  If it has, remove it from the paint Listener and return true.
+	 *  In returning true, the GameWorld can then use this to remove it from the arrayList of active GameObjects.
+	 */
 	
 	public boolean endOfLife(float deltaTime, Canvas canvas) {
 		timer += deltaTime;

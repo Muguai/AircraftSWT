@@ -72,20 +72,32 @@ public class DataHandler {
 	}
 	
 	/*	incrementKillCount()
-	 * 
+	 * 	Called upon to increment the internal counter of enemies killed 
+	 *  (Later used in the Game Over Screen)
 	 */
 	
 	public void incrementKillCount() {
 		this.enemiesKilled ++;
 	}
 	
+	/*	getKills()
+	 * 	A getter that returns enemies killed (To the Game Over Screen).
+	 */
+	
 	public int getKills() {
 		return this.enemiesKilled;
 	}
 	
+	/*	setRadar()
+	 * 	Sets the radar object in the DataHandler class.
+	 */
 	public void setRadar(Radar radar) {
 		this.radar = radar;
 	}
+	
+	/*	getRadar()
+	 * 	Returns said radar.
+	 */
 	
 	public Radar getRadar() {
 		return radar;

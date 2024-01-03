@@ -239,7 +239,13 @@ public class GameWorld extends Page {
 		
 		canvas.redraw();
 	}
-
+	
+	/* exit()
+	 * Override the exit method to remove keyListeners pertaining to player movements.
+	 * This is necessary, else the player movements might be possible in the Game Over Screen
+	 * (Depending on how the game ended).
+	 */
+	
 	@Override
 	public void exit() {
 		isRunning = false;

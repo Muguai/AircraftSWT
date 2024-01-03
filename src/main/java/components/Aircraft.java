@@ -21,6 +21,10 @@ public abstract class Aircraft extends MovableObject {
 		health = 100;
 	}
 	
+	/*	getHealth()
+	 * 	Returns the health of the aircraft.
+	 */
+	
 	public int getHealth() {
 		return health;
 	}

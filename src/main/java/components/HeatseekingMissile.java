@@ -35,6 +35,11 @@ public class HeatseekingMissile extends Projectile{
 	
 	/*	heatseekAdjustDirection()
 	 * 	A method that scans the air for enemies and uses homing towards them if one such can be found.
+	 *  1. We scan for enemies.
+	 *  2. Calculate our distance to them.
+	 *  3. If we are within the distance, we change our direction vector to go towards the closest enemy found.
+	 *  Using arcTan we can convert two points in the plane to an angle between the two points, this is what
+	 *  is used as an angle for the missile's direction vector. 
 	 */
 	
 	public void heatseekAdjustDirection(List<Aircraft> aircrafts) {
