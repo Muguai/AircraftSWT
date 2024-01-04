@@ -61,7 +61,7 @@ public class Radar{
 	}
 	
 	/*	drawRadar()
-	 * 	This is the workhorse of the radar class, we can divide the draw methods in 3 steps:
+	 * 	This is the workhorse of the radar class, we can divide the draw methods in 3 phases:
 	 
 	 *  A) Prework:
 	 *  1. Make sure to set up only one paintListener.

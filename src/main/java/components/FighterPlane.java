@@ -15,8 +15,7 @@ public class FighterPlane extends Aircraft {
 	 * 	This class defines an enemy aircraft.
 	 * 	The enemy aircraft has a position that is affected by offsets set via the root super parent: Game Object.
 	 *  The enemy aircraft moves around at a predefined speed factor.
-	 *  A gunnerAI object is attached to the enemy and will open fire on the player and player teammates possibly.
-	 *  
+	 *  A gunnerAI object is attached to the enemy and will open fire on the player and player teammates possibly.  
 	 */
 	
 	public FighterPlane(Display display, float xPosition, float yPosition, float degree, boolean friendly){
@@ -25,20 +24,19 @@ public class FighterPlane extends Aircraft {
 		this.friendly = friendly;
 		this.gunnerAI = new GunnerAI(friendly, 500.0f, this);
 		
-		// Making enemies stronger than friendlies:
+		// Making enemies slightly stronger than friendlies and giving them a greater range:
 		if(!friendly) {
 			this.gunnerAI = new GunnerAI(friendly, 550.0f, this);
 			this.health = 150;
 		}
 		
-		// Hihi
 		String relPath = "src\\main\\java\\resources\\images\\aircrafts\\";
 		if (friendly) {
 			relPath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_02.png";
 		} else {
 			relPath = "src\\main\\java\\resources\\images\\aircrafts\\aircraft_05.png";
 		}
-		//
+		
 		
 		planeImage = new Image(display, relPath);
 		this.health = 100;
@@ -47,6 +45,7 @@ public class FighterPlane extends Aircraft {
 	
 	/*	draw()
 	 * 	Renders the enemy object onto the canvas at its current position.
+	 *  We use a transform to rotate in origo.
 	 */
 	
     public void draw(Canvas canvas) {
