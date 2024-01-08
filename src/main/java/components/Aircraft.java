@@ -45,7 +45,7 @@ public abstract class Aircraft extends MovableObject {
 	public void setDegree(float degree) {
         this.degree = degree;
         float radians = (float)Math.toRadians(degree);
-    	directionVector.setDirection(radians);
+    	this.directionVector.setDirection(radians);
 	}
 	
 	/*	getGunnerAi()

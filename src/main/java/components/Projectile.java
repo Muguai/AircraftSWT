@@ -111,8 +111,8 @@ public abstract class Projectile extends MovableObject{
 	 */
 	
 	public boolean endOfLife(float deltaTime, Canvas canvas) {
-		timer += deltaTime;
-		if(timer >= lifetime) {
+		this.timer += deltaTime;
+		if(this.timer >= this.lifetime) {
 			this.removePaintListener(canvas);
 			return true;
 		}

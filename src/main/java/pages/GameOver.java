@@ -28,6 +28,11 @@ public class GameOver extends Page {
 		canvas.addKeyListener(new EscapeKeyListener(this));
 	}
 	
+	/*	drawGameOver()
+	 * 	A method that is called to draw the game over screen.
+	 *  The method makes use of the dataHandler to get data of how many enemies have been killed.
+	 */
+	
 	private void drawGameOver() {
 		canvas.addPaintListener(e -> {
             GC gc = e.gc;
