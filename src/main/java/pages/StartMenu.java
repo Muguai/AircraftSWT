@@ -141,7 +141,11 @@ public class StartMenu extends Page {
 
 		});
 	}
-
+	
+	/*	drawPlane()
+	 * 	A function that draws a plane image (though not as an object) on the canvas.
+	 */
+	
 	public void drawPlane(float degrees) {
 		if(planePaintListenerActive) {
 			return;

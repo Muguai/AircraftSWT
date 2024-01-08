@@ -74,9 +74,10 @@ public class GameWorld extends Page {
 		}
 	}
 	
-	/*
-	 * 
+	/*	setMapImagePaintListener()
+	 * 	Sets up the paintListener for the gameWorld image.
 	 */
+	
 	public void setMapImagePaintListener() {
 		// 1. Create a new canvas to render on:
 	    canvas.addPaintListener(e -> {
