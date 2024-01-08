@@ -143,7 +143,8 @@ public class StartMenu extends Page {
 	}
 	
 	/*	drawPlane()
-	 * 	A function that draws a plane image (though not as an object) on the canvas.
+	 * 	A function that draws a plane image on the canvas.
+	 *  The Move method is called to make the airplane fly while the player has not started a new game.
 	 */
 	
 	public void drawPlane(float degrees) {
@@ -180,10 +181,13 @@ public class StartMenu extends Page {
 		 canvas.addPaintListener(planePaintListener);
 	}
 
+	/*	update()
+	 * 	
+	 */
+	
 	public void update(float deltaTime) {
 		// Repaint the canvas
 		player.moveObject(deltaTime);
-		player.setOffsets(dataHandler.getPlayer().getXOffset(), dataHandler.getPlayer().getYOffset());
 		canvas.redraw();
 	}
 	
