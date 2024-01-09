@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Display;
 public class FighterPlane extends Aircraft {
 	private Image planeImage;
 	
-	/*	[class constructor] Enemy()
+	/*	[Class Constructor] Enemy()
 	 * 	This class defines an enemy aircraft.
 	 * 	The enemy aircraft has a position that is affected by offsets set via the root super parent: Game Object.
 	 *  The enemy aircraft moves around at a predefined speed factor.
