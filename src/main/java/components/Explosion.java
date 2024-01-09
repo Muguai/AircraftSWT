@@ -23,6 +23,11 @@ public class Explosion extends GameObject {
 	private final int SMALL_IMAGE_SIZE = 100;
 	private SoundManager soundManager;
 	
+	/*	[Class Constructor 1/2] Explosion()
+	 * 	An explosion is an animated object that gets animated once an aircraft is destroyed, typically.
+	 *  A random explosion sound is played and a function that iterates over the sprites is called.
+	 */
+	
 	public Explosion(Display display, float x, float y) {
 		super(x, y);
 		this.display = display;
@@ -30,6 +35,11 @@ public class Explosion extends GameObject {
 		soundManager = new SoundManager();
 		soundManager.playRandomExplosion();
 	}
+	
+	/*	[Class Constructor 2/2] Explosion()
+	 * 	Sometimes we want to trigger a smaller explosion that will produce no sound, for example when an
+	 *  aircraft is hit. This constructor will deal with that.
+	 */
 	
 	public Explosion(Display display, float x, float y, boolean isSmall) {
 		super(x,y);
@@ -45,6 +55,11 @@ public class Explosion extends GameObject {
 	public void setTotalTime(float deltaTime) {
 		totalTime += deltaTime;
 	}
+	
+	/*	setNextSpriteImage()
+	 * 	A method that iterates over the sprites in an explosion.
+	 * 	If the explosion is flagged as small, the image is resized to that end. 
+	 */
 	
 	public void setNextSpriteImage() {
 		// Finds and sets the next image in the sprite sheet

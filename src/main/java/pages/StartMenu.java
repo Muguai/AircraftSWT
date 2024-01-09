@@ -182,11 +182,10 @@ public class StartMenu extends Page {
 	}
 
 	/*	update()
-	 * 	
+	 * 	Call the Move method on the plane object and redraw the canvas. 
 	 */
 	
 	public void update(float deltaTime) {
-		// Repaint the canvas
 		player.moveObject(deltaTime);
 		canvas.redraw();
 	}
