@@ -119,6 +119,10 @@ public abstract class Projectile extends MovableObject{
 		return false;
 	}
 	
+	/*	draw()
+	 * 	Draws a projectile, rotates it using transform etc.
+	 */
+	
 	public void draw(Canvas canvas) {
 		if(listenerActive) {
 			return;
